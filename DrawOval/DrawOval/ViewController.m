@@ -111,7 +111,9 @@ BottomTabBar *bottomTabBarView;
     
     currentHeadlineID = clickButton.tag;
     [arraySelectedID removeLastObject];
-    [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
+    int lastObject = [[arraySelectedID lastObject] integerValue];
+    if (lastObject != [sender tag])
+        [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
     NSLog(@"selected: %@",arraySelectedID);
     
     clickButton.backgroundColor = [UIColor redColor];
@@ -137,7 +139,9 @@ BottomTabBar *bottomTabBarView;
     
     previousHeadlineID = currentHeadlineID;
     currentHeadlineID = clickButton.tag;
-    [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
+    int lastObject = [[arraySelectedID lastObject] integerValue];
+    if (lastObject != [sender tag])
+        [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
     NSLog(@"selected: %@",arraySelectedID);
 
     [arrayButton2 removeAllObjects];
@@ -235,8 +239,10 @@ BottomTabBar *bottomTabBarView;
 }
 -(void)maskBtnDidClick:(id)sender {
     NSLog(@"clicked mask button:%d", [sender tag]);
-    [arraySelectedID addObject:[NSNumber numberWithInteger:[sender tag]]];
-    [self loadCurrentHeadlines:[sender tag]];
+    int lastObject = [[arraySelectedID lastObject] integerValue];
+    if (lastObject != [sender tag])
+        [arraySelectedID addObject:[NSNumber numberWithInteger:[sender tag]]];
+        [self loadCurrentHeadlines:[sender tag]];
     if ([arrCurrentHeadlines count]==0) {
         [self hideCoverView:NO];
     }
