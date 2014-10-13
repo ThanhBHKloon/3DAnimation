@@ -1,0 +1,38 @@
+//
+//  ViewController.h
+//  DrawOval
+//
+//  Created by Dinh Linh on 24/9/14.
+//  Copyright (c) 2014 Dinh Linh. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface ViewController : UIViewController{
+
+    NSMutableArray *arrayHeadLineItem;
+    NSMutableArray *arrayButton1;
+    NSMutableArray *arrayButton2;
+    NSMutableArray *arrayButton3;
+    NSMutableArray *arrayThumb;
+    NSMutableArray *arrayMiddleFrame;
+    NSMutableArray *arrayMiddlePoint;
+    UIButton *btnBack;
+    BOOL btnBackSelected;
+    BOOL isFinishStep1;
+    BOOL isFinishStep2;
+    BOOL isFinishStep3;
+    int animationType;
+    
+    NSMutableArray *arrCurrentHeadlines;
+    NSMutableArray *arrPreviousHeadlines;
+    NSInteger currentHeadlineID;
+    NSInteger previousHeadlineID;
+    
+    NSMutableArray *arraySelectedID; // store selected headine ID in each level
+    
+}
+
+
+
+@end
