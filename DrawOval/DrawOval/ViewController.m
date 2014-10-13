@@ -62,7 +62,7 @@ BottomTabBar *bottomTabBarView;
     
 
     btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnBack.backgroundColor =[UIColor grayColor];
+    btnBack.backgroundColor =[UIColor clearColor];
     btnBack.center = CGPointMake(20, 10);
     [btnBack sizeToFit];
     [btnBack addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -966,10 +966,12 @@ BottomTabBar *bottomTabBarView;
     if (isHidden) {
         imgBackground.hidden = YES;
         scrollView1.hidden = NO;
+        bottomTabBarView.backgroundColor = [UIColor grayColor];
     }
     else {
         imgBackground.hidden = NO;
         scrollView1.hidden = YES;
+        bottomTabBarView.backgroundColor = [UIColor clearColor];
     }
 }
 
