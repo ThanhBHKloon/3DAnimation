@@ -41,7 +41,13 @@ BottomTabBar *bottomTabBarView;
     
     CGRect screenRect1 = [[UIScreen mainScreen] bounds];
     CGRect screenRect;
-    
+    imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(screenRect1.origin.x,
+                                                                  screenRect1.origin.y,
+                                                                  screenRect1.size.height,
+                                                                  screenRect1.size.width)];
+    imgBackground.image = [UIImage imageNamed:@"background.png"];
+    [self.view addSubview:imgBackground];
+    imgBackground.hidden = YES;
     UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
     if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
         screenRect = CGRectMake(0, 0, screenRect1.size.width, screenRect1.size.height);
@@ -126,7 +132,7 @@ BottomTabBar *bottomTabBarView;
     
     
     if ([arrCurrentHeadlines count]==0) {
-        return;
+        [self hideCoverView:NO];
     }
     
     previousHeadlineID = currentHeadlineID;
@@ -227,6 +233,15 @@ BottomTabBar *bottomTabBarView;
         
     }
 }
+-(void)maskBtnDidClick:(id)sender {
+    NSLog(@"clicked mask button:%d", [sender tag]);
+    [arraySelectedID addObject:[NSNumber numberWithInteger:[sender tag]]];
+    [self loadCurrentHeadlines:[sender tag]];
+    if ([arrCurrentHeadlines count]==0) {
+        [self hideCoverView:NO];
+    }
+
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 
 	return YES;
@@ -324,7 +339,7 @@ BottomTabBar *bottomTabBarView;
     [arraySelectedID removeLastObject];
     if ([arraySelectedID count]>0) {
         currentHeadlineID = [[arraySelectedID lastObject] integerValue];
-        
+        [self hideCoverView:YES];
     }
     else {
         currentHeadlineID = 0;
@@ -368,6 +383,12 @@ BottomTabBar *bottomTabBarView;
         
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 1.0;
+        // add button
+        maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        maskBtn.backgroundColor = [UIColor clearColor];
+        [maskBtn addTarget:self action:@selector(maskBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        maskBtn.frame = thumb.bounds;
+        [thumb addSubview:maskBtn];
         [arrayThumb addObject:thumb];
         [scrollView1 addSubview:thumb];
         
@@ -507,6 +528,7 @@ BottomTabBar *bottomTabBarView;
         b.titleLabel.font= [UIFont systemFontOfSize:23];
         [b addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         b.tag = item.thumbID;
+        maskBtn.tag = item.thumbID;
         b.alpha = 1.0;
         [scrollView1 addSubview:b];
         
@@ -563,9 +585,15 @@ BottomTabBar *bottomTabBarView;
 
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
-        
+        ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 1.0;
+        maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        maskBtn.backgroundColor = [UIColor clearColor];
+        [maskBtn addTarget:self action:@selector(maskBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        maskBtn.frame = thumb.bounds;
+        maskBtn.tag = item.thumbID;
+        [thumb addSubview:maskBtn];
         [arrayThumb addObject:thumb];
         [scrollView1 addSubview:thumb];
         
@@ -691,9 +719,17 @@ BottomTabBar *bottomTabBarView;
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame = CGRectMake(padding +i*(padding+ 285) , 125, 285, 130);
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
-        
+        ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 0.0;
+        // add button
+        maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        maskBtn.backgroundColor = [UIColor clearColor];
+        [maskBtn addTarget:self action:@selector(maskBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        maskBtn.frame = thumb.bounds;
+        maskBtn.tag = item.thumbID;
+        [thumb addSubview:maskBtn];
+
         [arrayThumb addObject:thumb];
         [scrollView1 addSubview:thumb];
         
@@ -926,6 +962,15 @@ BottomTabBar *bottomTabBarView;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void) hideCoverView:(BOOL) isHidden {
+    if (isHidden) {
+        imgBackground.hidden = YES;
+        scrollView1.hidden = NO;
+    }
+    else {
+        imgBackground.hidden = NO;
+        scrollView1.hidden = YES;
+    }
+}
 
 @end

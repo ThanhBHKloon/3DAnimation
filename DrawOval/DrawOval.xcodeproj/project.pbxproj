@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30456EBE19EBBC1800F3A6CA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 30456EBD19EBBC1800F3A6CA /* background.png */; };
 		5B25D4EC19DA5410000D00B6 /* button_back_unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B25D4EB19DA5410000D00B6 /* button_back_unselected.png */; };
 		5B439E0E19DC06F60098459D /* ThumbItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B439E0D19DC06F60098459D /* ThumbItem.m */; };
 		5B48AB8719D957C900B77FC7 /* BottomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B48AB8619D957C900B77FC7 /* BottomTabBar.m */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30456EBD19EBBC1800F3A6CA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		5B25D4EB19DA5410000D00B6 /* button_back_unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back_unselected.png; sourceTree = "<group>"; };
 		5B439E0C19DC06F60098459D /* ThumbItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbItem.h; sourceTree = "<group>"; };
 		5B439E0D19DC06F60098459D /* ThumbItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbItem.m; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				5B48AB8619D957C900B77FC7 /* BottomTabBar.m */,
 				5B439E0C19DC06F60098459D /* ThumbItem.h */,
 				5B439E0D19DC06F60098459D /* ThumbItem.m */,
+				30456EBD19EBBC1800F3A6CA /* background.png */,
 			);
 			path = DrawOval;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BA14D5119D27C3C008A730E /* Images.xcassets in Resources */,
+				30456EBE19EBBC1800F3A6CA /* background.png in Resources */,
 				5BA14D4319D27C3C008A730E /* InfoPlist.strings in Resources */,
 				5BA14D4C19D27C3C008A730E /* Main.storyboard in Resources */,
 				5B25D4EC19DA5410000D00B6 /* button_back_unselected.png in Resources */,
