@@ -512,33 +512,28 @@ BottomTabBar *bottomTabBarView;
     if ([arraySelectedID count] >0) {
         for (int i =0; i<[arrPreviousHeadlines count]; i++) {
             
-            CGRect frameTopBG= CGRectMake(20 +i*(padding1+143) , 190, 143, 40);
-            CGRect frameTop= CGRectMake(3 , 3, 137, 34);
+            CGRect frameTop= CGRectMake(20 +i*(padding1+143) , 190, 143, 40);
             //        CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
-            
-            UIView *buttonsBackground = [[UIView alloc] initWithFrame:frameTopBG];
-            buttonsBackground.backgroundColor = [UIColor whiteColor];
             
             UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
             ThumbItem *item = [arrPreviousHeadlines objectAtIndex:i];
             [b setTitle:item.thumbTitle forState:UIControlStateNormal];
             b.frame = frameTop;
-            b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
+//            b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
+            [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub.png"] forState:UIControlStateNormal];
             
             [b addTarget:nil action:@selector(clickTopButton:) forControlEvents:UIControlEventTouchUpInside];
             b.tag = item.thumbID;
             if (b.tag == currentHeadlineID) {
-                b.backgroundColor = [UIColor redColor];
+//                b.backgroundColor = [UIColor redColor];
+                [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub_pressed.png"] forState:UIControlStateNormal];
             }
             b.alpha = 0.0;
-            buttonsBackground.alpha = 0.0;
             [arrayButton2 addObject:b];
-            [buttonsBackground addSubview:b];
-            [scrollView1 addSubview:buttonsBackground];
+            [scrollView1 addSubview:b];
             
             [UIView animateWithDuration:1.5 animations:^{
                 b.alpha = 1.0;
-                buttonsBackground.alpha = 1.0;
             }];
             
         }
