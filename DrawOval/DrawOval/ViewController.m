@@ -92,7 +92,9 @@ BottomTabBar *bottomTabBarView;
 
 
 -(void)clickTopButton:(id)sender{
-    NSLog(@"click top button");
+    if (!isFinishAnimation) {
+        return;
+    }
     UIButton *clickButton = sender;
     previousHeadlineID = currentHeadlineID;
     if (previousHeadlineID == clickButton.tag) {
@@ -127,6 +129,9 @@ BottomTabBar *bottomTabBarView;
 }
 
 -(void)clickButton:(id)sender{
+    if (!isFinishAnimation) {
+        return;
+    }
     isFinishAnimation = NO;
     isFinishStep1 = NO;
     isFinishStep2 = NO;
