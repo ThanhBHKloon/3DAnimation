@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BottomTabBar.h"
 #import "ThumbItem.h"
+#import "DescriptionView.h"
 @interface ViewController ()
 
 @end
@@ -408,6 +409,13 @@ BottomTabBar *bottomTabBarView;
         [thumb addSubview:maskBtn];
         [arrayThumb addObject:thumb];
         
+        // add Description
+        DescriptionView *descriptionView = [[DescriptionView alloc] initWithFrame:CGRectMake(b.frame.origin.x,
+                                                                                             b.frame.origin.y + b.frame.size.height,
+                                                                                             b.frame.size.width,
+                                                                                             b.frame.size.height)];
+        
+        [scrollView1 addSubview:descriptionView];
         [scrollView1 addSubview:thumb];
         
         
