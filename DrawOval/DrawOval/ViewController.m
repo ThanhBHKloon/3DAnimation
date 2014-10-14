@@ -383,6 +383,8 @@ BottomTabBar *bottomTabBarView;
 //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
         [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
+        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
+        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
@@ -445,6 +447,8 @@ BottomTabBar *bottomTabBarView;
 //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
         [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
+        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
+        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
@@ -549,6 +553,8 @@ BottomTabBar *bottomTabBarView;
 //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
         [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
+        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
+        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
@@ -695,6 +701,8 @@ BottomTabBar *bottomTabBarView;
 //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
         [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
+        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
+        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
         [arrayButton3 addObject:b];
         
         b.titleLabel.font= [UIFont systemFontOfSize:23];
