@@ -47,9 +47,8 @@ BottomTabBar *bottomTabBarView;
                                                                   screenRect1.origin.y,
                                                                   screenRect1.size.height,
                                                                   screenRect1.size.width)];
-    imgBackground.image = [UIImage imageNamed:@"background.png"];
+    imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
     [self.view addSubview:imgBackground];
-    imgBackground.hidden = YES;
     UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
     if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
         screenRect = CGRectMake(0, 0, screenRect1.size.width, screenRect1.size.height);
@@ -59,7 +58,7 @@ BottomTabBar *bottomTabBarView;
     }
     scrollView1  = [[UIScrollView alloc]init];
     scrollView1.frame = CGRectMake(0, 0, screenRect.size.width, screenRect.size.height);
-    scrollView1.backgroundColor = [UIColor grayColor];
+    scrollView1.backgroundColor = [UIColor clearColor];
     [self.view addSubview:scrollView1];
     
     
@@ -303,25 +302,25 @@ BottomTabBar *bottomTabBarView;
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                  duration:(NSTimeInterval)duration{
     CGRect screenRect1 = [[UIScreen mainScreen] bounds];
-    CGRect screenRect,frameBottomBar;
-    
-    //    UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
-    //    if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
-    //        screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
-    //         frameBottomBar = CGRectMake(0, self.view.frame.size.width - 48, self.view.frame.size.height, 48);
-    //    }
-    //    else {
-    //
-    //        screenRect = CGRectMake(0, 0, screenRect1.size.width, screenRect1.size.height);
-    //
-    //
-    //         frameBottomBar = CGRectMake(0, self.view.frame.size.height - 48, self.view.frame.size.width, 48);
-    //    }
-    
-    screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
-    frameBottomBar = CGRectMake(0, self.view.frame.size.width - 48, self.view.frame.size.height, 48);
-    bottomTabBarView.frame= frameBottomBar;
-    scrollView1.frame = CGRectMake(0, 100, screenRect.size.width, 550);
+//    CGRect screenRect,frameBottomBar;
+//    
+//    //    UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+//    //    if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
+//    //        screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
+//    //         frameBottomBar = CGRectMake(0, self.view.frame.size.width - 48, self.view.frame.size.height, 48);
+//    //    }
+//    //    else {
+//    //
+//    //        screenRect = CGRectMake(0, 0, screenRect1.size.width, screenRect1.size.height);
+//    //
+//    //
+//    //         frameBottomBar = CGRectMake(0, self.view.frame.size.height - 48, self.view.frame.size.width, 48);
+//    //    }
+//    
+//    screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
+//    frameBottomBar = CGRectMake(0, self.view.frame.size.width - 48, self.view.frame.size.height, 48);
+//    bottomTabBarView.frame= frameBottomBar;
+//    scrollView1.frame = CGRectMake(0, 100, screenRect.size.width, 550);
 }
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     //
@@ -1156,12 +1155,13 @@ BottomTabBar *bottomTabBarView;
 }
 - (void) hideCoverView:(BOOL) isHidden {
     if (isHidden) {
-        imgBackground.hidden = YES;
+        imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+        
         scrollView1.hidden = NO;
         bottomTabBarView.backgroundColor = [UIColor grayColor];
     }
     else {
-        imgBackground.hidden = NO;
+        imgBackground.image = [UIImage imageNamed:@"background.png"];
         scrollView1.hidden = YES;
         bottomTabBarView.backgroundColor = [UIColor clearColor];
     }

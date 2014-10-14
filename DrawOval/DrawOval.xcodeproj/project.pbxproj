@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		30456EBE19EBBC1800F3A6CA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 30456EBD19EBBC1800F3A6CA /* background.png */; };
 		30BCA97819ED15370031DA8A /* DescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BCA97719ED15370031DA8A /* DescriptionView.m */; };
+		30BCA97A19ED2CA50031DA8A /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 30BCA97919ED2CA50031DA8A /* Default-Landscape~ipad.png */; };
+		30BCA97C19ED2DFC0031DA8A /* description_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 30BCA97B19ED2DFC0031DA8A /* description_bg.png */; };
 		4ACEDD6E19ED064200DEB3E3 /* button_3dmode_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACEDD6A19ED064200DEB3E3 /* button_3dmode_pressed.png */; };
 		4ACEDD6F19ED064200DEB3E3 /* button_3dmode_sub_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACEDD6B19ED064200DEB3E3 /* button_3dmode_sub_pressed.png */; };
 		4ACEDD7019ED064200DEB3E3 /* button_3dmode_sub.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACEDD6C19ED064200DEB3E3 /* button_3dmode_sub.png */; };
@@ -48,6 +50,8 @@
 		30456EBD19EBBC1800F3A6CA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		30BCA97619ED15370031DA8A /* DescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionView.h; sourceTree = "<group>"; };
 		30BCA97719ED15370031DA8A /* DescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionView.m; sourceTree = "<group>"; };
+		30BCA97919ED2CA50031DA8A /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		30BCA97B19ED2DFC0031DA8A /* description_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = description_bg.png; sourceTree = "<group>"; };
 		4ACEDD6A19ED064200DEB3E3 /* button_3dmode_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_3dmode_pressed.png; sourceTree = "<group>"; };
 		4ACEDD6B19ED064200DEB3E3 /* button_3dmode_sub_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_3dmode_sub_pressed.png; sourceTree = "<group>"; };
 		4ACEDD6C19ED064200DEB3E3 /* button_3dmode_sub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_3dmode_sub.png; sourceTree = "<group>"; };
@@ -150,10 +154,12 @@
 				30BCA97619ED15370031DA8A /* DescriptionView.h */,
 				30BCA97719ED15370031DA8A /* DescriptionView.m */,
 				5B48AB8519D957C900B77FC7 /* BottomTabBar.h */,
+				30BCA97919ED2CA50031DA8A /* Default-Landscape~ipad.png */,
 				5B48AB8619D957C900B77FC7 /* BottomTabBar.m */,
 				5B439E0C19DC06F60098459D /* ThumbItem.h */,
 				5B439E0D19DC06F60098459D /* ThumbItem.m */,
 				30456EBD19EBBC1800F3A6CA /* background.png */,
+				30BCA97B19ED2DFC0031DA8A /* description_bg.png */,
 			);
 			path = DrawOval;
 			sourceTree = "<group>";
@@ -270,9 +276,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ACEDD6E19ED064200DEB3E3 /* button_3dmode_pressed.png in Resources */,
+				30BCA97A19ED2CA50031DA8A /* Default-Landscape~ipad.png in Resources */,
 				5BA14D5119D27C3C008A730E /* Images.xcassets in Resources */,
 				30456EBE19EBBC1800F3A6CA /* background.png in Resources */,
 				5BA14D4319D27C3C008A730E /* InfoPlist.strings in Resources */,
+				30BCA97C19ED2DFC0031DA8A /* description_bg.png in Resources */,
 				5BA14D4C19D27C3C008A730E /* Main.storyboard in Resources */,
 				4ACEDD7119ED064200DEB3E3 /* button_3dmode.png in Resources */,
 				4ACEDD6F19ED064200DEB3E3 /* button_3dmode_sub_pressed.png in Resources */,

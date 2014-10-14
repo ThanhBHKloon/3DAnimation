@@ -9,7 +9,7 @@
 #import "DescriptionView.h"
 
 @implementation DescriptionView
-@synthesize descriptionView;
+@synthesize descriptionView, imgView;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -25,12 +25,10 @@
         descriptionView.textAlignment = NSTextAlignmentCenter;;
         descriptionView.numberOfLines = 2;
         descriptionView.lineBreakMode = NSLineBreakByWordWrapping;
-        UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:descriptionView.bounds];
-        descriptionView.layer.masksToBounds = NO;
-        descriptionView.layer.shadowColor = [UIColor blackColor].CGColor;
-        descriptionView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-        descriptionView.layer.shadowOpacity = 0.5f;
-        descriptionView.layer.shadowPath = shadowPath.CGPath;
+
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        imgView.image = [UIImage imageNamed:@"description_bg.png"];
+        [self addSubview:imgView];
         [self addSubview:descriptionView];
     }
     return self;
