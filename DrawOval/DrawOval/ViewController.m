@@ -32,22 +32,16 @@ BottomTabBar *bottomTabBarView;
     arrPreviousHeadlines = [[NSMutableArray alloc]init];
     arraySelectedID = [[NSMutableArray alloc]init];
     btnBackSelected = NO;
-	arrayButton1 = [[NSMutableArray alloc]init];
+    arrayButton1 = [[NSMutableArray alloc]init];
     arrayButton2 = [[NSMutableArray alloc]init];
-     arrayButton3 = [[NSMutableArray alloc]init];
-
+    arrayButton3 = [[NSMutableArray alloc]init];
+    
     
     arrayThumb = [[NSMutableArray alloc]init];
     
     CGRect screenRect1 = [[UIScreen mainScreen] bounds];
     CGRect screenRect;
-    imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(screenRect1.origin.x,
-                                                                  screenRect1.origin.y,
-                                                                  screenRect1.size.height,
-                                                                  screenRect1.size.width)];
-    imgBackground.image = [UIImage imageNamed:@"background.png"];
-    [self.view addSubview:imgBackground];
-    imgBackground.hidden = YES;
+    
     UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
     if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
         screenRect = CGRectMake(0, 0, screenRect1.size.width, screenRect1.size.height);
@@ -56,13 +50,13 @@ BottomTabBar *bottomTabBarView;
         screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
     }
     scrollView1  = [[UIScrollView alloc]init];
-    scrollView1.frame = CGRectMake(0, 200, screenRect.size.width, 550);
+    scrollView1.frame = CGRectMake(0, 0, screenRect.size.width, screenRect.size.height);
     scrollView1.backgroundColor = [UIColor grayColor];
     [self.view addSubview:scrollView1];
     
-
+    
     btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnBack.backgroundColor =[UIColor clearColor];
+    btnBack.backgroundColor =[UIColor grayColor];
     btnBack.center = CGPointMake(20, 10);
     [btnBack sizeToFit];
     [btnBack addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -72,13 +66,13 @@ BottomTabBar *bottomTabBarView;
     
     CGRect frameBottomBar ;
     if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
-         frameBottomBar = CGRectMake(0, self.view.frame.size.height - 48, self.view.frame.size.width, 48);
+        frameBottomBar = CGRectMake(0, self.view.frame.size.height - 48, self.view.frame.size.width, 48);
     }
     else {
         
-         frameBottomBar = CGRectMake(0, self.view.frame.size.width - 48, self.view.frame.size.height, 48);
+        frameBottomBar = CGRectMake(0, self.view.frame.size.width - 48, self.view.frame.size.height, 48);
     }
-   
+    
     bottomTabBarView = [[BottomTabBar alloc] initWithFrame:frameBottomBar];
     bottomTabBarView.backgroundColor = [UIColor grayColor];
     [bottomTabBarView addSubview:btnBack];
@@ -95,7 +89,7 @@ BottomTabBar *bottomTabBarView;
 -(void)clickTopButton:(id)sender{
     NSLog(@"click top button");
     UIButton *clickButton = sender;
-     previousHeadlineID = currentHeadlineID;
+    previousHeadlineID = currentHeadlineID;
     if (previousHeadlineID == clickButton.tag) {
         return;
     }
@@ -107,13 +101,11 @@ BottomTabBar *bottomTabBarView;
             break;
         }
     }
-   
+    
     
     currentHeadlineID = clickButton.tag;
     [arraySelectedID removeLastObject];
-    int lastObject = [[arraySelectedID lastObject] integerValue];
-    if (lastObject != [sender tag])
-        [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
+    [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
     NSLog(@"selected: %@",arraySelectedID);
     
     clickButton.backgroundColor = [UIColor redColor];
@@ -126,7 +118,7 @@ BottomTabBar *bottomTabBarView;
     
     [arrayMiddleFrame removeAllObjects];
     [arrayMiddlePoint removeAllObjects];
-   btnBackSelected = NO;
+    btnBackSelected = NO;
     UIButton *clickButton = sender;
     
     
@@ -134,30 +126,28 @@ BottomTabBar *bottomTabBarView;
     
     
     if ([arrCurrentHeadlines count]==0) {
-        [self hideCoverView:NO];
+        return;
     }
     
     previousHeadlineID = currentHeadlineID;
     currentHeadlineID = clickButton.tag;
-    int lastObject = [[arraySelectedID lastObject] integerValue];
-    if (lastObject != [sender tag])
-        [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
+    [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
     NSLog(@"selected: %@",arraySelectedID);
-
+    
     [arrayButton2 removeAllObjects];
     arrayButton2 = [arrayButton3 mutableCopy];
     [self loadTopButtonForHeadline:currentHeadlineID];
     [self loadScrollViewForHeadLineID:currentHeadlineID];
     clickButton.backgroundColor = [UIColor redColor];
     animationType = ANIMATION_UP_STEP1;
-     CGFloat padding1 = 45;
+    CGFloat padding1 = 15;
     for (int i =0; i<[arrayButton2 count]; i++) {
         
         
-        CGRect frameTop= CGRectMake(padding1 +i*(padding1+171) , 30, 171, 47);
+        CGRect frameTop= CGRectMake(20 +i*(padding1+143) , 190, 143, 40);
         CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         
-//        UIButton *b1 = [arrayButton1 objectAtIndex:i];
+        //        UIButton *b1 = [arrayButton1 objectAtIndex:i];
         UIButton *b2 = [arrayButton2 objectAtIndex:i];
         [b2 removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
         [b2 addTarget:nil action:@selector(clickTopButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -171,9 +161,9 @@ BottomTabBar *bottomTabBarView;
         
         UIBezierPath *movePath = [UIBezierPath bezierPath];
         [movePath moveToPoint:middlePoint];
-//        [movePath addQuadCurveToPoint:middleButtonPoint
-//                         controlPoint:CGPointMake(b2.center.x, middleButtonPoint.y)];
-
+        //        [movePath addQuadCurveToPoint:middleButtonPoint
+        //                         controlPoint:CGPointMake(b2.center.x, middleButtonPoint.y)];
+        
         [movePath addLineToPoint:topPoint];
         CAKeyframeAnimation *moveAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         moveAnim.path = movePath.CGPath;
@@ -181,7 +171,7 @@ BottomTabBar *bottomTabBarView;
         
         CABasicAnimation *scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
         scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.6, 0.6, 1.0)];
+        scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.5, 0.5, 1.0)];
         
         scaleAnim.removedOnCompletion = NO;
         
@@ -202,17 +192,17 @@ BottomTabBar *bottomTabBarView;
         
         
         
-
+        
         CGFloat middleY = 2*middlePoint.y/3 + topPoint.y/3;
         CGFloat middleX = (middleY*(middlePoint.x - topPoint.x) +(topPoint.x * middlePoint.y - middlePoint.x*topPoint.y))/(middlePoint.y - topPoint.y);
         
         
-        CGPoint p1 = CGPointMake(middleX, middleY - 205/2*(1-1*(1-0.6)/3));
+        CGPoint p1 = CGPointMake(middleX, middleY - 205/2*(1-1*(1-0.5)/3));
         
         UIBezierPath *movePath1 = [UIBezierPath bezierPath];
         CGPoint p2 = thumb.center;
         [movePath1 moveToPoint:p2];
-
+        
         [movePath1 addLineToPoint:p1];
         CAKeyframeAnimation *moveAnim1 = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         moveAnim1.path = movePath1.CGPath;
@@ -220,7 +210,7 @@ BottomTabBar *bottomTabBarView;
         
         CABasicAnimation *scaleAnim1 = [CABasicAnimation animationWithKeyPath:@"transform"];
         scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        scaleAnim1.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.4/3, 1-0.4/3, 1.0)];
+        scaleAnim1.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
         scaleAnim1.removedOnCompletion = NO;
         
         CABasicAnimation *opacityAnim1 = [CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -231,26 +221,15 @@ BottomTabBar *bottomTabBarView;
         CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
         animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
         animGroup1.duration = 0.5;
-//        [animGroup1 setDelegate:self];
+        //        [animGroup1 setDelegate:self];
         thumb.alpha = 0;
         [thumb.layer addAnimation:animGroup1 forKey:nil];
         
     }
 }
--(void)maskBtnDidClick:(id)sender {
-    NSLog(@"clicked mask button:%d", [sender tag]);
-    int lastObject = [[arraySelectedID lastObject] integerValue];
-    if (lastObject != [sender tag])
-        [arraySelectedID addObject:[NSNumber numberWithInteger:[sender tag]]];
-        [self loadCurrentHeadlines:[sender tag]];
-    if ([arrCurrentHeadlines count]==0) {
-        [self hideCoverView:NO];
-    }
-
-}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-
-	return YES;
+    
+    return YES;
     //    return NO;
 }
 
@@ -264,18 +243,18 @@ BottomTabBar *bottomTabBarView;
     CGRect screenRect1 = [[UIScreen mainScreen] bounds];
     CGRect screenRect,frameBottomBar;
     
-//    UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
-//    if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
-//        screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
-//         frameBottomBar = CGRectMake(0, self.view.frame.size.width - 48, self.view.frame.size.height, 48);
-//    }
-//    else {
-//        
-//        screenRect = CGRectMake(0, 0, screenRect1.size.width, screenRect1.size.height);
-//        
-//        
-//         frameBottomBar = CGRectMake(0, self.view.frame.size.height - 48, self.view.frame.size.width, 48);
-//    }
+    //    UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+    //    if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
+    //        screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
+    //         frameBottomBar = CGRectMake(0, self.view.frame.size.width - 48, self.view.frame.size.height, 48);
+    //    }
+    //    else {
+    //
+    //        screenRect = CGRectMake(0, 0, screenRect1.size.width, screenRect1.size.height);
+    //
+    //
+    //         frameBottomBar = CGRectMake(0, self.view.frame.size.height - 48, self.view.frame.size.width, 48);
+    //    }
     
     screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
     frameBottomBar = CGRectMake(0, self.view.frame.size.width - 48, self.view.frame.size.height, 48);
@@ -283,7 +262,7 @@ BottomTabBar *bottomTabBarView;
     scrollView1.frame = CGRectMake(0, 100, screenRect.size.width, 550);
 }
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-//    
+    //
     if ([anim valueForKey:@"step1"]) {
         if (isFinishStep1) {
             
@@ -293,8 +272,8 @@ BottomTabBar *bottomTabBarView;
         for (int i= 0; i<[arrayButton2 count]; i++) {
             UIButton *b1 = [arrayButton2 objectAtIndex:i];
             CGPoint topCenter = b1.center;
-            b1.frame = CGRectMake(b1.frame.origin.x, b1.frame.origin.y, b1.frame.size.width *0.6, b1.frame.size.height*0.6);
-            b1.titleLabel.font = [UIFont systemFontOfSize:23*0.6];
+            b1.frame = CGRectMake(b1.frame.origin.x, b1.frame.origin.y, b1.frame.size.width *0.5, b1.frame.size.height*0.5);
+            b1.titleLabel.font = [UIFont systemFontOfSize:23*0.5];
             b1.center = topCenter;
             b1.hidden = NO;
             
@@ -313,9 +292,9 @@ BottomTabBar *bottomTabBarView;
             
         }
         for (int i= 0; i<[arrayButton2 count]; i++) {
-           
+            
             UIButton *b2 = [arrayButton2 objectAtIndex:i];
-             b2.alpha = 0.0;
+            b2.alpha = 0.0;
             [b2 removeFromSuperview];
         }
         animationType = 0;
@@ -328,10 +307,10 @@ BottomTabBar *bottomTabBarView;
         for (int i= 0; i<[arrCurrentHeadlines count]; i++){
             
             ThumView *thumb = [arrayThumb objectAtIndex:i];
-
+            
             thumb.alpha = 1.0;
             
-        
+            
             isFinishStep3 = YES;
         }
     }
@@ -345,7 +324,7 @@ BottomTabBar *bottomTabBarView;
     [arraySelectedID removeLastObject];
     if ([arraySelectedID count]>0) {
         currentHeadlineID = [[arraySelectedID lastObject] integerValue];
-        [self hideCoverView:YES];
+        
     }
     else {
         currentHeadlineID = 0;
@@ -361,13 +340,13 @@ BottomTabBar *bottomTabBarView;
         [b removeFromSuperview];
     }
     [arrayButton3 removeAllObjects];
-    CGFloat padding = 45;
+    CGFloat padding = 30;
     scrollView1.contentSize = CGSizeMake((padding + 286)*[arrCurrentHeadlines count] +padding, 300);
     
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(padding +i*(padding+ 285) , 125, 285, 130);
+        CGRect frame = CGRectMake(20 +i*(padding+ 286) , 290, 286, 136);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -376,9 +355,9 @@ BottomTabBar *bottomTabBarView;
         b.frame = btnFrame;
         b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         [arrayButton3 addObject:b];
-//        if (currentHeadlineID ==0) {
-//            [arrayButton2 addObject:b];
-//        }
+        //        if (currentHeadlineID ==0) {
+        //            [arrayButton2 addObject:b];
+        //        }
         b.titleLabel.font= [UIFont systemFontOfSize:23];
         [b addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         b.tag = item.thumbID;
@@ -389,12 +368,6 @@ BottomTabBar *bottomTabBarView;
         
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 1.0;
-        // add button
-        maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        maskBtn.backgroundColor = [UIColor clearColor];
-        [maskBtn addTarget:self action:@selector(maskBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
-        maskBtn.frame = thumb.bounds;
-        [thumb addSubview:maskBtn];
         [arrayThumb addObject:thumb];
         [scrollView1 addSubview:thumb];
         
@@ -407,7 +380,7 @@ BottomTabBar *bottomTabBarView;
 -(void)loadScrollViewFadeInForHeadline:(NSInteger)headlineID{
     [self loadCurrentHeadlines:headlineID];
     [self loadPreviousHeadlines:headlineID];
-
+    
     // remove all button and thubmview at current level
     for (int i =0; i<[arrayButton3 count]; i++) {
         UIButton *b= [arrayButton3 objectAtIndex:i];
@@ -419,13 +392,13 @@ BottomTabBar *bottomTabBarView;
     [arrayButton3 removeAllObjects];
     [arrayThumb removeAllObjects];
     
-    CGFloat padding = 45;
+    CGFloat padding = 30;
     scrollView1.contentSize = CGSizeMake((padding + 286)*[arrCurrentHeadlines count] +padding, 300);
     
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(padding +i*(padding+ 285) , 125, 285, 130);
+        CGRect frame = CGRectMake(20 +i*(padding+ 286) , 290, 286, 136);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -434,9 +407,9 @@ BottomTabBar *bottomTabBarView;
         b.frame = btnFrame;
         b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         [arrayButton3 addObject:b];
-//        if (currentHeadlineID ==0) {
-//            [arrayButton2 addObject:b];
-//        }
+        //        if (currentHeadlineID ==0) {
+        //            [arrayButton2 addObject:b];
+        //        }
         b.titleLabel.font= [UIFont systemFontOfSize:23];
         [b addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         b.tag = item.thumbID;
@@ -456,16 +429,16 @@ BottomTabBar *bottomTabBarView;
             b.alpha = 1.0;
         }];
         
-//        [UIView animateWithDuration:1.f delay:0.f options:UIViewAnimationOptionCurveEaseIn animations:^{
-//            thumb.alpha = 1.0;
-//            b.alpha = 1.0;
-//        } completion:nil];
+        //        [UIView animateWithDuration:1.f delay:0.f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        //            thumb.alpha = 1.0;
+        //            b.alpha = 1.0;
+        //        } completion:nil];
         
     }
     
 }
 -(void)loadScrollViewBackToHeadLineID:(NSInteger)headlineID{
-     CGFloat padding = 45;
+    CGFloat padding = 30;
     [self loadCurrentHeadlines:headlineID];
     [self loadPreviousHeadlines:headlineID];
     
@@ -477,16 +450,19 @@ BottomTabBar *bottomTabBarView;
     [arrayButton2 removeAllObjects];
     
     // add top buttons
-
     
-
+    
+    
     
     if ([arraySelectedID count] >0) {
         for (int i =0; i<[arrPreviousHeadlines count]; i++) {
             
-            
-            CGRect frameTop= CGRectMake(padding +i*(padding+171) , 30, 171, 47);
+            CGRect frameTopBG= CGRectMake(20 +i*(padding+143) , 190, 143, 40);
+            CGRect frameTop= CGRectMake(20 + 3 +i*(padding+143) , 193, 137, 34);
             //        CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
+            
+            UIView *buttonsBackground = [[UIView alloc] initWithFrame:frameTopBG];
+            buttonsBackground.backgroundColor = [UIColor whiteColor];
             
             UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
             ThumbItem *item = [arrPreviousHeadlines objectAtIndex:i];
@@ -500,26 +476,30 @@ BottomTabBar *bottomTabBarView;
                 b.backgroundColor = [UIColor redColor];
             }
             b.alpha = 0.0;
+            buttonsBackground.alpha = 0.0;
             [arrayButton2 addObject:b];
+            [scrollView1 addSubview:buttonsBackground];
             [scrollView1 addSubview:b];
+            
             [UIView animateWithDuration:1.5 animations:^{
                 b.alpha = 1.0;
+                buttonsBackground.alpha = 1.0;
             }];
             
         }
     }
     
-
+    
     
     //end
     
-   
+    
     scrollView1.contentSize = CGSizeMake((padding + 286)*[arrCurrentHeadlines count] +padding, 300);
     
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(padding +i*(padding+ 285) , 125, 285, 130);
+        CGRect frame = CGRectMake(20 +i*(padding+ 286) , 290, 286, 136);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -528,17 +508,16 @@ BottomTabBar *bottomTabBarView;
         b.frame = btnFrame;
         b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         [arrayButton3 addObject:b];
-//        if (currentHeadlineID ==0) {
-//            [arrayButton2 addObject:b];
-//        }
+        //        if (currentHeadlineID ==0) {
+        //            [arrayButton2 addObject:b];
+        //        }
         b.titleLabel.font= [UIFont systemFontOfSize:23];
         [b addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         b.tag = item.thumbID;
-        maskBtn.tag = item.thumbID;
         b.alpha = 1.0;
         [scrollView1 addSubview:b];
         
-        CGRect frameTop= CGRectMake(padding +i*(padding+171) , 30, 171, 47);
+        CGRect frameTop= CGRectMake(20 +i*(padding+143) , 190, 143, 40);
         CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         UIBezierPath *movePath = [UIBezierPath bezierPath];
         [movePath moveToPoint:topPoint];
@@ -552,7 +531,7 @@ BottomTabBar *bottomTabBarView;
         
         CABasicAnimation *scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
         scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.6, 0.6, 1.0)];
+        scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.5, 0.5, 1.0)];
         
         scaleAnim.removedOnCompletion = NO;
         
@@ -564,8 +543,8 @@ BottomTabBar *bottomTabBarView;
         CAAnimationGroup *animGroup = [CAAnimationGroup animation];
         animGroup.animations = [NSArray arrayWithObjects:moveAnim, scaleAnim, opacityAnim, nil];
         animGroup.duration = 1.5;
-//        [animGroup setValue:@"step1" forKey:@"step1"];
-//        [animGroup setDelegate:self];
+        //        [animGroup setValue:@"step1" forKey:@"step1"];
+        //        [animGroup setDelegate:self];
         b.alpha =1.0;
         [b.layer addAnimation:animGroup forKey:nil];
         
@@ -573,33 +552,27 @@ BottomTabBar *bottomTabBarView;
         
         
         
-//        ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
-//        
-//        thumb.backgroundColor = [UIColor whiteColor];
-//        thumb.alpha = 1.0;
-//        [arrayThumb addObject:thumb];
-//        [scrollView1 addSubview:thumb];
+        //        ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
+        //
+        //        thumb.backgroundColor = [UIColor whiteColor];
+        //        thumb.alpha = 1.0;
+        //        [arrayThumb addObject:thumb];
+        //        [scrollView1 addSubview:thumb];
         
         
     }
     [self performSelector:@selector(loadThumbViewForBack) withObject:nil afterDelay:1.0];
 }
 -(void)loadThumbViewForBack {
-    CGFloat padding = 45;
+    CGFloat padding = 30;
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(padding +i*(padding+ 285) , 125, 285, 130);
-
+        CGRect frame = CGRectMake(20 +i*(padding+ 286) , 290, 286, 136);
+        
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
-        ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
+        
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 1.0;
-        maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        maskBtn.backgroundColor = [UIColor clearColor];
-        [maskBtn addTarget:self action:@selector(maskBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
-        maskBtn.frame = thumb.bounds;
-        maskBtn.tag = item.thumbID;
-        [thumb addSubview:maskBtn];
         [arrayThumb addObject:thumb];
         [scrollView1 addSubview:thumb];
         
@@ -607,10 +580,10 @@ BottomTabBar *bottomTabBarView;
         
         //when button animating 2/3 path, start animating to display thumbview
         
-        CGRect frameTop= CGRectMake(padding +i*(padding+171) , 30, 171, 47);
+        CGRect frameTop= CGRectMake(20 +i*(padding+143) , 190, 143, 40);
         CGPoint buttonTopPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         
-        CGPoint thumbTopPoint = CGPointMake(buttonTopPoint.x, buttonTopPoint.y-205*0.6/2);
+        CGPoint thumbTopPoint = CGPointMake(buttonTopPoint.x, buttonTopPoint.y-205*0.5/2);
         CGPoint bottomPoint = thumb.center;
         
         
@@ -632,7 +605,7 @@ BottomTabBar *bottomTabBarView;
         
         CABasicAnimation *scaleAnim1 = [CABasicAnimation animationWithKeyPath:@"transform"];
         
-        scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.4/3, 1-0.4/3, 1.0)];
+        scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
         scaleAnim1.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         scaleAnim1.removedOnCompletion = NO;
         
@@ -656,13 +629,13 @@ BottomTabBar *bottomTabBarView;
         [b removeFromSuperview];
     }
     [arrayButton3 removeAllObjects];
-    CGFloat padding = 45;
+    CGFloat padding = 30;
     scrollView1.contentSize = CGSizeMake((padding + 286)*[arrCurrentHeadlines count] +padding, 300);
-
+    
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(padding +i*(padding+ 285) , 125, 285, 130);
+        CGRect frame = CGRectMake(20 +i*(padding+ 286) , 290, 286, 136);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -671,19 +644,19 @@ BottomTabBar *bottomTabBarView;
         b.frame = btnFrame;
         b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         [arrayButton3 addObject:b];
-
+        
         b.titleLabel.font= [UIFont systemFontOfSize:23];
         [b addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         b.tag = item.thumbID;
         [scrollView1 addSubview:b];
-       
         
-        CGRect bottomFrame =CGRectMake(padding +i*(padding+171) , 540, 171, 45);
+        
+        CGRect bottomFrame =CGRectMake(20 +i*(padding+143) , 540, 143, 40);
         CGPoint bottomPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, bottomFrame.origin.y +bottomFrame.size.height/2);
         
         
         CGPoint btnCenter = b.center;
-
+        
         
         UIBezierPath *movePath = [UIBezierPath bezierPath];
         [movePath moveToPoint:bottomPoint];
@@ -694,7 +667,7 @@ BottomTabBar *bottomTabBarView;
         moveAnim.removedOnCompletion = NO;
         
         CABasicAnimation *scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
-        scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.6, 0.6, 1.0)];
+        scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.5, 0.5, 1.0)];
         scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         scaleAnim.removedOnCompletion = NO;
         
@@ -711,39 +684,31 @@ BottomTabBar *bottomTabBarView;
         [animGroup setDelegate:self];
         b.alpha =1;
         [b.layer addAnimation:animGroup forKey:nil];
-
         
         
-       
+        
+        
     }
- [self performSelector:@selector(loadThumViewsForCurrentHeadline) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(loadThumViewsForCurrentHeadline) withObject:nil afterDelay:1.0];
     
 }
 -(void)loadThumViewsForCurrentHeadline{
-     CGFloat padding = 45;
+    CGFloat padding = 30;
     [arrayThumb removeAllObjects];
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(padding +i*(padding+ 285) , 125, 285, 130);
+        CGRect frame = CGRectMake(20 +i*(padding+ 286) , 290, 286, 136);
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
-        ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
+        
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 0.0;
-        // add button
-        maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        maskBtn.backgroundColor = [UIColor clearColor];
-        [maskBtn addTarget:self action:@selector(maskBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
-        maskBtn.frame = thumb.bounds;
-        maskBtn.tag = item.thumbID;
-        [thumb addSubview:maskBtn];
-
         [arrayThumb addObject:thumb];
         [scrollView1 addSubview:thumb];
         
         //when button animating 2/3 path, start animating to display thumbview
-        CGRect bottomFrame =CGRectMake(padding +i*(padding+171) , 540, 171, 45);
+        CGRect bottomFrame =CGRectMake(20 +i*(padding+143) , 540, 143, 40);
         CGPoint buttonPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, (bottomFrame.origin.y +bottomFrame.size.height/2));
         
-        CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-205*0.6/2);
+        CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-205*0.5/2);
         CGPoint topPoint = thumb.center;
         
         CGFloat middleY = 2*topPoint.y/3 + bottomPoint.y/3;
@@ -764,7 +729,7 @@ BottomTabBar *bottomTabBarView;
         
         CABasicAnimation *scaleAnim1 = [CABasicAnimation animationWithKeyPath:@"transform"];
         
-        scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.4/3, 1-0.4/3, 1.0)];
+        scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
         scaleAnim1.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         scaleAnim1.removedOnCompletion = NO;
         
@@ -778,19 +743,20 @@ BottomTabBar *bottomTabBarView;
         animGroup1.duration = 0.5;
         //        [animGroup1 setDelegate:self];
         [thumb.layer addAnimation:animGroup1 forKey:nil];
-
+        
     }
     
-
+    
 }
 -(void)loadTopButtonForHeadline:(NSInteger)headlineID{
     [self loadPreviousHeadlines:headlineID];
     [arrayButton1 removeAllObjects];
     [arrayButton3 removeAllObjects];
-    CGFloat padding = 45;
+    CGFloat padding = 15;
     scrollView1.contentSize = CGSizeMake((padding + 300)*[arrCurrentHeadlines count] +padding, 300);
     for (int i= 0; i<[arrPreviousHeadlines count]; i++) {
-        CGRect frame = CGRectMake(padding +i*(padding+170) , 30, 170, 47);
+        CGRect frame = CGRectMake(20 +i*(padding+143) , 30, 143, 40);
+        
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrPreviousHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
@@ -798,7 +764,7 @@ BottomTabBar *bottomTabBarView;
         b.backgroundColor = [UIColor redColor];
         [arrayButton1 addObject:b];
         b.hidden = YES;
-//        [scrollView1 addSubview:b];
+        //        [scrollView1 addSubview:b];
     }
 }
 -(void)loadCurrentHeadlines:(NSInteger)headLineID{
@@ -813,11 +779,11 @@ BottomTabBar *bottomTabBarView;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline %d",i+1];
                 [arrCurrentHeadlines addObject:item];
             }
-//            [arrCurrentHeadlines addObject:@"Headline 1"];
-//            [arrCurrentHeadlines addObject:@"Headline 2"];
-//            [arrCurrentHeadlines addObject:@"Headline 3"];
-//            [arrCurrentHeadlines addObject:@"Headline 4"];
-//            [arrCurrentHeadlines addObject:@"Headline 5"];
+            //            [arrCurrentHeadlines addObject:@"Headline 1"];
+            //            [arrCurrentHeadlines addObject:@"Headline 2"];
+            //            [arrCurrentHeadlines addObject:@"Headline 3"];
+            //            [arrCurrentHeadlines addObject:@"Headline 4"];
+            //            [arrCurrentHeadlines addObject:@"Headline 5"];
             break;
             
             //second level
@@ -828,12 +794,12 @@ BottomTabBar *bottomTabBarView;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 1%d",i+1-5];
                 [arrCurrentHeadlines addObject:item];
             }
-//            [arrCurrentHeadlines addObject:@"Headline 11"];
-//            [arrCurrentHeadlines addObject:@"Headline 12"];
-//            [arrCurrentHeadlines addObject:@"Headline 13"];
-//            [arrCurrentHeadlines addObject:@"Headline 14"];
-//            [arrCurrentHeadlines addObject:@"Headline 15"];
-//            [arrCurrentHeadlines addObject:@"Headline 16"];
+            //            [arrCurrentHeadlines addObject:@"Headline 11"];
+            //            [arrCurrentHeadlines addObject:@"Headline 12"];
+            //            [arrCurrentHeadlines addObject:@"Headline 13"];
+            //            [arrCurrentHeadlines addObject:@"Headline 14"];
+            //            [arrCurrentHeadlines addObject:@"Headline 15"];
+            //            [arrCurrentHeadlines addObject:@"Headline 16"];
             break;
             
         case 2:
@@ -843,9 +809,9 @@ BottomTabBar *bottomTabBarView;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 2%d",i+1-11];
                 [arrCurrentHeadlines addObject:item];
             }
-//            [arrCurrentHeadlines addObject:@"Headline 21"];
-//            [arrCurrentHeadlines addObject:@"Headline 22"];
-//            [arrCurrentHeadlines addObject:@"Headline 23"];
+            //            [arrCurrentHeadlines addObject:@"Headline 21"];
+            //            [arrCurrentHeadlines addObject:@"Headline 22"];
+            //            [arrCurrentHeadlines addObject:@"Headline 23"];
             break;
             
         case 3:
@@ -856,11 +822,11 @@ BottomTabBar *bottomTabBarView;
                 [arrCurrentHeadlines addObject:item];
             }
             
-//            [arrCurrentHeadlines addObject:@"Headline 31"];
-//            [arrCurrentHeadlines addObject:@"Headline 32"];
-//            [arrCurrentHeadlines addObject:@"Headline 33"];
-//            [arrCurrentHeadlines addObject:@"Headline 34"];
-//            [arrCurrentHeadlines addObject:@"Headline 35"];
+            //            [arrCurrentHeadlines addObject:@"Headline 31"];
+            //            [arrCurrentHeadlines addObject:@"Headline 32"];
+            //            [arrCurrentHeadlines addObject:@"Headline 33"];
+            //            [arrCurrentHeadlines addObject:@"Headline 34"];
+            //            [arrCurrentHeadlines addObject:@"Headline 35"];
             break;
             
         case 4:
@@ -873,13 +839,13 @@ BottomTabBar *bottomTabBarView;
             }
             
             
-//            [arrCurrentHeadlines addObject:@"Headline 41"];
-//            [arrCurrentHeadlines addObject:@"Headline 42"];
-//            [arrCurrentHeadlines addObject:@"Headline 43"];
-//            [arrCurrentHeadlines addObject:@"Headline 44"];
-//            [arrCurrentHeadlines addObject:@"Headline 45"];
+            //            [arrCurrentHeadlines addObject:@"Headline 41"];
+            //            [arrCurrentHeadlines addObject:@"Headline 42"];
+            //            [arrCurrentHeadlines addObject:@"Headline 43"];
+            //            [arrCurrentHeadlines addObject:@"Headline 44"];
+            //            [arrCurrentHeadlines addObject:@"Headline 45"];
             break;
-
+            
         case 5:
             for (int i=26; i<32; i++) {
                 ThumbItem *item = [[ThumbItem alloc]init];
@@ -889,11 +855,11 @@ BottomTabBar *bottomTabBarView;
             }
             
             
-//            [arrCurrentHeadlines addObject:@"Headline 51"];
-//            [arrCurrentHeadlines addObject:@"Headline 52"];
-//            [arrCurrentHeadlines addObject:@"Headline 53"];
-//            [arrCurrentHeadlines addObject:@"Headline 54"];
-//            [arrCurrentHeadlines addObject:@"Headline 55"];
+            //            [arrCurrentHeadlines addObject:@"Headline 51"];
+            //            [arrCurrentHeadlines addObject:@"Headline 52"];
+            //            [arrCurrentHeadlines addObject:@"Headline 53"];
+            //            [arrCurrentHeadlines addObject:@"Headline 54"];
+            //            [arrCurrentHeadlines addObject:@"Headline 55"];
             break;
             
             //third level
@@ -905,10 +871,10 @@ BottomTabBar *bottomTabBarView;
                 [arrCurrentHeadlines addObject:item];
             }
             
-//            [arrCurrentHeadlines addObject:@"Headline 111"];
-//            [arrCurrentHeadlines addObject:@"Headline 112"];
-//            [arrCurrentHeadlines addObject:@"Headline 113"];
-//            [arrCurrentHeadlines addObject:@"Headline 114"];
+            //            [arrCurrentHeadlines addObject:@"Headline 111"];
+            //            [arrCurrentHeadlines addObject:@"Headline 112"];
+            //            [arrCurrentHeadlines addObject:@"Headline 113"];
+            //            [arrCurrentHeadlines addObject:@"Headline 114"];
             break;
             
         case 7:
@@ -924,7 +890,7 @@ BottomTabBar *bottomTabBarView;
             //            [arrCurrentHeadlines addObject:@"Headline 113"];
             //            [arrCurrentHeadlines addObject:@"Headline 114"];
             break;
-
+            
         default:
             break;
     }
@@ -941,11 +907,11 @@ BottomTabBar *bottomTabBarView;
             }
             
             
-//            [arrPreviousHeadlines addObject:@"Headline 12"];
-//            [arrPreviousHeadlines addObject:@"Headline 13"];
-//            [arrPreviousHeadlines addObject:@"Headline 14"];
-//            [arrPreviousHeadlines addObject:@"Headline 15"];
-//            [arrPreviousHeadlines addObject:@"Headline 16"];
+            //            [arrPreviousHeadlines addObject:@"Headline 12"];
+            //            [arrPreviousHeadlines addObject:@"Headline 13"];
+            //            [arrPreviousHeadlines addObject:@"Headline 14"];
+            //            [arrPreviousHeadlines addObject:@"Headline 15"];
+            //            [arrPreviousHeadlines addObject:@"Headline 16"];
             break;
             
         default:
@@ -955,11 +921,11 @@ BottomTabBar *bottomTabBarView;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline %d",i+1];
                 [arrPreviousHeadlines addObject:item];
             }
-//            [arrPreviousHeadlines addObject:@"Headline 1"];
-//            [arrPreviousHeadlines addObject:@"Headline 2"];
-//            [arrPreviousHeadlines addObject:@"Headline 3"];
-//            [arrPreviousHeadlines addObject:@"Headline 4"];
-//            [arrPreviousHeadlines addObject:@"Headline 5"];
+            //            [arrPreviousHeadlines addObject:@"Headline 1"];
+            //            [arrPreviousHeadlines addObject:@"Headline 2"];
+            //            [arrPreviousHeadlines addObject:@"Headline 3"];
+            //            [arrPreviousHeadlines addObject:@"Headline 4"];
+            //            [arrPreviousHeadlines addObject:@"Headline 5"];
             break;
     }
 }
@@ -968,17 +934,6 @@ BottomTabBar *bottomTabBarView;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void) hideCoverView:(BOOL) isHidden {
-    if (isHidden) {
-        imgBackground.hidden = YES;
-        scrollView1.hidden = NO;
-        bottomTabBarView.backgroundColor = [UIColor grayColor];
-    }
-    else {
-        imgBackground.hidden = NO;
-        scrollView1.hidden = YES;
-        bottomTabBarView.backgroundColor = [UIColor clearColor];
-    }
-}
+
 
 @end
