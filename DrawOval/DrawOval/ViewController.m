@@ -104,7 +104,8 @@ BottomTabBar *bottomTabBarView;
     for (int i=0; i<[arrayButton2 count]; i++) {
         UIButton *b = [arrayButton2 objectAtIndex:i];
         if (b.tag == previousHeadlineID) {
-            b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
+//            b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
+            [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub.png"] forState:UIControlStateNormal];
             break;
         }
     }
@@ -122,7 +123,8 @@ BottomTabBar *bottomTabBarView;
         [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
     NSLog(@"selected: %@",arraySelectedID);
     
-    clickButton.backgroundColor = [UIColor redColor];
+//    clickButton.backgroundColor = [UIColor redColor];
+    [clickButton setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub_pressed.png"] forState:UIControlStateNormal];
     [self loadScrollViewFadeInForHeadline:currentHeadlineID];
 }
 
