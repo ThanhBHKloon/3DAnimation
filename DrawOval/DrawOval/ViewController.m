@@ -79,7 +79,7 @@ BottomTabBar *bottomTabBarView;
     }
     
     bottomTabBarView = [[BottomTabBar alloc] initWithFrame:frameBottomBar];
-    bottomTabBarView.backgroundColor = [UIColor grayColor];
+    bottomTabBarView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     [bottomTabBarView addSubview:btnBack];
     [self.view addSubview:bottomTabBarView];
     
@@ -1147,7 +1147,7 @@ BottomTabBar *bottomTabBarView;
         imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
         
         scrollView1.hidden = NO;
-        bottomTabBarView.backgroundColor = [UIColor grayColor];
+        bottomTabBarView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     }
     else {
         imgBackground.image = [UIImage imageNamed:@"background.png"];
