@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		30456EBE19EBBC1800F3A6CA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 30456EBD19EBBC1800F3A6CA /* background.png */; };
+		4ACEDD6E19ED064200DEB3E3 /* button_3dmode_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACEDD6A19ED064200DEB3E3 /* button_3dmode_pressed.png */; };
+		4ACEDD6F19ED064200DEB3E3 /* button_3dmode_sub_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACEDD6B19ED064200DEB3E3 /* button_3dmode_sub_pressed.png */; };
+		4ACEDD7019ED064200DEB3E3 /* button_3dmode_sub.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACEDD6C19ED064200DEB3E3 /* button_3dmode_sub.png */; };
+		4ACEDD7119ED064200DEB3E3 /* button_3dmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACEDD6D19ED064200DEB3E3 /* button_3dmode.png */; };
 		5B25D4EC19DA5410000D00B6 /* button_back_unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B25D4EB19DA5410000D00B6 /* button_back_unselected.png */; };
 		5B439E0E19DC06F60098459D /* ThumbItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B439E0D19DC06F60098459D /* ThumbItem.m */; };
 		5B48AB8719D957C900B77FC7 /* BottomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B48AB8619D957C900B77FC7 /* BottomTabBar.m */; };
@@ -41,6 +45,10 @@
 
 /* Begin PBXFileReference section */
 		30456EBD19EBBC1800F3A6CA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		4ACEDD6A19ED064200DEB3E3 /* button_3dmode_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_3dmode_pressed.png; sourceTree = "<group>"; };
+		4ACEDD6B19ED064200DEB3E3 /* button_3dmode_sub_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_3dmode_sub_pressed.png; sourceTree = "<group>"; };
+		4ACEDD6C19ED064200DEB3E3 /* button_3dmode_sub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_3dmode_sub.png; sourceTree = "<group>"; };
+		4ACEDD6D19ED064200DEB3E3 /* button_3dmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_3dmode.png; sourceTree = "<group>"; };
 		5B25D4EB19DA5410000D00B6 /* button_back_unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back_unselected.png; sourceTree = "<group>"; };
 		5B439E0C19DC06F60098459D /* ThumbItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbItem.h; sourceTree = "<group>"; };
 		5B439E0D19DC06F60098459D /* ThumbItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbItem.m; sourceTree = "<group>"; };
@@ -148,6 +156,10 @@
 		5BA14D3F19D27C3C008A730E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4ACEDD6A19ED064200DEB3E3 /* button_3dmode_pressed.png */,
+				4ACEDD6B19ED064200DEB3E3 /* button_3dmode_sub_pressed.png */,
+				4ACEDD6C19ED064200DEB3E3 /* button_3dmode_sub.png */,
+				4ACEDD6D19ED064200DEB3E3 /* button_3dmode.png */,
 				5B25D4EB19DA5410000D00B6 /* button_back_unselected.png */,
 				5B88106719D4176E0068AF73 /* test.png */,
 				5BA14D4019D27C3C008A730E /* DrawOval-Info.plist */,
@@ -252,12 +264,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ACEDD6E19ED064200DEB3E3 /* button_3dmode_pressed.png in Resources */,
 				5BA14D5119D27C3C008A730E /* Images.xcassets in Resources */,
 				30456EBE19EBBC1800F3A6CA /* background.png in Resources */,
 				5BA14D4319D27C3C008A730E /* InfoPlist.strings in Resources */,
 				5BA14D4C19D27C3C008A730E /* Main.storyboard in Resources */,
+				4ACEDD7119ED064200DEB3E3 /* button_3dmode.png in Resources */,
+				4ACEDD6F19ED064200DEB3E3 /* button_3dmode_sub_pressed.png in Resources */,
 				5B25D4EC19DA5410000D00B6 /* button_back_unselected.png in Resources */,
 				5B88106819D4176E0068AF73 /* test.png in Resources */,
+				4ACEDD7019ED064200DEB3E3 /* button_3dmode_sub.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
