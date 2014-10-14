@@ -377,7 +377,11 @@ BottomTabBar *bottomTabBarView;
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+130, frame.size.width, 75);
+        CGRect viewFrame = CGRectMake(frame.origin.x, frame.origin.y+136, frame.size.width, 80);
+        UIView *viewBG = [[UIView alloc] initWithFrame:viewFrame];
+        viewBG.backgroundColor = [UIColor whiteColor];
+        [scrollView1 addSubview:viewBG];
+        CGRect btnFrame = CGRectMake(frame.origin.x + 6, frame.origin.y+142, frame.size.width - 12, 68);
         b.frame = btnFrame;
         b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         [arrayButton3 addObject:b];
@@ -401,7 +405,9 @@ BottomTabBar *bottomTabBarView;
         maskBtn.frame = thumb.bounds;
         [thumb addSubview:maskBtn];
         [arrayThumb addObject:thumb];
+        
         [scrollView1 addSubview:thumb];
+        
         
         
         
@@ -435,7 +441,7 @@ BottomTabBar *bottomTabBarView;
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+130, frame.size.width, 75);
+        CGRect btnFrame = CGRectMake(frame.origin.x + 6, frame.origin.y+142, frame.size.width - 12, 68);
         b.frame = btnFrame;
         b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         [arrayButton3 addObject:b];
@@ -537,8 +543,11 @@ BottomTabBar *bottomTabBarView;
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+130, frame.size.width, 75);
+        CGRect viewFrame = CGRectMake(frame.origin.x, frame.origin.y+136, frame.size.width, 80);
+        CGRect btnFrame = CGRectMake(frame.origin.x + 6, frame.origin.y+142, frame.size.width - 12, 68);
         b.frame = btnFrame;
+        UIView *viewBG = [[UIView alloc] initWithFrame:viewFrame];
+        viewBG.backgroundColor = [UIColor whiteColor];
         b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
@@ -549,7 +558,10 @@ BottomTabBar *bottomTabBarView;
         b.tag = item.thumbID;
         maskBtn.tag = item.thumbID;
         b.alpha = 1.0;
+        viewBG.alpha = 1.0;
+        [scrollView1 addSubview:viewBG];
         [scrollView1 addSubview:b];
+        
         
         CGRect frameTop= CGRectMake(20 +i*(padding+143) , 190, 143, 40);
         CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
@@ -580,7 +592,9 @@ BottomTabBar *bottomTabBarView;
         //        [animGroup setValue:@"step1" forKey:@"step1"];
         //        [animGroup setDelegate:self];
         b.alpha =1.0;
+        viewBG.alpha = 1.0;
         [b.layer addAnimation:animGroup forKey:nil];
+        [viewBG.layer addAnimation:animGroup forKey:nil];
         
         
         
@@ -680,7 +694,10 @@ BottomTabBar *bottomTabBarView;
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+130, frame.size.width, 75);
+        CGRect viewFrame = CGRectMake(frame.origin.x, frame.origin.y+136, frame.size.width, 80);
+        CGRect btnFrame = CGRectMake(frame.origin.x + 6, frame.origin.y+142, frame.size.width - 12, 68);
+        UIView *viewBG = [[UIView alloc] initWithFrame:viewFrame];
+        viewBG.backgroundColor = [UIColor whiteColor];
         b.frame = btnFrame;
         b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         [arrayButton3 addObject:b];
@@ -688,6 +705,7 @@ BottomTabBar *bottomTabBarView;
         b.titleLabel.font= [UIFont systemFontOfSize:23];
         [b addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         b.tag = item.thumbID;
+        [scrollView1 addSubview:viewBG];
         [scrollView1 addSubview:b];
         
         
@@ -723,7 +741,9 @@ BottomTabBar *bottomTabBarView;
         isFinishStep3 = NO;
         [animGroup setDelegate:self];
         b.alpha =1;
+        viewBG.alpha = 1.0;
         [b.layer addAnimation:animGroup forKey:nil];
+        [viewBG.layer addAnimation:animGroup forKey:nil];
         
         
         
