@@ -17,6 +17,7 @@
     NSMutableArray *arrayThumb;
     NSMutableArray *arrayMiddleFrame;
     NSMutableArray *arrayMiddlePoint;
+    NSMutableArray *arrayDescription;
     UIButton *btnBack;
     BOOL btnBackSelected;
     BOOL isFinishStep1;

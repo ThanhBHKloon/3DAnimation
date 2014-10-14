@@ -37,6 +37,7 @@ BottomTabBar *bottomTabBarView;
     arrayButton2 = [[NSMutableArray alloc]init];
     arrayButton3 = [[NSMutableArray alloc]init];
     
+    arrayDescription = [[NSMutableArray alloc]init];
     
     arrayThumb = [[NSMutableArray alloc]init];
     
@@ -211,13 +212,13 @@ BottomTabBar *bottomTabBarView;
         
         
         
-        
+        //animation for imageview
         
         CGFloat middleY = 2*middlePoint.y/3 + topPoint.y/3;
         CGFloat middleX = (middleY*(middlePoint.x - topPoint.x) +(topPoint.x * middlePoint.y - middlePoint.x*topPoint.y))/(middlePoint.y - topPoint.y);
         
         
-        CGPoint p1 = CGPointMake(middleX, middleY - 205/2*(1-1*(1-0.5)/3));
+        CGPoint p1 = CGPointMake(middleX, middleY - 216/2*(1-1*(1-0.5)/3));
         
         UIBezierPath *movePath1 = [UIBezierPath bezierPath];
         CGPoint p2 = thumb.center;
@@ -234,16 +235,46 @@ BottomTabBar *bottomTabBarView;
         scaleAnim1.removedOnCompletion = NO;
         
         CABasicAnimation *opacityAnim1 = [CABasicAnimation animationWithKeyPath:@"opacity"];
-        opacityAnim1.fromValue = [NSNumber numberWithFloat:0.3];
+        opacityAnim1.fromValue = [NSNumber numberWithFloat:0.5];
         opacityAnim1.toValue = [NSNumber numberWithFloat:0.0];
         opacityAnim1.removedOnCompletion = NO;
         
         CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
         animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
         animGroup1.duration = 0.5;
-        //        [animGroup1 setDelegate:self];
         thumb.alpha = 0;
         [thumb.layer addAnimation:animGroup1 forKey:nil];
+        
+        
+        //animation for descriptionview
+        DescriptionView *descView = [arrayDescription objectAtIndex:i];
+        
+        CGPoint p1Desc = CGPointMake(middleX, middleY + 150/2*(1-1*(1-0.5)/3));
+        
+        UIBezierPath *movePath2 = [UIBezierPath bezierPath];
+        CGPoint p2Desc = descView.center;
+        [movePath2 moveToPoint:p2Desc];
+        
+        [movePath2 addLineToPoint:p1Desc];
+        CAKeyframeAnimation *moveAnim2 = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+        moveAnim2.path = movePath2.CGPath;
+        moveAnim2.removedOnCompletion = NO;
+        
+        CABasicAnimation *scaleAnim2 = [CABasicAnimation animationWithKeyPath:@"transform"];
+        scaleAnim2.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+        scaleAnim2.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
+        scaleAnim2.removedOnCompletion = NO;
+        
+        CABasicAnimation *opacityAnim2 = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        opacityAnim2.fromValue = [NSNumber numberWithFloat:0.5];
+        opacityAnim2.toValue = [NSNumber numberWithFloat:0.0];
+        opacityAnim2.removedOnCompletion = NO;
+        
+        CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
+        animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
+        animGroup2.duration = 0.5;
+        descView.alpha = 0;
+        [descView.layer addAnimation:animGroup2 forKey:nil];
         
     }
 }
@@ -416,7 +447,7 @@ BottomTabBar *bottomTabBarView;
                                                                                              b.frame.origin.y + b.frame.size.height,
                                                                                              b.frame.size.width,
                                                                                              b.frame.size.height)];
-        
+        [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         [scrollView1 addSubview:thumb];
         
@@ -438,9 +469,13 @@ BottomTabBar *bottomTabBarView;
         
         ThumView *thumb = [arrayThumb objectAtIndex:i];
         [thumb removeFromSuperview];
+        
+        DescriptionView *descView = [arrayDescription objectAtIndex:i];
+        [descView removeFromSuperview];
     }
     [arrayButton3 removeAllObjects];
     [arrayThumb removeAllObjects];
+    [arrayDescription removeAllObjects];
     
     CGFloat padding = 30;
     scrollView1.contentSize = CGSizeMake((padding + 286)*[arrCurrentHeadlines count] +padding, 300);
@@ -478,15 +513,20 @@ BottomTabBar *bottomTabBarView;
         [arrayThumb addObject:thumb];
         [scrollView1 addSubview:thumb];
         
+        DescriptionView *descriptionView = [[DescriptionView alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
+                                                                                             thumb.frame.origin.y + 136+80,
+                                                                                             286,
+                                                                                             70)];
+        descriptionView.alpha = 0.0;
+        [arrayDescription addObject:descriptionView];
+        [scrollView1 addSubview:descriptionView];
+
+        
         [UIView animateWithDuration:1.0 animations:^{
             thumb.alpha = 1.0;
             b.alpha = 1.0;
+            descriptionView.alpha = 1.0;
         }];
-        
-        //        [UIView animateWithDuration:1.f delay:0.f options:UIViewAnimationOptionCurveEaseIn animations:^{
-        //            thumb.alpha = 1.0;
-        //            b.alpha = 1.0;
-        //        } completion:nil];
         
     }
     
@@ -503,6 +543,7 @@ BottomTabBar *bottomTabBarView;
     [arrayButton3 removeAllObjects];
     [arrayThumb removeAllObjects];
     [arrayButton2 removeAllObjects];
+    [arrayDescription removeAllObjects];
     
     // add top buttons
     
@@ -650,7 +691,7 @@ BottomTabBar *bottomTabBarView;
         CGRect frameTop= CGRectMake(20 +i*(padding+143) , 190, 143, 40);
         CGPoint buttonTopPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         
-        CGPoint thumbTopPoint = CGPointMake(buttonTopPoint.x, buttonTopPoint.y-205*0.5/2);
+        CGPoint thumbTopPoint = CGPointMake(buttonTopPoint.x, buttonTopPoint.y-216*0.5/2);
         CGPoint bottomPoint = thumb.center;
         
         
@@ -686,6 +727,50 @@ BottomTabBar *bottomTabBarView;
         animGroup1.duration = 0.5;
         //        [animGroup1 setDelegate:self];
         [thumb.layer addAnimation:animGroup1 forKey:nil];
+        
+        
+        DescriptionView *descriptionView = [[DescriptionView alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
+                                                                                             thumb.frame.origin.y + 136+80,
+                                                                                             286,
+                                                                                             70)];
+        [arrayDescription addObject:descriptionView];
+        [scrollView1 addSubview:descriptionView];
+        
+        
+        CGPoint descTopPoint = CGPointMake(buttonTopPoint.x, buttonTopPoint.y+150*0.5/2);
+        CGPoint bottomPoint2 = descriptionView.center;
+        
+        
+        CGFloat middleY2 = 2*bottomPoint2.y/3 + descTopPoint.y/3;
+        CGFloat middleX2 = (middleY2*(bottomPoint2.x - descTopPoint.x) +(descTopPoint.x * bottomPoint2.y - bottomPoint2.x*descTopPoint.y))/(bottomPoint2.y - descTopPoint.y);
+        
+        CGPoint middlePoint2 = CGPointMake(middleX2, middleY2);
+        
+        UIBezierPath *movePath2 = [UIBezierPath bezierPath];
+        [movePath2 moveToPoint:middlePoint2];
+        
+        [movePath2 addLineToPoint:descriptionView.center];
+        CAKeyframeAnimation *moveAnim2 = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+        moveAnim2.path = movePath2.CGPath;
+        moveAnim2.removedOnCompletion = NO;
+        
+        CABasicAnimation *scaleAnim2 = [CABasicAnimation animationWithKeyPath:@"transform"];
+        
+        scaleAnim2.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
+        scaleAnim2.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+        scaleAnim2.removedOnCompletion = NO;
+        
+        CABasicAnimation *opacityAnim2 = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        opacityAnim2.fromValue = [NSNumber numberWithFloat:0.0];
+        opacityAnim2.toValue = [NSNumber numberWithFloat:1.0];
+        opacityAnim2.removedOnCompletion = NO;
+        
+        CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
+        animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
+        animGroup2.duration = 0.5;
+        //        [animGroup1 setDelegate:self];
+        [descriptionView.layer addAnimation:animGroup2 forKey:nil];
+        
     }
 }
 
@@ -766,6 +851,7 @@ BottomTabBar *bottomTabBarView;
 -(void)loadThumViewsForCurrentHeadline{
     CGFloat padding = 30;
     [arrayThumb removeAllObjects];
+    [arrayDescription removeAllObjects];
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame = CGRectMake(20 +i*(padding+ 286) , 290, 286, 136);
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
@@ -786,7 +872,7 @@ BottomTabBar *bottomTabBarView;
         CGRect bottomFrame =CGRectMake(20 +i*(padding+143) , 540, 143, 40);
         CGPoint buttonPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, (bottomFrame.origin.y +bottomFrame.size.height/2));
         
-        CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-205*0.5/2);
+        CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-216*0.5/2);
         CGPoint topPoint = thumb.center;
         
         CGFloat middleY = 2*topPoint.y/3 + bottomPoint.y/3;
@@ -821,6 +907,52 @@ BottomTabBar *bottomTabBarView;
         animGroup1.duration = 0.5;
         //        [animGroup1 setDelegate:self];
         [thumb.layer addAnimation:animGroup1 forKey:nil];
+        
+        
+        // load description view
+        DescriptionView *descriptionView = [[DescriptionView alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
+                                                                                             thumb.frame.origin.y + 136+80,
+                                                                                             286,
+                                                                                             70)];
+        [arrayDescription addObject:descriptionView];
+        [scrollView1 addSubview:descriptionView];
+        
+        
+        
+        CGPoint bottomPoint2 = CGPointMake(buttonPoint.x, buttonPoint.y+150*0.5/2);
+        CGPoint topPoint2 = descriptionView.center;
+        
+        CGFloat middleY2 = 2*topPoint2.y/3 + bottomPoint2.y/3;
+        CGFloat middleX2 = (middleY2*(bottomPoint2.x - topPoint2.x) +(topPoint2.x * bottomPoint2.y - bottomPoint2.x*topPoint2.y))/(bottomPoint2.y - topPoint2.y);
+        
+        
+        CGPoint middlePoint2 = CGPointMake(middleX2, middleY2);
+        
+        
+        UIBezierPath *movePath2 = [UIBezierPath bezierPath];
+        [movePath2 moveToPoint:middlePoint2];
+        
+        [movePath2 addLineToPoint:descriptionView.center];
+        CAKeyframeAnimation *moveAnim2 = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+        moveAnim2.path = movePath2.CGPath;
+        moveAnim2.removedOnCompletion = NO;
+        
+        CABasicAnimation *scaleAnim2 = [CABasicAnimation animationWithKeyPath:@"transform"];
+        
+        scaleAnim2.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
+        scaleAnim2.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+        scaleAnim2.removedOnCompletion = NO;
+        
+        CABasicAnimation *opacityAnim2 = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        opacityAnim2.fromValue = [NSNumber numberWithFloat:0.0];
+        opacityAnim2.toValue = [NSNumber numberWithFloat:1.0];
+        opacityAnim2.removedOnCompletion = NO;
+        
+        CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
+        animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
+        animGroup2.duration = 0.5;
+        //        [animGroup1 setDelegate:self];
+        [descriptionView.layer addAnimation:animGroup2 forKey:nil];
         
     }
     
