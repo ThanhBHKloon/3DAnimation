@@ -138,9 +138,7 @@ BottomTabBar *bottomTabBarView;
     [self loadCurrentHeadlines:clickButton.tag];
     
     
-    if ([arrCurrentHeadlines count]==0) {
-        [self hideCoverView:NO];
-    }
+    
     
     previousHeadlineID = currentHeadlineID;
     currentHeadlineID = clickButton.tag;
@@ -148,7 +146,10 @@ BottomTabBar *bottomTabBarView;
     if (lastObject != [sender tag])
         [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
     NSLog(@"selected: %@",arraySelectedID);
-    
+    if ([arrCurrentHeadlines count]==0) {
+        [self hideCoverView:NO];
+        return;
+    }
     [arrayButton2 removeAllObjects];
     arrayButton2 = [arrayButton3 mutableCopy];
     [self loadTopButtonForHeadline:currentHeadlineID];
