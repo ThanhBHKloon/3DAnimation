@@ -15,8 +15,6 @@
     NSMutableArray *arrayButton2;
     NSMutableArray *arrayButton3;
     NSMutableArray *arrayThumb;
-    NSMutableArray *arrayMiddleFrame;
-    NSMutableArray *arrayMiddlePoint;
     NSMutableArray *arrayDescription;
     UIButton *btnBack;
     BOOL btnBackSelected;
@@ -24,6 +22,8 @@
     BOOL isFinishStep2;
     BOOL isFinishStep3;
     int animationType;
+    
+    BOOL isFinishAnimation;
     
     NSMutableArray *arrCurrentHeadlines;
     NSMutableArray *arrPreviousHeadlines;

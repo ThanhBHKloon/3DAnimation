@@ -27,8 +27,6 @@ BottomTabBar *bottomTabBarView;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    arrayMiddleFrame = [[NSMutableArray alloc]init];
-    arrayMiddlePoint = [[NSMutableArray alloc]init];
     arrCurrentHeadlines = [[NSMutableArray alloc]init];
     arrPreviousHeadlines = [[NSMutableArray alloc]init];
     arraySelectedID = [[NSMutableArray alloc]init];
@@ -40,7 +38,7 @@ BottomTabBar *bottomTabBarView;
     arrayDescription = [[NSMutableArray alloc]init];
     
     arrayThumb = [[NSMutableArray alloc]init];
-    
+    isFinishAnimation = YES;
     CGRect screenRect1 = [[UIScreen mainScreen] bounds];
     CGRect screenRect;
     imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(screenRect1.origin.x,
@@ -129,11 +127,10 @@ BottomTabBar *bottomTabBarView;
 }
 
 -(void)clickButton:(id)sender{
+    isFinishAnimation = NO;
     isFinishStep1 = NO;
     isFinishStep2 = NO;
     
-    [arrayMiddleFrame removeAllObjects];
-    [arrayMiddlePoint removeAllObjects];
     btnBackSelected = NO;
     UIButton *clickButton = sender;
     
@@ -151,6 +148,7 @@ BottomTabBar *bottomTabBarView;
     NSLog(@"selected: %@",arraySelectedID);
     if ([arrCurrentHeadlines count]==0) {
         [self hideCoverView:NO];
+        isFinishAnimation = YES;
         return;
     }
     [arrayButton2 removeAllObjects];
@@ -187,18 +185,18 @@ BottomTabBar *bottomTabBarView;
         [movePath addLineToPoint:topPoint];
         CAKeyframeAnimation *moveAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         moveAnim.path = movePath.CGPath;
-        moveAnim.removedOnCompletion = NO;
+        moveAnim.removedOnCompletion = YES;
         
         CABasicAnimation *scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
         scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.5, 0.5, 1.0)];
         
-        scaleAnim.removedOnCompletion = NO;
+        scaleAnim.removedOnCompletion = YES;
         
         CABasicAnimation *opacityAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnim.fromValue = [NSNumber numberWithFloat:1.0];
         opacityAnim.toValue = [NSNumber numberWithFloat:1.0];
-        opacityAnim.removedOnCompletion = NO;
+        opacityAnim.removedOnCompletion = YES;
         
         CAAnimationGroup *animGroup = [CAAnimationGroup animation];
         animGroup.animations = [NSArray arrayWithObjects:moveAnim, scaleAnim, opacityAnim, nil];
@@ -226,17 +224,17 @@ BottomTabBar *bottomTabBarView;
         [movePath1 addLineToPoint:p1];
         CAKeyframeAnimation *moveAnim1 = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         moveAnim1.path = movePath1.CGPath;
-        moveAnim1.removedOnCompletion = NO;
+        moveAnim1.removedOnCompletion = YES;
         
         CABasicAnimation *scaleAnim1 = [CABasicAnimation animationWithKeyPath:@"transform"];
         scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         scaleAnim1.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
-        scaleAnim1.removedOnCompletion = NO;
+        scaleAnim1.removedOnCompletion = YES;
         
         CABasicAnimation *opacityAnim1 = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnim1.fromValue = [NSNumber numberWithFloat:0.5];
         opacityAnim1.toValue = [NSNumber numberWithFloat:0.0];
-        opacityAnim1.removedOnCompletion = NO;
+        opacityAnim1.removedOnCompletion = YES;
         
         CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
         animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
@@ -257,17 +255,17 @@ BottomTabBar *bottomTabBarView;
         [movePath2 addLineToPoint:p1Desc];
         CAKeyframeAnimation *moveAnim2 = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         moveAnim2.path = movePath2.CGPath;
-        moveAnim2.removedOnCompletion = NO;
+        moveAnim2.removedOnCompletion = YES;
         
         CABasicAnimation *scaleAnim2 = [CABasicAnimation animationWithKeyPath:@"transform"];
         scaleAnim2.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         scaleAnim2.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
-        scaleAnim2.removedOnCompletion = NO;
+        scaleAnim2.removedOnCompletion = YES;
         
         CABasicAnimation *opacityAnim2 = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnim2.fromValue = [NSNumber numberWithFloat:0.5];
         opacityAnim2.toValue = [NSNumber numberWithFloat:0.0];
-        opacityAnim2.removedOnCompletion = NO;
+        opacityAnim2.removedOnCompletion = YES;
         
         CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
         animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
@@ -301,29 +299,11 @@ BottomTabBar *bottomTabBarView;
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                  duration:(NSTimeInterval)duration{
-    CGRect screenRect1 = [[UIScreen mainScreen] bounds];
-//    CGRect screenRect,frameBottomBar;
-//    
-//    //    UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
-//    //    if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
-//    //        screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
-//    //         frameBottomBar = CGRectMake(0, self.view.frame.size.width - 48, self.view.frame.size.height, 48);
-//    //    }
-//    //    else {
-//    //
-//    //        screenRect = CGRectMake(0, 0, screenRect1.size.width, screenRect1.size.height);
-//    //
-//    //
-//    //         frameBottomBar = CGRectMake(0, self.view.frame.size.height - 48, self.view.frame.size.width, 48);
-//    //    }
-//    
-//    screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
-//    frameBottomBar = CGRectMake(0, self.view.frame.size.width - 48, self.view.frame.size.height, 48);
-//    bottomTabBarView.frame= frameBottomBar;
-//    scrollView1.frame = CGRectMake(0, 100, screenRect.size.width, 550);
+
 }
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    //
+    //    
+    isFinishAnimation = YES;
     if ([anim valueForKey:@"step1"]) {
         if (isFinishStep1) {
             
@@ -380,6 +360,9 @@ BottomTabBar *bottomTabBarView;
 
 -(void)backButton:(id)sender{
     if (currentHeadlineID ==0) {
+        return;
+    }
+    if (!isFinishAnimation) {
         return;
     }
     [arraySelectedID removeLastObject];
@@ -531,6 +514,7 @@ BottomTabBar *bottomTabBarView;
     
 }
 -(void)loadScrollViewBackToHeadLineID:(NSInteger)headlineID{
+    isFinishAnimation = NO;
     CGFloat padding1 = 15;
     CGFloat padding = 30;
     [self loadCurrentHeadlines:headlineID];
@@ -623,24 +607,24 @@ BottomTabBar *bottomTabBarView;
         [movePath addLineToPoint:b.center];
         CAKeyframeAnimation *moveAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         moveAnim.path = movePath.CGPath;
-        moveAnim.removedOnCompletion = NO;
+        moveAnim.removedOnCompletion = YES;
         
         CABasicAnimation *scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
         scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.5, 0.5, 1.0)];
         
-        scaleAnim.removedOnCompletion = NO;
+        scaleAnim.removedOnCompletion = YES;
         
         CABasicAnimation *opacityAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnim.fromValue = [NSNumber numberWithFloat:1.0];
         opacityAnim.toValue = [NSNumber numberWithFloat:1.0];
-        opacityAnim.removedOnCompletion = NO;
+        opacityAnim.removedOnCompletion = YES;
         
         CAAnimationGroup *animGroup = [CAAnimationGroup animation];
         animGroup.animations = [NSArray arrayWithObjects:moveAnim, scaleAnim, opacityAnim, nil];
         animGroup.duration = 1.5;
-        //        [animGroup setValue:@"step1" forKey:@"step1"];
-        //        [animGroup setDelegate:self];
+                [animGroup setValue:@"back" forKey:@"back"];
+                [animGroup setDelegate:self];
         b.alpha =1.0;
         [b.layer addAnimation:animGroup forKey:nil];
         
@@ -703,18 +687,18 @@ BottomTabBar *bottomTabBarView;
         [movePath1 addLineToPoint:thumb.center];
         CAKeyframeAnimation *moveAnim1 = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         moveAnim1.path = movePath1.CGPath;
-        moveAnim1.removedOnCompletion = NO;
+        moveAnim1.removedOnCompletion = YES;
         
         CABasicAnimation *scaleAnim1 = [CABasicAnimation animationWithKeyPath:@"transform"];
         
         scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
         scaleAnim1.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        scaleAnim1.removedOnCompletion = NO;
+        scaleAnim1.removedOnCompletion = YES;
         
         CABasicAnimation *opacityAnim1 = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnim1.fromValue = [NSNumber numberWithFloat:0.0];
         opacityAnim1.toValue = [NSNumber numberWithFloat:1.0];
-        opacityAnim1.removedOnCompletion = NO;
+        opacityAnim1.removedOnCompletion = YES;
         
         CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
         animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
@@ -746,18 +730,18 @@ BottomTabBar *bottomTabBarView;
         [movePath2 addLineToPoint:descriptionView.center];
         CAKeyframeAnimation *moveAnim2 = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         moveAnim2.path = movePath2.CGPath;
-        moveAnim2.removedOnCompletion = NO;
+        moveAnim2.removedOnCompletion = YES;
         
         CABasicAnimation *scaleAnim2 = [CABasicAnimation animationWithKeyPath:@"transform"];
         
         scaleAnim2.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
         scaleAnim2.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        scaleAnim2.removedOnCompletion = NO;
+        scaleAnim2.removedOnCompletion = YES;
         
         CABasicAnimation *opacityAnim2 = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnim2.fromValue = [NSNumber numberWithFloat:0.0];
         opacityAnim2.toValue = [NSNumber numberWithFloat:1.0];
-        opacityAnim2.removedOnCompletion = NO;
+        opacityAnim2.removedOnCompletion = YES;
         
         CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
         animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
@@ -814,17 +798,17 @@ BottomTabBar *bottomTabBarView;
         [movePath addLineToPoint:btnCenter];
         CAKeyframeAnimation *moveAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         moveAnim.path = movePath.CGPath;
-        moveAnim.removedOnCompletion = NO;
+        moveAnim.removedOnCompletion = YES;
         
         CABasicAnimation *scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
         scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.5, 0.5, 1.0)];
         scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        scaleAnim.removedOnCompletion = NO;
+        scaleAnim.removedOnCompletion = YES;
         
         CABasicAnimation *opacityAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnim.fromValue = [NSNumber numberWithFloat:1.0];
         opacityAnim.toValue = [NSNumber numberWithFloat:1.0];
-        opacityAnim.removedOnCompletion = NO;
+        opacityAnim.removedOnCompletion = YES;
         
         CAAnimationGroup *animGroup = [CAAnimationGroup animation];
         animGroup.animations = [NSArray arrayWithObjects:moveAnim, scaleAnim, opacityAnim, nil];
@@ -883,18 +867,18 @@ BottomTabBar *bottomTabBarView;
         [movePath1 addLineToPoint:thumb.center];
         CAKeyframeAnimation *moveAnim1 = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         moveAnim1.path = movePath1.CGPath;
-        moveAnim1.removedOnCompletion = NO;
+        moveAnim1.removedOnCompletion = YES;
         
         CABasicAnimation *scaleAnim1 = [CABasicAnimation animationWithKeyPath:@"transform"];
         
         scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
         scaleAnim1.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        scaleAnim1.removedOnCompletion = NO;
+        scaleAnim1.removedOnCompletion = YES;
         
         CABasicAnimation *opacityAnim1 = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnim1.fromValue = [NSNumber numberWithFloat:0.0];
         opacityAnim1.toValue = [NSNumber numberWithFloat:1.0];
-        opacityAnim1.removedOnCompletion = NO;
+        opacityAnim1.removedOnCompletion = YES;
         
         CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
         animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
@@ -929,18 +913,18 @@ BottomTabBar *bottomTabBarView;
         [movePath2 addLineToPoint:descriptionView.center];
         CAKeyframeAnimation *moveAnim2 = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         moveAnim2.path = movePath2.CGPath;
-        moveAnim2.removedOnCompletion = NO;
+        moveAnim2.removedOnCompletion = YES;
         
         CABasicAnimation *scaleAnim2 = [CABasicAnimation animationWithKeyPath:@"transform"];
         
         scaleAnim2.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
         scaleAnim2.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        scaleAnim2.removedOnCompletion = NO;
+        scaleAnim2.removedOnCompletion = YES;
         
         CABasicAnimation *opacityAnim2 = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnim2.fromValue = [NSNumber numberWithFloat:0.0];
         opacityAnim2.toValue = [NSNumber numberWithFloat:1.0];
-        opacityAnim2.removedOnCompletion = NO;
+        opacityAnim2.removedOnCompletion = YES;
         
         CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
         animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
