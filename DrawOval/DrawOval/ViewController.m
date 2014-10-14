@@ -151,6 +151,7 @@ BottomTabBar *bottomTabBarView;
         return;
     }
     [arrayButton2 removeAllObjects];
+    [clickButton setBackgroundImage:[UIImage imageNamed:@"button_3dmode_pressed.png"] forState:UIControlStateNormal];
     arrayButton2 = [arrayButton3 mutableCopy];
     [self loadTopButtonForHeadline:currentHeadlineID];
     [self loadScrollViewForHeadLineID:currentHeadlineID];
