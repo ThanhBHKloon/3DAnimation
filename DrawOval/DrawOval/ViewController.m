@@ -438,6 +438,7 @@ BottomTabBar *bottomTabBarView;
     
 }
 -(void)loadScrollViewBackToHeadLineID:(NSInteger)headlineID{
+    CGFloat padding1 = 15;
     CGFloat padding = 30;
     [self loadCurrentHeadlines:headlineID];
     [self loadPreviousHeadlines:headlineID];
@@ -457,8 +458,8 @@ BottomTabBar *bottomTabBarView;
     if ([arraySelectedID count] >0) {
         for (int i =0; i<[arrPreviousHeadlines count]; i++) {
             
-            CGRect frameTopBG= CGRectMake(20 +i*(padding+143) , 190, 143, 40);
-            CGRect frameTop= CGRectMake(20 + 3 +i*(padding+143) , 193, 137, 34);
+            CGRect frameTopBG= CGRectMake(20 +i*(padding1+143) , 190, 143, 40);
+            CGRect frameTop= CGRectMake(3 , 3, 137, 34);
             //        CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
             
             UIView *buttonsBackground = [[UIView alloc] initWithFrame:frameTopBG];
@@ -478,8 +479,8 @@ BottomTabBar *bottomTabBarView;
             b.alpha = 0.0;
             buttonsBackground.alpha = 0.0;
             [arrayButton2 addObject:b];
+            [buttonsBackground addSubview:b];
             [scrollView1 addSubview:buttonsBackground];
-            [scrollView1 addSubview:b];
             
             [UIView animateWithDuration:1.5 animations:^{
                 b.alpha = 1.0;
