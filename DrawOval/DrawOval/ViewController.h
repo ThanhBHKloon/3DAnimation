@@ -15,6 +15,7 @@
     NSMutableArray *arrayButton2;
     NSMutableArray *arrayButton3;
     NSMutableArray *arrayThumb;
+    NSMutableArray *arrayDescription;
     NSMutableArray *arrayMiddleFrame;
     NSMutableArray *arrayMiddlePoint;
     UIButton *btnBack;
