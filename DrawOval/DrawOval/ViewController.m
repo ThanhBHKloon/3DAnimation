@@ -1118,6 +1118,21 @@ BottomTabBar *bottomTabBarView;
             //            [arrPreviousHeadlines addObject:@"Headline 15"];
             //            [arrPreviousHeadlines addObject:@"Headline 16"];
             break;
+        case 7:
+            for (int i=5; i<11; i++) {
+                ThumbItem *item = [[ThumbItem alloc]init];
+                item.thumbID = i+1;
+                item.thumbTitle = [NSString stringWithFormat:@"Headline 1%d",i+1-5];
+                [arrPreviousHeadlines addObject:item];
+            }
+            
+            
+            //            [arrPreviousHeadlines addObject:@"Headline 12"];
+            //            [arrPreviousHeadlines addObject:@"Headline 13"];
+            //            [arrPreviousHeadlines addObject:@"Headline 14"];
+            //            [arrPreviousHeadlines addObject:@"Headline 15"];
+            //            [arrPreviousHeadlines addObject:@"Headline 16"];
+            break;
             
         default:
             for (int i=0; i<5; i++) {
