@@ -151,7 +151,7 @@ BottomTabBar *bottomTabBarView;
     
     btnBackSelected = NO;
     UIButton *clickButton = sender;
-    
+
     
     [self loadCurrentHeadlines:clickButton.tag];
     
@@ -336,6 +336,9 @@ BottomTabBar *bottomTabBarView;
             b1.frame = CGRectMake(b1.frame.origin.x, b1.frame.origin.y, b1.frame.size.width *0.5, b1.frame.size.height*0.5);
             b1.titleLabel.font = [UIFont systemFontOfSize:17];
             b1.titleLabel.textColor = [UIColor whiteColor];
+            [b1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [b1 setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+            [b1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
             b1.center = topCenter;
             b1.hidden = NO;
             
@@ -432,6 +435,9 @@ BottomTabBar *bottomTabBarView;
         //        }
         b.titleLabel.font= [UIFont systemFontOfSize:34];
         b.titleLabel.textColor = [UIColor whiteColor];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [b addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         b.tag = item.thumbID;
         [scrollView1 addSubview:b];
@@ -511,7 +517,10 @@ BottomTabBar *bottomTabBarView;
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
         //        }
-        b.titleLabel.font= [UIFont systemFontOfSize:23];
+        b.titleLabel.font= [UIFont systemFontOfSize:34];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [b addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         b.tag = item.thumbID;
         b.alpha = 0.1;
@@ -573,7 +582,9 @@ BottomTabBar *bottomTabBarView;
             ThumbItem *item = [arrPreviousHeadlines objectAtIndex:i];
             [b setTitle:item.thumbTitle forState:UIControlStateNormal];
             b.frame = frameTop;
-            b.titleLabel.textColor = [UIColor whiteColor];
+            [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+            [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
 //            b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
 //            [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub.png"] forState:UIControlStateNormal];
             b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
@@ -628,7 +639,9 @@ BottomTabBar *bottomTabBarView;
         //            [arrayButton2 addObject:b];
         //        }
         b.titleLabel.font= [UIFont systemFontOfSize:34];
-        b.titleLabel.textColor = [UIColor whiteColor];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [b addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         b.tag = item.thumbID;
         maskBtn.tag = item.thumbID;
@@ -822,7 +835,9 @@ BottomTabBar *bottomTabBarView;
         [arrayButton3 addObject:b];
         
         b.titleLabel.font= [UIFont systemFontOfSize:34];
-        b.titleLabel.textColor = [UIColor whiteColor];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [b addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         b.tag = item.thumbID;
         [scrollView1 addSubview:b];
