@@ -107,6 +107,8 @@ BottomTabBar *bottomTabBarView;
 //            b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
 //            [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub.png"] forState:UIControlStateNormal];
             b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+            [b.layer setBorderColor:[UIColor whiteColor].CGColor];
+            [b.layer setBorderWidth:1.f];
             break;
         }
     }
@@ -421,6 +423,8 @@ BottomTabBar *bottomTabBarView;
 //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
 //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
         b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        [b.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
@@ -499,6 +503,8 @@ BottomTabBar *bottomTabBarView;
 //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
 //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
         b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        [b.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
@@ -568,6 +574,8 @@ BottomTabBar *bottomTabBarView;
 //            b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
 //            [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub.png"] forState:UIControlStateNormal];
             b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+            [b.layer setBorderColor:[UIColor whiteColor].CGColor];
+            [b.layer setBorderWidth:1.f];
             
             [b addTarget:nil action:@selector(clickTopButton:) forControlEvents:UIControlEventTouchUpInside];
             b.tag = item.thumbID;
@@ -610,6 +618,8 @@ BottomTabBar *bottomTabBarView;
 //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
 //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
         b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        [b.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
@@ -803,6 +813,8 @@ BottomTabBar *bottomTabBarView;
 //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
 //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
         b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        [b.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         
         b.titleLabel.font= [UIFont systemFontOfSize:23];
