@@ -11,7 +11,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BottomTabBar.h"
 #import "ThumbItem.h"
-#import "DescriptionView.h"
 @interface ViewController ()
 
 @end
@@ -264,7 +263,7 @@ BottomTabBar *bottomTabBarView;
         
         
         //animation for descriptionview
-        DescriptionView *descView = [arrayDescription objectAtIndex:i];
+        UIButton *descView = [arrayDescription objectAtIndex:i];
         
         CGPoint p1Desc = CGPointMake(middleX, middleY + 150/2*(1-1*(1-0.5)/3));
         
@@ -508,7 +507,7 @@ BottomTabBar *bottomTabBarView;
         ThumView *thumb = [arrayThumb objectAtIndex:i];
         [thumb removeFromSuperview];
         
-        DescriptionView *descView = [arrayDescription objectAtIndex:i];
+        UIButton *descView = [arrayDescription objectAtIndex:i];
         [descView removeFromSuperview];
     }
     [arrayButton3 removeAllObjects];
@@ -557,11 +556,28 @@ BottomTabBar *bottomTabBarView;
         [arrayThumb addObject:thumb];
         [scrollView1 addSubview:thumb];
         
-        DescriptionView *descriptionView = [[DescriptionView alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
+        UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
                                                                                              thumb.frame.origin.y + 156+52,
                                                                                              278,
                                                                                              52)];
         descriptionView.alpha = 0.0;
+        descriptionView.titleLabel.textColor = [UIColor whiteColor];
+        [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [descriptionView addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+        descriptionView.tag = item.thumbID;
+        [descriptionView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        
+        descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        NSString *textDes = @"There are many variations of passages of Lorem Ipsum avaiable";
+        [descriptionView setTitle:textDes forState:UIControlStateNormal];
+        descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
+        descriptionView.titleLabel.numberOfLines = 2;
+        descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
+        descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        [descriptionView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
 
@@ -782,10 +798,27 @@ BottomTabBar *bottomTabBarView;
         [thumb.layer addAnimation:animGroup1 forKey:nil];
         
         
-        DescriptionView *descriptionView = [[DescriptionView alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
+        UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
                                                                                              thumb.frame.origin.y + 156+52,
                                                                                              278,
                                                                                              52)];
+        descriptionView.titleLabel.textColor = [UIColor whiteColor];
+        [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [descriptionView addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+        descriptionView.tag = item.thumbID;
+        [descriptionView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        
+        descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        NSString *textDes = @"There are many variations of passages of Lorem Ipsum avaiable";
+        [descriptionView setTitle:textDes forState:UIControlStateNormal];
+        descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
+        descriptionView.titleLabel.numberOfLines = 2;
+        descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
+        descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        [descriptionView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         
@@ -969,10 +1002,27 @@ BottomTabBar *bottomTabBarView;
         
         
         // load description view
-        DescriptionView *descriptionView = [[DescriptionView alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
+        UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
                                                                                              thumb.frame.origin.y + 156+52,
                                                                                              278,
                                                                                              52)];
+        descriptionView.titleLabel.textColor = [UIColor whiteColor];
+        [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [descriptionView addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+        descriptionView.tag = item.thumbID;
+        [descriptionView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        
+        descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        NSString *textDes = @"There are many variations of passages of Lorem Ipsum avaiable";
+        [descriptionView setTitle:textDes forState:UIControlStateNormal];
+        descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
+        descriptionView.titleLabel.numberOfLines = 2;
+        descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
+        descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        [descriptionView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         
