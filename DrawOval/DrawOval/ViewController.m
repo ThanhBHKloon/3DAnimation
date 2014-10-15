@@ -205,7 +205,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup = [CAAnimationGroup animation];
         animGroup.animations = [NSArray arrayWithObjects:moveAnim, scaleAnim, opacityAnim, nil];
-        animGroup.duration = 1.5;
+        animGroup.duration = 0.9;
         [animGroup setValue:@"step1" forKey:@"step1"];
         [animGroup setDelegate:self];
         b2.alpha =1.0;
@@ -243,7 +243,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
         animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
-        animGroup1.duration = 0.5;
+        animGroup1.duration = 0.3;
         thumb.alpha = 0;
         [thumb.layer addAnimation:animGroup1 forKey:nil];
         
@@ -274,7 +274,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
         animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
-        animGroup2.duration = 0.5;
+        animGroup2.duration = 0.3;
         descView.alpha = 0;
         [descView.layer addAnimation:animGroup2 forKey:nil];
         
@@ -509,7 +509,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:descriptionView];
 
         
-        [UIView animateWithDuration:1.0 animations:^{
+        [UIView animateWithDuration:0.9 animations:^{
             thumb.alpha = 1.0;
             b.alpha = 1.0;
             descriptionView.alpha = 1.0;
@@ -627,7 +627,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup = [CAAnimationGroup animation];
         animGroup.animations = [NSArray arrayWithObjects:moveAnim, scaleAnim, opacityAnim, nil];
-        animGroup.duration = 1.5;
+        animGroup.duration = 0.9;
                 [animGroup setValue:@"back" forKey:@"back"];
                 [animGroup setDelegate:self];
         b.alpha =1.0;
@@ -646,7 +646,7 @@ BottomTabBar *bottomTabBarView;
         
         
     }
-    [self performSelector:@selector(loadThumbViewForBack) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(loadThumbViewForBack) withObject:nil afterDelay:0.6];
 }
 -(void)loadThumbViewForBack {
     CGFloat padding = 30;
@@ -707,7 +707,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
         animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
-        animGroup1.duration = 0.5;
+        animGroup1.duration = 0.3;
         //        [animGroup1 setDelegate:self];
         [thumb.layer addAnimation:animGroup1 forKey:nil];
         
@@ -750,7 +750,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
         animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
-        animGroup2.duration = 0.5;
+        animGroup2.duration = 0.3;
         //        [animGroup1 setDelegate:self];
         [descriptionView.layer addAnimation:animGroup2 forKey:nil];
         
@@ -817,7 +817,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup = [CAAnimationGroup animation];
         animGroup.animations = [NSArray arrayWithObjects:moveAnim, scaleAnim, opacityAnim, nil];
-        animGroup.duration = 1.5;
+        animGroup.duration = 0.9;
         [animGroup setValue:b forKey:@"step3"];
         isFinishStep3 = NO;
         [animGroup setDelegate:self];
@@ -828,7 +828,7 @@ BottomTabBar *bottomTabBarView;
         
         
     }
-    [self performSelector:@selector(loadThumViewsForCurrentHeadline) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(loadThumViewsForCurrentHeadline) withObject:nil afterDelay:0.6];
     
 }
 -(void)loadThumViewsForCurrentHeadline{
@@ -887,7 +887,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
         animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
-        animGroup1.duration = 0.5;
+        animGroup1.duration = 0.3;
         //        [animGroup1 setDelegate:self];
         [thumb.layer addAnimation:animGroup1 forKey:nil];
         
@@ -933,7 +933,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
         animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
-        animGroup2.duration = 0.5;
+        animGroup2.duration = 0.3;
         //        [animGroup1 setDelegate:self];
         [descriptionView.layer addAnimation:animGroup2 forKey:nil];
         
