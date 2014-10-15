@@ -125,6 +125,15 @@ BottomTabBar *bottomTabBarView;
     
 //    clickButton.backgroundColor = [UIColor redColor];
     [clickButton setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub_pressed.png"] forState:UIControlStateNormal];
+    
+    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"transform"];
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    anim.duration = 0.2;
+    anim.repeatCount = 1;
+    anim.autoreverses = YES;
+    anim.removedOnCompletion = YES;
+    anim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)];
+    [clickButton.layer addAnimation:anim forKey:nil];
     [self loadScrollViewFadeInForHeadline:currentHeadlineID];
 }
 
@@ -434,6 +443,8 @@ BottomTabBar *bottomTabBarView;
                                                                                              b.frame.origin.y + b.frame.size.height,
                                                                                              b.frame.size.width,
                                                                                              b.frame.size.height)];
+        [descriptionView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         [scrollView1 addSubview:thumb];
