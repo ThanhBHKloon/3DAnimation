@@ -106,7 +106,7 @@ BottomTabBar *bottomTabBarView;
         if (b.tag == previousHeadlineID) {
 //            b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
 //            [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub.png"] forState:UIControlStateNormal];
-            b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+            b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
             break;
         }
     }
@@ -126,7 +126,7 @@ BottomTabBar *bottomTabBarView;
     
 //    clickButton.backgroundColor = [UIColor redColor];
 //    [clickButton setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub_pressed.png"] forState:UIControlStateNormal];
-    clickButton.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+    clickButton.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
     
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"transform"];
     anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -169,11 +169,12 @@ BottomTabBar *bottomTabBarView;
     }
     [arrayButton2 removeAllObjects];
 //    [clickButton setBackgroundImage:[UIImage imageNamed:@"button_3dmode_pressed.png"] forState:UIControlStateNormal];
-    clickButton.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+    clickButton.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
     arrayButton2 = [arrayButton3 mutableCopy];
     [self loadTopButtonForHeadline:currentHeadlineID];
     [self loadScrollViewForHeadLineID:currentHeadlineID];
-    clickButton.backgroundColor = [UIColor redColor];
+//    clickButton.backgroundColor = [UIColor redColor];
+    clickButton.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
     animationType = ANIMATION_UP_STEP1;
     CGFloat padding1 = 20;
     for (int i =0; i<[arrayButton2 count]; i++) {
@@ -407,19 +408,19 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 176);
+        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+176, frame.size.width, 52);
+        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 52);
         b.frame = btnFrame;
 //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
 //        UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
 //        [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
 //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
 //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
-        b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+        b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
@@ -485,19 +486,19 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 176);
+        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+176, frame.size.width, 52);
+        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 52);
         b.frame = btnFrame;
 //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
 //        UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
 //        [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
 //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
 //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
-        b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+        b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
@@ -517,7 +518,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:thumb];
         
         DescriptionView *descriptionView = [[DescriptionView alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                                             thumb.frame.origin.y + 176+52,
+                                                                                             thumb.frame.origin.y + 156+52,
                                                                                              278,
                                                                                              52)];
         descriptionView.alpha = 0.0;
@@ -566,14 +567,14 @@ BottomTabBar *bottomTabBarView;
             b.frame = frameTop;
 //            b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
 //            [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub.png"] forState:UIControlStateNormal];
-            b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+            b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
             
             [b addTarget:nil action:@selector(clickTopButton:) forControlEvents:UIControlEventTouchUpInside];
             b.tag = item.thumbID;
             if (b.tag == currentHeadlineID) {
 //                b.backgroundColor = [UIColor redColor];
 //                [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub_pressed.png"] forState:UIControlStateNormal];
-                b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+                b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
             }
             b.alpha = 0.0;
             [arrayButton2 addObject:b];
@@ -596,19 +597,19 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 176);
+        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+176, frame.size.width, 52);
+        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 52);
         b.frame = btnFrame;
 //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
 //        UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
 //        [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
 //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
 //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
-        b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+        b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
@@ -670,7 +671,7 @@ BottomTabBar *bottomTabBarView;
 -(void)loadThumbViewForBack {
     CGFloat padding = 40;
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 176);
+        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
         
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
@@ -732,7 +733,7 @@ BottomTabBar *bottomTabBarView;
         
         
         DescriptionView *descriptionView = [[DescriptionView alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                                             thumb.frame.origin.y + 176+52,
+                                                                                             thumb.frame.origin.y + 156+52,
                                                                                              278,
                                                                                              52)];
         [arrayDescription addObject:descriptionView];
@@ -789,19 +790,19 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 176);
+        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+176, frame.size.width, 52);
+        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 52);
         b.frame = btnFrame;
 //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
 //        UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
 //        [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
 //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
 //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
-        b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+        b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
         [arrayButton3 addObject:b];
         
         b.titleLabel.font= [UIFont systemFontOfSize:23];
@@ -856,7 +857,7 @@ BottomTabBar *bottomTabBarView;
     [arrayThumb removeAllObjects];
     [arrayDescription removeAllObjects];
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 176);
+        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         thumb.backgroundColor = [UIColor whiteColor];
@@ -914,7 +915,7 @@ BottomTabBar *bottomTabBarView;
         
         // load description view
         DescriptionView *descriptionView = [[DescriptionView alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                                             thumb.frame.origin.y + 176+52,
+                                                                                             thumb.frame.origin.y + 16+52,
                                                                                              278,
                                                                                              52)];
         [arrayDescription addObject:descriptionView];
@@ -974,7 +975,8 @@ BottomTabBar *bottomTabBarView;
         ThumbItem *item = [arrPreviousHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
         b.frame = frame;
-        b.backgroundColor = [UIColor redColor];
+//        b.backgroundColor = [UIColor redColor];
+        b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
         [arrayButton1 addObject:b];
         b.hidden = YES;
         //        [scrollView1 addSubview:b];
