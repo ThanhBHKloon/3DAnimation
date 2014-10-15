@@ -300,7 +300,14 @@ BottomTabBar *bottomTabBarView;
     int lastObject = [[arraySelectedID lastObject] integerValue];
     if (lastObject != [sender tag])
         [arraySelectedID addObject:[NSNumber numberWithInteger:[sender tag]]];
-    [self loadCurrentHeadlines:[sender tag]];
+    for (int i =0; i<[arrayButton3 count]; i++) {
+        UIButton *b = [arrayButton3 objectAtIndex:i];
+        if (b.tag == [sender tag]) {
+            [self clickButton:b];
+            break;
+        }
+    }
+
     if ([arrCurrentHeadlines count]==0) {
         [self hideCoverView:NO];
     }
@@ -602,7 +609,7 @@ BottomTabBar *bottomTabBarView;
             [arrayButton2 addObject:b];
             [scrollView1 addSubview:b];
             
-            [UIView animateWithDuration:1.5 animations:^{
+            [UIView animateWithDuration:0.9 animations:^{
                 b.alpha = 1.0;
             }];
             
