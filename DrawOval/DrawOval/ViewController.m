@@ -915,7 +915,7 @@ BottomTabBar *bottomTabBarView;
         
         // load description view
         DescriptionView *descriptionView = [[DescriptionView alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                                             thumb.frame.origin.y + 16+52,
+                                                                                             thumb.frame.origin.y + 156+52,
                                                                                              278,
                                                                                              52)];
         [arrayDescription addObject:descriptionView];
@@ -923,7 +923,7 @@ BottomTabBar *bottomTabBarView;
         
         
         
-        CGPoint bottomPoint2 = CGPointMake(buttonPoint.x, buttonPoint.y+150*0.5/2);
+        CGPoint bottomPoint2 = CGPointMake(buttonPoint.x, buttonPoint.y+104*0.5/2);
         CGPoint topPoint2 = descriptionView.center;
         
         CGFloat middleY2 = 2*topPoint2.y/3 + bottomPoint2.y/3;
