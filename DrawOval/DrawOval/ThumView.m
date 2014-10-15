@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        imgView.image = [UIImage imageNamed:@"test.png"];
+        imgView.image = [UIImage imageNamed:@"eng_flag.png"];
         [self addSubview:imgView];
     }
     return self;
