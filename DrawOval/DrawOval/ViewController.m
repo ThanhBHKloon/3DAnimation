@@ -463,10 +463,26 @@ BottomTabBar *bottomTabBarView;
         [arrayThumb addObject:thumb];
         
         // add Description
-        DescriptionView *descriptionView = [[DescriptionView alloc] initWithFrame:CGRectMake(b.frame.origin.x,
+        UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(b.frame.origin.x,
                                                                                              b.frame.origin.y + b.frame.size.height,
                                                                                              b.frame.size.width,
                                                                                              b.frame.size.height)];
+        
+        descriptionView.titleLabel.textColor = [UIColor whiteColor];
+        [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [descriptionView addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+        descriptionView.tag = item.thumbID;
+        [descriptionView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        
+        descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        NSString *textDes = @"There are many variations of passages of Lorem Ipsum avaiable";
+        [descriptionView setTitle:textDes forState:UIControlStateNormal];
+        descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
+        descriptionView.titleLabel.numberOfLines = 2;
+        descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
+        descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         [descriptionView.layer setBorderColor:[UIColor whiteColor].CGColor];
         [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
