@@ -18,17 +18,14 @@
                                                                     0,
                                                                     frame.size.width,
                                                                     frame.size.height)];
-        descriptionView.backgroundColor = [UIColor blackColor];
-        descriptionView.alpha = 0.5;
+        descriptionView.backgroundColor = [UIColor clearColor];
         descriptionView.textColor = [UIColor whiteColor];
         descriptionView.text = @"There are many variations of passages of Lorem Ipsum avaiable";
         descriptionView.textAlignment = NSTextAlignmentCenter;;
         descriptionView.numberOfLines = 2;
         descriptionView.lineBreakMode = NSLineBreakByWordWrapping;
 
-        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        imgView.image = [UIImage imageNamed:@"description_bg.png"];
-        [self addSubview:imgView];
+        self.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
         [self addSubview:descriptionView];
     }
     return self;
