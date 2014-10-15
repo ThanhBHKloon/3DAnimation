@@ -16,7 +16,10 @@
     if (self) {
         imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         imgView.image = [UIImage imageNamed:@"eng_flag.png"];
-        [imgView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [[imgView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
+                                                                 green:223.0/255.0
+                                                                  blue:223.0/255.0
+                                                                 alpha:1.0] CGColor]];
         [imgView.layer setBorderWidth:1.f];
         [self addSubview:imgView];
     }

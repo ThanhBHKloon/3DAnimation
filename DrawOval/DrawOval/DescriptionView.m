@@ -24,7 +24,10 @@
         descriptionView.textAlignment = NSTextAlignmentCenter;;
         descriptionView.numberOfLines = 2;
         descriptionView.lineBreakMode = NSLineBreakByWordWrapping;
-        [descriptionView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [[descriptionView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
+                                                   green:223.0/255.0
+                                                    blue:223.0/255.0
+                                                   alpha:1.0] CGColor]];
         [descriptionView.layer setBorderWidth:1.f];
 
         self.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
