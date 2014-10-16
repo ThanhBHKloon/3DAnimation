@@ -468,6 +468,7 @@ BottomTabBar *bottomTabBarView;
         maskBtn.backgroundColor = [UIColor clearColor];
         [maskBtn addTarget:self action:@selector(maskBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
         maskBtn.frame = thumb.bounds;
+        maskBtn.tag = item.thumbID;
         [thumb addSubview:maskBtn];
         [arrayThumb addObject:thumb];
         
