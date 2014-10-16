@@ -54,7 +54,7 @@ BottomTabBar *bottomTabBarView;
         screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
     }
     scrollView1  = [[UIScrollView alloc]init];
-    scrollView1.frame = CGRectMake(0, 0, screenRect.size.width, screenRect.size.height);
+    scrollView1.frame = CGRectMake(0, 0, screenRect.size.width, screenRect.size.height-48);
     scrollView1.backgroundColor = [UIColor clearColor];
     [self.view addSubview:scrollView1];
     
@@ -928,6 +928,7 @@ BottomTabBar *bottomTabBarView;
     }
     [arrayButton3 removeAllObjects];
     CGFloat padding = 40;
+    CGFloat padding1 = 20;
     scrollView1.contentSize = CGSizeMake((padding + 278)*[arrCurrentHeadlines count] +padding, 300);
     
     
@@ -963,7 +964,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:b];
         
         
-        CGRect bottomFrame =CGRectMake(20 +i*(padding+139) , 540, 139, 26);
+        CGRect bottomFrame =CGRectMake(20 +i*(padding1+136) , 746, 139, 26);
         CGPoint bottomPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, bottomFrame.origin.y +bottomFrame.size.height/2);
         
         
@@ -1006,6 +1007,7 @@ BottomTabBar *bottomTabBarView;
 }
 -(void)loadThumViewsForCurrentHeadline{
     CGFloat padding = 40;
+    CGFloat padding1 = 20;
     [arrayThumb removeAllObjects];
     [arrayDescription removeAllObjects];
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
@@ -1025,7 +1027,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:thumb];
         
         //when button animating 2/3 path, start animating to display thumbview
-        CGRect bottomFrame =CGRectMake(20 +i*(padding+139) , 540, 139, 26);
+        CGRect bottomFrame =CGRectMake(20 +i*(padding1+139) , 746, 136, 26);
         CGPoint buttonPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, (bottomFrame.origin.y +bottomFrame.size.height/2));
         
         CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-216*0.5/2);
