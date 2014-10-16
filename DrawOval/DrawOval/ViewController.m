@@ -425,7 +425,7 @@ BottomTabBar *bottomTabBarView;
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
         
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+        UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
         CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 52);
@@ -528,7 +528,7 @@ BottomTabBar *bottomTabBarView;
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
         
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+        UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
         CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 52);
@@ -626,7 +626,7 @@ BottomTabBar *bottomTabBarView;
             CGRect frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 26);
             //        CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
             
-            UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+            UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
             ThumbItem *item = [arrPreviousHeadlines objectAtIndex:i];
             [b setTitle:item.thumbTitle forState:UIControlStateNormal];
             b.frame = frameTop;
@@ -672,7 +672,7 @@ BottomTabBar *bottomTabBarView;
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
         
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+        UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
         CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 52);
@@ -890,7 +890,7 @@ BottomTabBar *bottomTabBarView;
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
         
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+        UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
         CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 52);
@@ -1094,7 +1094,7 @@ BottomTabBar *bottomTabBarView;
     for (int i= 0; i<[arrPreviousHeadlines count]; i++) {
         CGRect frame = CGRectMake(20 +i*(padding+139) , 30, 139, 26);
         
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+        UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrPreviousHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
         b.frame = frame;
