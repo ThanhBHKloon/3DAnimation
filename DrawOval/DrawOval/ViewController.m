@@ -567,6 +567,13 @@ BottomTabBar *bottomTabBarView;
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         
+        maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        maskBtn.backgroundColor = [UIColor clearColor];
+        [maskBtn addTarget:self action:@selector(maskBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        maskBtn.frame = thumb.bounds;
+        maskBtn.tag = item.thumbID;
+        [thumb addSubview:maskBtn];
+        
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 0.1;
         [arrayThumb addObject:thumb];
