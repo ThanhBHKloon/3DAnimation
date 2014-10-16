@@ -683,7 +683,7 @@ BottomTabBar *bottomTabBarView;
                                                                  alpha:0.8] CGColor]];
         
         descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
-        descriptionView.alpha = 0.8;
+//        descriptionView.alpha = 0.8;
         NSString *textDes = @"There are many variations of passages of Lorem Ipsum avaiable";
         [descriptionView setTitle:textDes forState:UIControlStateNormal];
         descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
