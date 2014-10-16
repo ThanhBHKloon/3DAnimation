@@ -105,11 +105,12 @@ BottomTabBar *bottomTabBarView;
         if (b.tag == previousHeadlineID) {
             //            b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
             //            [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub.png"] forState:UIControlStateNormal];
-            b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+            b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
+            b.alpha = 0.8;
             [[b layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                        green:223.0/255.0
                                                         blue:223.0/255.0
-                                                       alpha:1.0] CGColor]];
+                                                       alpha:0.8] CGColor]];
             [b.layer setBorderWidth:1.f];
             break;
         }
@@ -130,8 +131,9 @@ BottomTabBar *bottomTabBarView;
     
     //    clickButton.backgroundColor = [UIColor redColor];
     //    [clickButton setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub_pressed.png"] forState:UIControlStateNormal];
-    [clickButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
-    clickButton.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+    [clickButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
+    clickButton.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8];
+    clickButton.alpha = 0.8;
     
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"transform"];
     anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -189,8 +191,9 @@ BottomTabBar *bottomTabBarView;
     [arrayButton2 removeAllObjects];
     //    [clickButton setBackgroundImage:[UIImage imageNamed:@"button_3dmode_pressed.png"] forState:UIControlStateNormal];
     //    clickButton.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
-    [clickButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
-    clickButton.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+    [clickButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
+    clickButton.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8];
+    clickButton.alpha = 0.8;
     arrayButton2 = [arrayButton3 mutableCopy];
     [self loadTopButtonForHeadline:currentHeadlineID];
     [self loadScrollViewForHeadLineID:currentHeadlineID];
@@ -209,7 +212,8 @@ BottomTabBar *bottomTabBarView;
         [b2 removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
         [b2 addTarget:nil action:@selector(clickTopButton:) forControlEvents:UIControlEventTouchUpInside];
         if (b2.tag == clickButton.tag) {
-            b2.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+            b2.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8];
+            b2.alpha = 0.8;
         }
         ThumView *thumb = [arrayThumb objectAtIndex:i];
         thumb.alpha = 0.0;
@@ -245,7 +249,7 @@ BottomTabBar *bottomTabBarView;
         animGroup.duration = 0.9;
         [animGroup setValue:@"step1" forKey:@"step1"];
         [animGroup setDelegate:self];
-        b2.alpha =1.0;
+        b2.alpha =0.8;
         [b2.layer addAnimation:animGroup forKey:nil];
         
         
@@ -455,12 +459,13 @@ BottomTabBar *bottomTabBarView;
         //        [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
         //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
         //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
-        [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
-        b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
+        b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
+        b.alpha = 0.8;
         [[b layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                    green:223.0/255.0
                                                     blue:223.0/255.0
-                                                   alpha:1.0] CGColor]];
+                                                   alpha:0.8] CGColor]];
         [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
@@ -498,7 +503,7 @@ BottomTabBar *bottomTabBarView;
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        [descriptionView setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
+        [descriptionView setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
         //        [descriptionView setTitleColor:[UIColor colorWithRed:99.0/255 green:99.0/255 blue:99.0/255 alpha:1.0] forState:UIControlStateHighlighted];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [descriptionView addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -506,9 +511,10 @@ BottomTabBar *bottomTabBarView;
         [[descriptionView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                                  green:223.0/255.0
                                                                   blue:223.0/255.0
-                                                                 alpha:1.0] CGColor]];
+                                                                 alpha:0.8] CGColor]];
         
-        descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
+        descriptionView.alpha = 0.8;
         NSString *textDes = @"There are many variations of passages of Lorem Ipsum avaiable";
         [descriptionView setTitle:textDes forState:UIControlStateNormal];
         descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
@@ -554,7 +560,7 @@ BottomTabBar *bottomTabBarView;
     }
 //    d.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
     
-    NSLog(@"startButtonTouch %i",i);
+//    NSLog(@"startButtonTouch %i",i);
 }
 
 - (void)endButtonTouch:(id)sender {
@@ -582,7 +588,7 @@ BottomTabBar *bottomTabBarView;
     }
 //    d.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
     
-    NSLog(@"startButtonTouch %i",i);
+//    NSLog(@"startButtonTouch %i",i);
 }
 
 -(void)loadScrollViewFadeInForHeadline:(NSInteger)headlineID{
@@ -622,12 +628,13 @@ BottomTabBar *bottomTabBarView;
         //        [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
         //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
         //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
-        [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
-        b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
+        b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
+        b.alpha = 0.8;
         [[b layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                    green:223.0/255.0
                                                     blue:223.0/255.0
-                                                   alpha:1.0] CGColor]];
+                                                   alpha:0.8] CGColor]];
         [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
@@ -665,7 +672,7 @@ BottomTabBar *bottomTabBarView;
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        [descriptionView setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
+        [descriptionView setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
         //        [descriptionView setTitleColor:[UIColor colorWithRed:99.0/255 green:99.0/255 blue:99.0/255 alpha:1.0] forState:UIControlStateHighlighted];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [descriptionView addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -673,9 +680,10 @@ BottomTabBar *bottomTabBarView;
         [[descriptionView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                                  green:223.0/255.0
                                                                   blue:223.0/255.0
-                                                                 alpha:1.0] CGColor]];
+                                                                 alpha:0.8] CGColor]];
         
-        descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
+        descriptionView.alpha = 0.8;
         NSString *textDes = @"There are many variations of passages of Lorem Ipsum avaiable";
         [descriptionView setTitle:textDes forState:UIControlStateNormal];
         descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
@@ -694,8 +702,8 @@ BottomTabBar *bottomTabBarView;
         
         [UIView animateWithDuration:0.9 animations:^{
             thumb.alpha = 1.0;
-            b.alpha = 1.0;
-            descriptionView.alpha = 1.0;
+            b.alpha = 0.8;
+            descriptionView.alpha = 0.8;
         }];
         
     }
@@ -736,12 +744,13 @@ BottomTabBar *bottomTabBarView;
             [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
             //            b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
             //            [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub.png"] forState:UIControlStateNormal];
-            [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
-            b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+            [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
+            b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
+            b.alpha = 0.8;
             [[b layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                        green:223.0/255.0
                                                         blue:223.0/255.0
-                                                       alpha:1.0] CGColor]];
+                                                       alpha:0.8] CGColor]];
             [b.layer setBorderWidth:1.f];
             [b addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
             [b addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
@@ -751,15 +760,16 @@ BottomTabBar *bottomTabBarView;
             if (b.tag == currentHeadlineID) {
                 //                b.backgroundColor = [UIColor redColor];
                 //                [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub_pressed.png"] forState:UIControlStateNormal];
-                [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
-                b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+                [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
+                b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8];
+                b.alpha = 0.8;
             }
             b.alpha = 0.0;
             [arrayButton2 addObject:b];
             [scrollView1 addSubview:b];
             
             [UIView animateWithDuration:0.9 animations:^{
-                b.alpha = 1.0;
+                b.alpha = 0.8;
             }];
             
         }
@@ -787,12 +797,13 @@ BottomTabBar *bottomTabBarView;
         //        [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
         //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
         //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
-        [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
-        b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
+        b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
+        b.alpha = 0.8;
         [[b layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                    green:223.0/255.0
                                                     blue:223.0/255.0
-                                                   alpha:1.0] CGColor]];
+                                                   alpha:0.8] CGColor]];
         [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
@@ -807,7 +818,7 @@ BottomTabBar *bottomTabBarView;
         [b addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
         b.tag = item.thumbID;
         maskBtn.tag = item.thumbID;
-        b.alpha = 1.0;
+        b.alpha = 0.8;
         [scrollView1 addSubview:b];
         
         
@@ -839,7 +850,7 @@ BottomTabBar *bottomTabBarView;
         animGroup.duration = 0.9;
         [animGroup setValue:@"back" forKey:@"back"];
         [animGroup setDelegate:self];
-        b.alpha =1.0;
+        b.alpha =0.8;
         [b.layer addAnimation:animGroup forKey:nil];
         
         
@@ -928,7 +939,7 @@ BottomTabBar *bottomTabBarView;
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        [descriptionView setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
+        [descriptionView setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
         //        [descriptionView setTitleColor:[UIColor colorWithRed:99.0/255 green:99.0/255 blue:99.0/255 alpha:1.0] forState:UIControlStateHighlighted];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [descriptionView addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -936,9 +947,10 @@ BottomTabBar *bottomTabBarView;
         [[descriptionView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                                  green:223.0/255.0
                                                                   blue:223.0/255.0
-                                                                 alpha:1.0] CGColor]];
+                                                                 alpha:0.8] CGColor]];
         
-        descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
+        descriptionView.alpha = 0.8;
         NSString *textDes = @"There are many variations of passages of Lorem Ipsum avaiable";
         [descriptionView setTitle:textDes forState:UIControlStateNormal];
         descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
@@ -1015,12 +1027,13 @@ BottomTabBar *bottomTabBarView;
         //        [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
         //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
         //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
-        [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
-        b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
+        b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
+        b.alpha = 0.8;
         [[b layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                    green:223.0/255.0
                                                     blue:223.0/255.0
-                                                   alpha:1.0] CGColor]];
+                                                   alpha:0.8] CGColor]];
         [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         
@@ -1066,7 +1079,7 @@ BottomTabBar *bottomTabBarView;
         [animGroup setValue:b forKey:@"step3"];
         isFinishStep3 = NO;
         [animGroup setDelegate:self];
-        b.alpha =1;
+        b.alpha =0.8;
         [b.layer addAnimation:animGroup forKey:nil];
         
         
@@ -1146,7 +1159,7 @@ BottomTabBar *bottomTabBarView;
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        [descriptionView setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
+        [descriptionView setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
         //        [descriptionView setTitleColor:[UIColor colorWithRed:99.0/255 green:99.0/255 blue:99.0/255 alpha:1.0] forState:UIControlStateHighlighted];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [descriptionView addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -1154,9 +1167,10 @@ BottomTabBar *bottomTabBarView;
         [[descriptionView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                                  green:223.0/255.0
                                                                   blue:223.0/255.0
-                                                                 alpha:1.0] CGColor]];
+                                                                 alpha:0.8] CGColor]];
         
-        descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+        descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
+        descriptionView.alpha = 0.8;
         NSString *textDes = @"There are many variations of passages of Lorem Ipsum avaiable";
         [descriptionView setTitle:textDes forState:UIControlStateNormal];
         descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
@@ -1223,7 +1237,8 @@ BottomTabBar *bottomTabBarView;
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
         b.frame = frame;
         //        b.backgroundColor = [UIColor redColor];
-        b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+        b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8];
+        b.alpha = 0.8;
         [arrayButton1 addObject:b];
         b.hidden = YES;
         //        [scrollView1 addSubview:b];
