@@ -443,7 +443,7 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
+        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -490,9 +490,9 @@ BottomTabBar *bottomTabBarView;
         
         // add Description
         UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(b.frame.origin.x,
-                                                                                             b.frame.origin.y + b.frame.size.height,
+                                                                                             b.frame.origin.y + b.frame.size.height -1,
                                                                                              b.frame.size.width,
-                                                                                             b.frame.size.height)];
+                                                                                             b.frame.size.height+1)];
         
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -551,7 +551,7 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
+        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -599,9 +599,9 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:thumb];
         
         UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                                             thumb.frame.origin.y + 156+52,
+                                                                                             thumb.frame.origin.y + 156+52-1,
                                                                                              278,
-                                                                                             52)];
+                                                                                             52+1)];
         descriptionView.alpha = 0.0;
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -709,7 +709,7 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
+        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -792,7 +792,7 @@ BottomTabBar *bottomTabBarView;
 -(void)loadThumbViewForBack {
     CGFloat padding = 40;
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
+        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
         
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
@@ -854,9 +854,9 @@ BottomTabBar *bottomTabBarView;
         
         
         UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                                             thumb.frame.origin.y + 156+52,
+                                                                                             thumb.frame.origin.y + 156+52 -1,
                                                                                              278,
-                                                                                             52)];
+                                                                                             52+1)];
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
@@ -932,7 +932,7 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
+        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -1008,7 +1008,7 @@ BottomTabBar *bottomTabBarView;
     [arrayThumb removeAllObjects];
     [arrayDescription removeAllObjects];
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 156);
+        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         thumb.backgroundColor = [UIColor whiteColor];
@@ -1066,9 +1066,9 @@ BottomTabBar *bottomTabBarView;
         
         // load description view
         UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                                             thumb.frame.origin.y + 156+52,
+                                                                                             thumb.frame.origin.y + 156+52-1,
                                                                                              278,
-                                                                                             52)];
+                                                                                             52+1)];
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
