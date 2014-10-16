@@ -543,7 +543,7 @@ BottomTabBar *bottomTabBarView;
             b = btn;
         }
     }
-    b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+//    b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
     
     UIButton *d;
     
@@ -552,7 +552,7 @@ BottomTabBar *bottomTabBarView;
             d = btn;
         }
     }
-    d.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+//    d.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
     
     NSLog(@"startButtonTouch %i",i);
 }
@@ -571,7 +571,7 @@ BottomTabBar *bottomTabBarView;
             b = btn;
         }
     }
-    b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+//    b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
     
     UIButton *d;
     
@@ -580,7 +580,7 @@ BottomTabBar *bottomTabBarView;
             d = btn;
         }
     }
-    d.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+//    d.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
     
     NSLog(@"startButtonTouch %i",i);
 }
