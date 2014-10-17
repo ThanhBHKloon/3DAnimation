@@ -204,7 +204,7 @@ BottomTabBar *bottomTabBarView;
     for (int i =0; i<[arrayButton2 count]; i++) {
         
         
-        CGRect frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 26);
+        CGRect frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
         CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         
         //        UIButton *b1 = [arrayButton1 objectAtIndex:i];
@@ -452,7 +452,7 @@ BottomTabBar *bottomTabBarView;
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 52);
+        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 72);
         b.frame = btnFrame;
         //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         //        UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
@@ -498,7 +498,7 @@ BottomTabBar *bottomTabBarView;
         UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(b.frame.origin.x,
                                                                                b.frame.origin.y + b.frame.size.height -1,
                                                                                b.frame.size.width,
-                                                                               b.frame.size.height+1)];
+                                                                               50)];
         
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -621,7 +621,7 @@ BottomTabBar *bottomTabBarView;
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 52);
+        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 72);
         b.frame = btnFrame;
         //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         //        UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
@@ -665,9 +665,9 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:thumb];
         
         UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                               thumb.frame.origin.y + 156+52-1,
+                                                                               thumb.frame.origin.y + 156+72-1,
                                                                                278,
-                                                                               52+1)];
+                                                                               50)];
         descriptionView.alpha = 0.0;
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -732,7 +732,7 @@ BottomTabBar *bottomTabBarView;
     if ([arraySelectedID count] >0) {
         for (int i =0; i<[arrPreviousHeadlines count]; i++) {
             
-            CGRect frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 26);
+            CGRect frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
             //        CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
             
             UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -790,7 +790,7 @@ BottomTabBar *bottomTabBarView;
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 52);
+        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 72);
         b.frame = btnFrame;
         //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         //        UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
@@ -822,7 +822,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:b];
         
         
-        CGRect frameTop= CGRectMake(20 +i*(padding+139) , 194, 139, 26);
+        CGRect frameTop= CGRectMake(20 +i*(padding+139) , 194, 139, 35);
         CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         UIBezierPath *movePath = [UIBezierPath bezierPath];
         [movePath moveToPoint:topPoint];
@@ -891,7 +891,7 @@ BottomTabBar *bottomTabBarView;
         
         //when button animating 2/3 path, start animating to display thumbview
         
-        CGRect frameTop= CGRectMake(20 +i*(padding+139) , 194, 139, 26);
+        CGRect frameTop= CGRectMake(20 +i*(padding+139) , 194, 139, 35);
         CGPoint buttonTopPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         
         CGPoint thumbTopPoint = CGPointMake(buttonTopPoint.x, buttonTopPoint.y-216*0.5/2);
@@ -933,9 +933,9 @@ BottomTabBar *bottomTabBarView;
         
         
         UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                               thumb.frame.origin.y + 156+52 -1,
+                                                                               thumb.frame.origin.y + 156+72 -1,
                                                                                278,
-                                                                               52+1)];
+                                                                               50)];
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
@@ -1020,7 +1020,7 @@ BottomTabBar *bottomTabBarView;
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 52);
+        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 72);
         b.frame = btnFrame;
         //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
         //        UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
@@ -1048,7 +1048,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:b];
         
         
-        CGRect bottomFrame =CGRectMake(20 +i*(padding1+136) , 746, 139, 26);
+        CGRect bottomFrame =CGRectMake(20 +i*(padding1+136) , 746, 139, 35);
         CGPoint bottomPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, bottomFrame.origin.y +bottomFrame.size.height/2);
         
         
@@ -1111,7 +1111,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:thumb];
         
         //when button animating 2/3 path, start animating to display thumbview
-        CGRect bottomFrame =CGRectMake(20 +i*(padding1+139) , 746, 136, 26);
+        CGRect bottomFrame =CGRectMake(20 +i*(padding1+139) , 746, 136, 35);
         CGPoint buttonPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, (bottomFrame.origin.y +bottomFrame.size.height/2));
         
         CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-216*0.5/2);
@@ -1153,9 +1153,9 @@ BottomTabBar *bottomTabBarView;
         
         // load description view
         UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                               thumb.frame.origin.y + 156+52-1,
+                                                                               thumb.frame.origin.y + 156+72-1,
                                                                                278,
-                                                                               52+1)];
+                                                                               50)];
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
@@ -1230,7 +1230,7 @@ BottomTabBar *bottomTabBarView;
     CGFloat padding = 20;
     scrollView1.contentSize = CGSizeMake((padding + 300)*[arrCurrentHeadlines count] +padding, 300);
     for (int i= 0; i<[arrPreviousHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+139) , 30, 139, 26);
+        CGRect frame = CGRectMake(20 +i*(padding+139) , 30, 139, 35);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrPreviousHeadlines objectAtIndex:i];
