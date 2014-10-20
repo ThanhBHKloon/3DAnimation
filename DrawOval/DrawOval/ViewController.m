@@ -191,7 +191,9 @@ BottomTabBar *bottomTabBarView;
         
         [UIView animateWithDuration:0.9 animations:^{
             tempBtn.alpha = 0.0;
-        }];
+        } completion:^(BOOL finished){
+            [tempBtn removeFromSuperview];
+       }];
     }
     
     [arrayButton2 removeAllObjects];
