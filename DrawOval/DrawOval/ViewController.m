@@ -872,7 +872,7 @@ BottomTabBar *bottomTabBarView;
         
         
     }
-    [self performSelector:@selector(loadThumbViewForBack) withObject:nil afterDelay:0.6];
+    [self performSelector:@selector(loadThumbViewForBack) withObject:nil afterDelay:0.3];
 }
 -(void)loadThumbViewForBack {
     CGFloat padding = 40;
@@ -900,11 +900,11 @@ BottomTabBar *bottomTabBarView;
         CGRect frameTop= CGRectMake(20 +i*(padding+139) , 194, 139, 35);
         CGPoint buttonTopPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         
-        CGPoint thumbTopPoint = CGPointMake(buttonTopPoint.x, buttonTopPoint.y-216*0.5/2);
+        CGPoint thumbTopPoint = CGPointMake(buttonTopPoint.x, buttonTopPoint.y-226*0.5/2);
         CGPoint bottomPoint = thumb.center;
         
         
-        CGFloat middleY = 2*bottomPoint.y/3 + thumbTopPoint.y/3;
+        CGFloat middleY = bottomPoint.y/3 + 2*thumbTopPoint.y/3;
         CGFloat middleX = (middleY*(bottomPoint.x - thumbTopPoint.x) +(thumbTopPoint.x * bottomPoint.y - bottomPoint.x*thumbTopPoint.y))/(bottomPoint.y - thumbTopPoint.y);
         
         
@@ -922,7 +922,7 @@ BottomTabBar *bottomTabBarView;
         
         CABasicAnimation *scaleAnim1 = [CABasicAnimation animationWithKeyPath:@"transform"];
         
-        scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
+        scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-1.0/3, 1-1.0/3, 1.0)];
         scaleAnim1.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         scaleAnim1.removedOnCompletion = YES;
         
@@ -933,7 +933,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
         animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
-        animGroup1.duration = 0.3;
+        animGroup1.duration = 0.6;
         //        [animGroup1 setDelegate:self];
         [thumb.layer addAnimation:animGroup1 forKey:nil];
         
@@ -974,7 +974,7 @@ BottomTabBar *bottomTabBarView;
         CGPoint bottomPoint2 = descriptionView.center;
         
         
-        CGFloat middleY2 = 2*bottomPoint2.y/3 + descTopPoint.y/3;
+        CGFloat middleY2 = bottomPoint2.y/3 + 2*descTopPoint.y/3;
         CGFloat middleX2 = (middleY2*(bottomPoint2.x - descTopPoint.x) +(descTopPoint.x * bottomPoint2.y - bottomPoint2.x*descTopPoint.y))/(bottomPoint2.y - descTopPoint.y);
         
         CGPoint middlePoint2 = CGPointMake(middleX2, middleY2);
@@ -989,7 +989,7 @@ BottomTabBar *bottomTabBarView;
         
         CABasicAnimation *scaleAnim2 = [CABasicAnimation animationWithKeyPath:@"transform"];
         
-        scaleAnim2.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
+        scaleAnim2.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-1.0/3, 1-1.0/3, 1.0)];
         scaleAnim2.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         scaleAnim2.removedOnCompletion = YES;
         
@@ -1000,7 +1000,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
         animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
-        animGroup2.duration = 0.3;
+        animGroup2.duration = 0.6;
         //        [animGroup1 setDelegate:self];
         [descriptionView.layer addAnimation:animGroup2 forKey:nil];
         
@@ -1092,7 +1092,7 @@ BottomTabBar *bottomTabBarView;
         
         
     }
-    [self performSelector:@selector(loadThumViewsForCurrentHeadline) withObject:nil afterDelay:0.6];
+    [self performSelector:@selector(loadThumViewsForCurrentHeadline) withObject:nil afterDelay:0.3];
     
 }
 -(void)loadThumViewsForCurrentHeadline{
@@ -1120,10 +1120,10 @@ BottomTabBar *bottomTabBarView;
         CGRect bottomFrame =CGRectMake(20 +i*(padding1+139) , 746, 136, 35);
         CGPoint buttonPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, (bottomFrame.origin.y +bottomFrame.size.height/2));
         
-        CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-216*0.5/2);
+        CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-226*0.5/2);
         CGPoint topPoint = thumb.center;
         
-        CGFloat middleY = 2*topPoint.y/3 + bottomPoint.y/3;
+        CGFloat middleY = topPoint.y/3 + 2*bottomPoint.y/3;
         CGFloat middleX = (middleY*(bottomPoint.x - topPoint.x) +(topPoint.x * bottomPoint.y - bottomPoint.x*topPoint.y))/(bottomPoint.y - topPoint.y);
         
         
@@ -1141,7 +1141,7 @@ BottomTabBar *bottomTabBarView;
         
         CABasicAnimation *scaleAnim1 = [CABasicAnimation animationWithKeyPath:@"transform"];
         
-        scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
+        scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-1.0/3, 1-1.0/3, 1.0)];
         scaleAnim1.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         scaleAnim1.removedOnCompletion = YES;
         
@@ -1152,7 +1152,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
         animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
-        animGroup1.duration = 0.3;
+        animGroup1.duration = 0.6;
         //        [animGroup1 setDelegate:self];
         [thumb.layer addAnimation:animGroup1 forKey:nil];
         
@@ -1193,7 +1193,7 @@ BottomTabBar *bottomTabBarView;
         CGPoint bottomPoint2 = CGPointMake(buttonPoint.x, buttonPoint.y+104*0.5/2);
         CGPoint topPoint2 = descriptionView.center;
         
-        CGFloat middleY2 = 2*topPoint2.y/3 + bottomPoint2.y/3;
+        CGFloat middleY2 = topPoint2.y/3 + 2*bottomPoint2.y/3;
         CGFloat middleX2 = (middleY2*(bottomPoint2.x - topPoint2.x) +(topPoint2.x * bottomPoint2.y - bottomPoint2.x*topPoint2.y))/(bottomPoint2.y - topPoint2.y);
         
         
@@ -1210,7 +1210,7 @@ BottomTabBar *bottomTabBarView;
         
         CABasicAnimation *scaleAnim2 = [CABasicAnimation animationWithKeyPath:@"transform"];
         
-        scaleAnim2.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
+        scaleAnim2.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-1.0/3, 1-1.0/3, 1.0)];
         scaleAnim2.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         scaleAnim2.removedOnCompletion = YES;
         
@@ -1221,7 +1221,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
         animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
-        animGroup2.duration = 0.3;
+        animGroup2.duration = 0.6;
         //        [animGroup1 setDelegate:self];
         [descriptionView.layer addAnimation:animGroup2 forKey:nil];
         
