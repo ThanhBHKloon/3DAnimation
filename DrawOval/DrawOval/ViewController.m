@@ -489,6 +489,19 @@ BottomTabBar *bottomTabBarView;
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         
+        if (item.thumbID%2==0)
+        {
+            thumb.imgView.image = [UIImage imageNamed:@"fr_flag.png"];
+        }
+        else if (item.thumbID%3==0)
+        {
+            thumb.imgView.image = [UIImage imageNamed:@"ger_flag.png"];
+        }
+        else
+        {
+            thumb.imgView.image = [UIImage imageNamed:@"eng_flag.png"];
+        }
+        
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 1.0;
         // add button
@@ -657,6 +670,19 @@ BottomTabBar *bottomTabBarView;
         
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
+        
+        if (item.thumbID%2==0)
+        {
+            thumb.imgView.image = [UIImage imageNamed:@"fr_flag.png"];
+        }
+        else if (item.thumbID%3==0)
+        {
+            thumb.imgView.image = [UIImage imageNamed:@"ger_flag.png"];
+        }
+        else
+        {
+            thumb.imgView.image = [UIImage imageNamed:@"eng_flag.png"];
+        }
         
         maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         maskBtn.backgroundColor = [UIColor clearColor];
@@ -881,7 +907,22 @@ BottomTabBar *bottomTabBarView;
         
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
+        
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
+        
+        if (item.thumbID%2==0)
+        {
+            thumb.imgView.image = [UIImage imageNamed:@"fr_flag.png"];
+        }
+        else if (item.thumbID%3==0)
+        {
+            thumb.imgView.image = [UIImage imageNamed:@"ger_flag.png"];
+        }
+        else
+        {
+            thumb.imgView.image = [UIImage imageNamed:@"eng_flag.png"];
+        }
+        
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 1.0;
         maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1104,6 +1145,20 @@ BottomTabBar *bottomTabBarView;
         CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
+        
+        if (item.thumbID%2==0)
+        {
+            thumb.imgView.image = [UIImage imageNamed:@"fr_flag.png"];
+        }
+        else if (item.thumbID%3==0)
+        {
+            thumb.imgView.image = [UIImage imageNamed:@"ger_flag.png"];
+        }
+        else
+        {
+            thumb.imgView.image = [UIImage imageNamed:@"eng_flag.png"];
+        }
+        
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 0.0;
         // add button

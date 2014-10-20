@@ -10,7 +10,6 @@
 		30456EBE19EBBC1800F3A6CA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 30456EBD19EBBC1800F3A6CA /* background.png */; };
 		30BCA97819ED15370031DA8A /* DescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BCA97719ED15370031DA8A /* DescriptionView.m */; };
 		30BCA97A19ED2CA50031DA8A /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 30BCA97919ED2CA50031DA8A /* Default-Landscape~ipad.png */; };
-		30BCA97C19ED2DFC0031DA8A /* description_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 30BCA97B19ED2DFC0031DA8A /* description_bg.png */; };
 		4ACEDD6E19ED064200DEB3E3 /* button_3dmode_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACEDD6A19ED064200DEB3E3 /* button_3dmode_pressed.png */; };
 		4ACEDD6F19ED064200DEB3E3 /* button_3dmode_sub_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACEDD6B19ED064200DEB3E3 /* button_3dmode_sub_pressed.png */; };
 		4ACEDD7019ED064200DEB3E3 /* button_3dmode_sub.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ACEDD6C19ED064200DEB3E3 /* button_3dmode_sub.png */; };
@@ -22,7 +21,6 @@
 		5B439E0E19DC06F60098459D /* ThumbItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B439E0D19DC06F60098459D /* ThumbItem.m */; };
 		5B48AB8719D957C900B77FC7 /* BottomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B48AB8619D957C900B77FC7 /* BottomTabBar.m */; };
 		5B88106619D416A40068AF73 /* ThumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B88106519D416A40068AF73 /* ThumView.m */; };
-		5B88106819D4176E0068AF73 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B88106719D4176E0068AF73 /* test.png */; };
 		5BA14D3919D27C3C008A730E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA14D3819D27C3C008A730E /* Foundation.framework */; };
 		5BA14D3B19D27C3C008A730E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA14D3A19D27C3C008A730E /* CoreGraphics.framework */; };
 		5BA14D3D19D27C3C008A730E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA14D3C19D27C3C008A730E /* UIKit.framework */; };
@@ -54,7 +52,6 @@
 		30BCA97619ED15370031DA8A /* DescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionView.h; sourceTree = "<group>"; };
 		30BCA97719ED15370031DA8A /* DescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionView.m; sourceTree = "<group>"; };
 		30BCA97919ED2CA50031DA8A /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		30BCA97B19ED2DFC0031DA8A /* description_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = description_bg.png; sourceTree = "<group>"; };
 		4ACEDD6A19ED064200DEB3E3 /* button_3dmode_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_3dmode_pressed.png; sourceTree = "<group>"; };
 		4ACEDD6B19ED064200DEB3E3 /* button_3dmode_sub_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_3dmode_sub_pressed.png; sourceTree = "<group>"; };
 		4ACEDD6C19ED064200DEB3E3 /* button_3dmode_sub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_3dmode_sub.png; sourceTree = "<group>"; };
@@ -69,7 +66,6 @@
 		5B48AB8619D957C900B77FC7 /* BottomTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomTabBar.m; sourceTree = "<group>"; };
 		5B88106419D416A40068AF73 /* ThumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumView.h; sourceTree = "<group>"; };
 		5B88106519D416A40068AF73 /* ThumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumView.m; sourceTree = "<group>"; };
-		5B88106719D4176E0068AF73 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		5BA14D3519D27C3C008A730E /* DrawOval.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawOval.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BA14D3819D27C3C008A730E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5BA14D3A19D27C3C008A730E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -165,7 +161,6 @@
 				5B439E0C19DC06F60098459D /* ThumbItem.h */,
 				5B439E0D19DC06F60098459D /* ThumbItem.m */,
 				30456EBD19EBBC1800F3A6CA /* background.png */,
-				30BCA97B19ED2DFC0031DA8A /* description_bg.png */,
 			);
 			path = DrawOval;
 			sourceTree = "<group>";
@@ -181,7 +176,6 @@
 				4ACEDD6C19ED064200DEB3E3 /* button_3dmode_sub.png */,
 				4ACEDD6D19ED064200DEB3E3 /* button_3dmode.png */,
 				5B25D4EB19DA5410000D00B6 /* button_back_unselected.png */,
-				5B88106719D4176E0068AF73 /* test.png */,
 				5BA14D4019D27C3C008A730E /* DrawOval-Info.plist */,
 				5BA14D4119D27C3C008A730E /* InfoPlist.strings */,
 				5BA14D4419D27C3C008A730E /* main.m */,
@@ -290,14 +284,12 @@
 				4AE8E0AC19EE616A00C3BF76 /* fr_flag.png in Resources */,
 				30456EBE19EBBC1800F3A6CA /* background.png in Resources */,
 				5BA14D4319D27C3C008A730E /* InfoPlist.strings in Resources */,
-				30BCA97C19ED2DFC0031DA8A /* description_bg.png in Resources */,
 				4AE8E0AB19EE616A00C3BF76 /* eng_flag.png in Resources */,
 				5BA14D4C19D27C3C008A730E /* Main.storyboard in Resources */,
 				4ACEDD7119ED064200DEB3E3 /* button_3dmode.png in Resources */,
 				4AE8E0AD19EE616A00C3BF76 /* ger_flag.png in Resources */,
 				4ACEDD6F19ED064200DEB3E3 /* button_3dmode_sub_pressed.png in Resources */,
 				5B25D4EC19DA5410000D00B6 /* button_back_unselected.png in Resources */,
-				5B88106819D4176E0068AF73 /* test.png in Resources */,
 				4ACEDD7019ED064200DEB3E3 /* button_3dmode_sub.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
