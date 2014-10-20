@@ -7,28 +7,33 @@
 //
 
 #import "ThumView.h"
+#import "ThumbItem.h"
 
 @implementation ThumView
-@synthesize imgView,button;
+@synthesize imgView,button,item;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        imgView.image = [UIImage imageNamed:@"eng_flag.png"];
-        [[imgView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
-                                                                 green:223.0/255.0
-                                                                  blue:223.0/255.0
-                                                                 alpha:1.0] CGColor]];
-        [imgView.layer setBorderWidth:1.f];
+//        imgView.image = [UIImage imageNamed:item.imgName];
+//        [[imgView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
+//                                                                 green:223.0/255.0
+//                                                                  blue:223.0/255.0
+//                                                                 alpha:1.0] CGColor]];
+//        [imgView.layer setBorderWidth:1.f];
         [self addSubview:imgView];
     }
     return self;
 }
--(void)addButtonInThumb{
-//    CGRect frame = CGRectMake(0, self.frame.size.height -100, self.frame.size.width, 100);
-//    button.frame = frame;
-//    [self addSubview:button];
+-(void)loadImageForThumb{
+    imgView.image = [UIImage imageNamed:item.imgName];
+    [[imgView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
+                                                     green:223.0/255.0
+                                                      blue:223.0/255.0
+                                                     alpha:1.0] CGColor]];
+    [imgView.layer setBorderWidth:1.f];
+
 }
 /*
 // Only override drawRect: if you perform custom drawing.

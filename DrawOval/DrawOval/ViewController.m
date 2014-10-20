@@ -488,7 +488,8 @@ BottomTabBar *bottomTabBarView;
         
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
-        
+        thumb.item = item;
+        [thumb loadImageForThumb];
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 1.0;
         // add button
@@ -657,7 +658,8 @@ BottomTabBar *bottomTabBarView;
         
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
-        
+        thumb.item = item;
+        [thumb loadImageForThumb];
         maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         maskBtn.backgroundColor = [UIColor clearColor];
         [maskBtn addTarget:self action:@selector(maskBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -882,6 +884,8 @@ BottomTabBar *bottomTabBarView;
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
+        thumb.item = item;
+        [thumb loadImageForThumb];
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 1.0;
         maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1104,6 +1108,8 @@ BottomTabBar *bottomTabBarView;
         CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
+        thumb.item = item;
+        [thumb loadImageForThumb];
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 0.0;
         // add button
@@ -1260,6 +1266,7 @@ BottomTabBar *bottomTabBarView;
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline %d",i+1];
+                item.imgName = [NSString stringWithFormat:@"%d.png",i+1];
                 [arrCurrentHeadlines addObject:item];
             }
             //            [arrCurrentHeadlines addObject:@"Headline 1"];
@@ -1275,6 +1282,7 @@ BottomTabBar *bottomTabBarView;
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 1%d",i+1-5];
+                item.imgName = [NSString stringWithFormat:@"%d.png",i+1];
                 [arrCurrentHeadlines addObject:item];
             }
             //            [arrCurrentHeadlines addObject:@"Headline 11"];
@@ -1290,6 +1298,7 @@ BottomTabBar *bottomTabBarView;
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 2%d",i+1-11];
+                 item.imgName = [NSString stringWithFormat:@"%d.png",i+1-10];
                 [arrCurrentHeadlines addObject:item];
             }
             //            [arrCurrentHeadlines addObject:@"Headline 21"];
@@ -1302,6 +1311,7 @@ BottomTabBar *bottomTabBarView;
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 3%d",i+1-14];
+                item.imgName = [NSString stringWithFormat:@"%d.png",i+1-10];
                 [arrCurrentHeadlines addObject:item];
             }
             
@@ -1318,6 +1328,7 @@ BottomTabBar *bottomTabBarView;
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 4%d",i+1-20];
+                 item.imgName = [NSString stringWithFormat:@"%d.png",i+1-20];
                 [arrCurrentHeadlines addObject:item];
             }
             
@@ -1334,6 +1345,7 @@ BottomTabBar *bottomTabBarView;
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 5%d",i+1-26];
+                  item.imgName = [NSString stringWithFormat:@"%d.png",i+1-24];
                 [arrCurrentHeadlines addObject:item];
             }
             
@@ -1351,6 +1363,7 @@ BottomTabBar *bottomTabBarView;
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 11%d",i+1-32];
+                  item.imgName = [NSString stringWithFormat:@"%d.png",i+1-30];
                 [arrCurrentHeadlines addObject:item];
             }
             
@@ -1364,7 +1377,8 @@ BottomTabBar *bottomTabBarView;
             for (int i=36; i<38; i++) {
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
-                item.thumbTitle = [NSString stringWithFormat:@"Headline 12%d",i+1-36];
+                item.thumbTitle = [NSString stringWithFormat:@"Headline 12%d",i+1-35];
+                 item.imgName = [NSString stringWithFormat:@"%d.png",i+1-35];
                 [arrCurrentHeadlines addObject:item];
             }
             
