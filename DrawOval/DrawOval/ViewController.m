@@ -171,12 +171,8 @@ BottomTabBar *bottomTabBarView;
     btnBackSelected = NO;
     UIButton *clickButton = sender;
     
-    
     [self loadCurrentHeadlines:clickButton.tag];
-    
-    
-    
-    
+
     previousHeadlineID = currentHeadlineID;
     currentHeadlineID = clickButton.tag;
     int lastObject = [[arraySelectedID lastObject] integerValue];
@@ -188,6 +184,16 @@ BottomTabBar *bottomTabBarView;
         isFinishAnimation = YES;
         return;
     }
+    
+    NSArray *tempArray = [arrayButton2 mutableCopy];
+    for (int i =0; i<[tempArray count]; i++) {
+        UIButton *tempBtn = [tempArray objectAtIndex:i];
+        
+        [UIView animateWithDuration:0.9 animations:^{
+            tempBtn.alpha = 0.0;
+        }];
+    }
+    
     [arrayButton2 removeAllObjects];
     //    [clickButton setBackgroundImage:[UIImage imageNamed:@"button_3dmode_pressed.png"] forState:UIControlStateNormal];
     //    clickButton.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
