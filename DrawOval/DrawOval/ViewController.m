@@ -362,6 +362,7 @@ BottomTabBar *bottomTabBarView;
 }
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     //
+    CGFloat padding1= 20.0;
     isFinishAnimation = YES;
     if ([anim valueForKey:@"step1"]) {
         if (isFinishStep1) {
@@ -371,14 +372,13 @@ BottomTabBar *bottomTabBarView;
         isFinishStep1 = YES;
         for (int i= 0; i<[arrayButton2 count]; i++) {
             UIButton *b1 = [arrayButton2 objectAtIndex:i];
-            CGPoint topCenter = b1.center;
-            b1.frame = CGRectMake(b1.frame.origin.x, b1.frame.origin.y, b1.frame.size.width *0.5, b1.frame.size.height*0.5);
+            CGRect frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
+            b1.frame = frameTop;//CGRectMake(b1.frame.origin.x, b1.frame.origin.y, b1.frame.size.width *0.5, b1.frame.size.height*0.5);
             b1.titleLabel.font = [UIFont systemFontOfSize:17];
             b1.titleLabel.textColor = [UIColor whiteColor];
             [b1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [b1 setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
             [b1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-            b1.center = topCenter;
             b1.hidden = NO;
             
         }
