@@ -733,11 +733,15 @@ BottomTabBar *bottomTabBarView;
         [b addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
         [b addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
         
-        [UIView animateWithDuration:0.9 animations:^{
-            thumb.alpha = 1.0;
-            b.alpha = 0.8;
-            descriptionView.alpha = 0.8;
-        }];
+        [UIView animateWithDuration:0.6
+                              delay:0
+                            options:UIViewAnimationOptionAllowUserInteraction
+                         animations:^{
+                             thumb.alpha = 1.0;
+                             b.alpha = 0.8;
+                             descriptionView.alpha = 0.8;
+                         }
+                         completion:nil];
         
     }
     
