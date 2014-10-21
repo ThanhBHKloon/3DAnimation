@@ -28,11 +28,13 @@
 }
 -(void)loadImageForThumb{
     imgView.image = [UIImage imageNamed:item.imgName];
-    [[imgView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
-                                                     green:223.0/255.0
-                                                      blue:223.0/255.0
-                                                     alpha:1.0] CGColor]];
-    [imgView.layer setBorderWidth:1.f];
+    imgView.contentMode = UIViewContentModeScaleToFill;
+//    [[imgView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
+//                                                     green:223.0/255.0
+//                                                      blue:223.0/255.0
+//                                                     alpha:1.0] CGColor]];
+//    [imgView.layer setBorderWidth:1.f];
+//    imgView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
 
 }
 /*

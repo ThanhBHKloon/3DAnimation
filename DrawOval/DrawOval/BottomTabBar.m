@@ -316,7 +316,7 @@
     iconInfo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"button_info_unselected.png"]];
     lableInfo = [[UILabel alloc] init];
     lableInfo.font = [UIFont boldSystemFontOfSize:14];
-    lableInfo.textAlignment = UITextAlignmentCenter;
+    lableInfo.textAlignment = NSTextAlignmentCenter;
     lableInfo.textColor = [UIColor whiteColor];
     lableInfo.text = @"Info";
     lableInfo.backgroundColor = [UIColor clearColor];
