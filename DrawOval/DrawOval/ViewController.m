@@ -111,7 +111,7 @@ BottomTabBar *bottomTabBarView;
                                                        green:223.0/255.0
                                                         blue:223.0/255.0
                                                        alpha:0.8] CGColor]];
-//            [b.layer setBorderWidth:1.f];
+            [b.layer setBorderWidth:1.f];
             break;
         }
     }
@@ -487,7 +487,7 @@ BottomTabBar *bottomTabBarView;
                                                    green:223.0/255.0
                                                     blue:223.0/255.0
                                                    alpha:0.8] CGColor]];
-//        [b.layer setBorderWidth:1.f];
+        [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
@@ -505,6 +505,11 @@ BottomTabBar *bottomTabBarView;
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         thumb.item = item;
         [thumb loadImageForThumb];
+        [thumb.layer setBorderWidth:1.0];
+        [thumb.layer setBorderColor:[[UIColor colorWithRed:223.0/255.0
+                                                     green:223.0/255.0
+                                                      blue:223.0/255.0
+                                                     alpha:0.8] CGColor]];
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 1.0;
         // add button
@@ -543,7 +548,7 @@ BottomTabBar *bottomTabBarView;
         descriptionView.titleLabel.numberOfLines = 2;
         descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
         descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//        [descriptionView.layer setBorderWidth:1.f];
+        [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         [scrollView1 addSubview:thumb];
@@ -657,7 +662,7 @@ BottomTabBar *bottomTabBarView;
                                                    green:223.0/255.0
                                                     blue:223.0/255.0
                                                    alpha:0.8] CGColor]];
-//        [b.layer setBorderWidth:1.f];
+        [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
@@ -675,6 +680,11 @@ BottomTabBar *bottomTabBarView;
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         thumb.item = item;
         [thumb loadImageForThumb];
+        [thumb.layer setBorderWidth:1.0];
+        [thumb.layer setBorderColor:[[UIColor colorWithRed:223.0/255.0
+                                                     green:223.0/255.0
+                                                      blue:223.0/255.0
+                                                     alpha:0.8] CGColor]];
         maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         maskBtn.backgroundColor = [UIColor clearColor];
         [maskBtn addTarget:self action:@selector(maskBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -713,7 +723,7 @@ BottomTabBar *bottomTabBarView;
         descriptionView.titleLabel.numberOfLines = 2;
         descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
         descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//        [descriptionView.layer setBorderWidth:1.f];
+        [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         
@@ -827,7 +837,7 @@ BottomTabBar *bottomTabBarView;
                                                    green:223.0/255.0
                                                     blue:223.0/255.0
                                                    alpha:0.8] CGColor]];
-//        [b.layer setBorderWidth:1.f];
+        [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         //        if (currentHeadlineID ==0) {
         //            [arrayButton2 addObject:b];
@@ -917,7 +927,7 @@ BottomTabBar *bottomTabBarView;
                                                        green:223.0/255.0
                                                         blue:223.0/255.0
                                                        alpha:0.8] CGColor]];
-            //            [b.layer setBorderWidth:1.f];
+                        [b.layer setBorderWidth:1.f];
             [b addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
             [b addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
             
@@ -952,6 +962,11 @@ BottomTabBar *bottomTabBarView;
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         thumb.item = item;
         [thumb loadImageForThumb];
+        [thumb.layer setBorderWidth:1.0];
+        [thumb.layer setBorderColor:[[UIColor colorWithRed:223.0/255.0
+                                                     green:223.0/255.0
+                                                      blue:223.0/255.0
+                                                     alpha:0.8] CGColor]];
         thumb.backgroundColor = [UIColor whiteColor];
         thumb.alpha = 1.0;
         maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1036,7 +1051,7 @@ BottomTabBar *bottomTabBarView;
         descriptionView.titleLabel.numberOfLines = 2;
         descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
         descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//        [descriptionView.layer setBorderWidth:1.f];
+        [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         
@@ -1113,7 +1128,7 @@ BottomTabBar *bottomTabBarView;
                                                    green:223.0/255.0
                                                     blue:223.0/255.0
                                                    alpha:0.8] CGColor]];
-//        [b.layer setBorderWidth:1.f];
+        [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         
         b.titleLabel.font= [UIFont systemFontOfSize:34];
@@ -1183,6 +1198,11 @@ BottomTabBar *bottomTabBarView;
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
+        [thumb.layer setBorderWidth:1.0];
+        [thumb.layer setBorderColor:[[UIColor colorWithRed:223.0/255.0
+                                                     green:223.0/255.0
+                                                      blue:223.0/255.0
+                                                     alpha:0.8] CGColor]];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         thumb.item = item;
         [thumb loadImageForThumb];
@@ -1265,7 +1285,7 @@ BottomTabBar *bottomTabBarView;
         descriptionView.titleLabel.numberOfLines = 2;
         descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
         descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//        [descriptionView.layer setBorderWidth:1.f];
+        [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         
