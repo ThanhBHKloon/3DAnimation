@@ -249,7 +249,7 @@ BottomTabBar *bottomTabBarView;
         CGRect viewFrame= CGRectMake(20 +i*(padding+278) , 314, 278, 276);
         
         UIView *parentView = [[UIView alloc] initWithFrame:viewFrame];
-        parentView.backgroundColor = [UIColor cyanColor];
+        parentView.backgroundColor = [UIColor clearColor];
 //        parentView.alpha = 0.5;
         [parentView addSubview:thumb];
         [parentView addSubview:b2];
@@ -286,7 +286,7 @@ BottomTabBar *bottomTabBarView;
     for (int i =0; i<[arrayButton2 count]; i++) {
         
         
-        CGRect frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
+        CGRect frameTop= CGRectMake(i*(padding1-179) , -119, 139, 35);
         CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         
         //        UIButton *b1 = [arrayButton1 objectAtIndex:i];
