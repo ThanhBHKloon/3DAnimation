@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+UIButton *globalBtn;
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

@@ -33,7 +33,7 @@ BottomTabBar *bottomTabBarView;
     arrayButton1 = [[NSMutableArray alloc]init];
     arrayButton2 = [[NSMutableArray alloc]init];
     arrayButton3 = [[NSMutableArray alloc]init];
-    
+    arrayParent = [[NSMutableArray alloc]init];
     arrayDescription = [[NSMutableArray alloc]init];
     
     arrayThumb = [[NSMutableArray alloc]init];
@@ -171,6 +171,8 @@ BottomTabBar *bottomTabBarView;
     btnBackSelected = NO;
     UIButton *clickButton = sender;
     
+    globalBtn = clickButton;
+    
     [self loadCurrentHeadlines:clickButton.tag];
 
     previousHeadlineID = currentHeadlineID;
@@ -195,7 +197,6 @@ BottomTabBar *bottomTabBarView;
             [tempBtn removeFromSuperview];
        }];
     }
-    
     [arrayButton2 removeAllObjects];
     //    [clickButton setBackgroundImage:[UIImage imageNamed:@"button_3dmode_pressed.png"] forState:UIControlStateNormal];
     //    clickButton.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
@@ -207,6 +208,79 @@ BottomTabBar *bottomTabBarView;
 //    [self loadScrollViewForHeadLineID:currentHeadlineID];
     //    clickButton.backgroundColor = [UIColor redColor];
     
+    [self zoom];
+    [self performSelector:@selector(move) withObject:nil afterDelay:0.3];
+    [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.5];
+}
+
+-(void)zoom
+{
+    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"transform"];
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    anim.duration = 0.2;
+    anim.repeatCount = 1;
+    anim.autoreverses = YES;
+    anim.removedOnCompletion = YES;
+    [anim setDelegate:self];
+    [anim setValue:@"anim1" forKey:@"anim1"];
+    
+    anim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1, 1.1, 1.0)];
+    
+    CGFloat padding = 40;
+    
+    
+    [arrayParent removeAllObjects];
+    
+    NSArray *tempArray = [arrayButton2 mutableCopy];
+    for (int i =0; i<[tempArray count]; i++) {
+        
+        UIButton *b2 = [arrayButton2 objectAtIndex:i];
+        
+        b2.frame = CGRectMake(0, 156, 278, 70);
+        
+        
+        ThumView *thumb = [arrayThumb objectAtIndex:i];
+        
+        UIButton *descView = [arrayDescription objectAtIndex:i];
+        descView.frame = CGRectMake(0, 226, 278, 50);
+        
+        thumb.frame = CGRectMake(0, 0, 278, 156);
+        
+        CGRect viewFrame= CGRectMake(20 +i*(padding+278) , 314, 278, 276);
+        
+        UIView *parentView = [[UIView alloc] initWithFrame:viewFrame];
+        parentView.backgroundColor = [UIColor cyanColor];
+//        parentView.alpha = 0.5;
+        [parentView addSubview:thumb];
+        [parentView addSubview:b2];
+        [parentView addSubview:descView];
+        [scrollView1 addSubview:parentView];
+        [arrayParent addObject:parentView];
+        [parentView.layer addAnimation:anim forKey:nil];
+        
+    }
+    
+//    for (int i =0; i<[arrayButton2 count]; i++) {
+//        
+//        UIButton *b2 = [arrayButton2 objectAtIndex:i];
+//
+//        ThumView *thumb = [arrayThumb objectAtIndex:i];
+//
+//        [b2.layer addAnimation:anim forKey:nil];
+//        
+//
+//        [thumb.layer addAnimation:anim forKey:nil];
+//
+//        UIButton *descView = [arrayDescription objectAtIndex:i];
+//        
+//        [descView.layer addAnimation:anim forKey:nil];
+//        
+//    }
+
+}
+
+-(void)move
+{
     animationType = ANIMATION_UP_STEP1;
     CGFloat padding1 = 20;
     for (int i =0; i<[arrayButton2 count]; i++) {
@@ -219,7 +293,7 @@ BottomTabBar *bottomTabBarView;
         UIButton *b2 = [arrayButton2 objectAtIndex:i];
         [b2 removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
         [b2 addTarget:nil action:@selector(clickTopButton:) forControlEvents:UIControlEventTouchUpInside];
-        if (b2.tag == clickButton.tag) {
+        if (b2.tag == globalBtn.tag) {
             b2.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8];
             b2.alpha = 0.8;
         }
@@ -334,7 +408,6 @@ BottomTabBar *bottomTabBarView;
         [descView.layer addAnimation:animGroup2 forKey:nil];
         
     }
-    [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.2];
 }
 -(void)loadScrollForCurrentHeadline{
      [self loadScrollViewForHeadLineID:currentHeadlineID];
@@ -374,6 +447,13 @@ BottomTabBar *bottomTabBarView;
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     //
     isFinishAnimation = YES;
+    
+    if ([anim valueForKey:@"anim1"]) {
+//        for (UIView *parent in arrayParent) {
+//            [parent removeFromSuperview];
+//        }
+    }
+    
     if ([anim valueForKey:@"step1"]) {
         if (isFinishStep1) {
             

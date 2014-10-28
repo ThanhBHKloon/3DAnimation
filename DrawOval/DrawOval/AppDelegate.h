@@ -12,4 +12,5 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+extern UIButton *globalBtn;
 @end

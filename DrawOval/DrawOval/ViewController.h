@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @interface ViewController : UIViewController{
 
@@ -16,6 +17,7 @@
     NSMutableArray *arrayButton3;
     NSMutableArray *arrayThumb;
     NSMutableArray *arrayDescription;
+    NSMutableArray *arrayParent;
     UIButton *btnBack;
     BOOL btnBackSelected;
     BOOL isFinishStep1;
