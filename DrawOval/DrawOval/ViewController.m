@@ -44,15 +44,26 @@ BottomTabBar *bottomTabBarView;
                                                                   screenRect1.origin.y,
                                                                   screenRect1.size.height,
                                                                   screenRect1.size.width)];
-    imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+    if (isPortrait) {
+        imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+    }
+    else
+    {
+        imgBackground.image = [UIImage imageNamed:@"Default-Portrait~ipad.png"];
+    }
+    
     [self.view addSubview:imgBackground];
     UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
     if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
         screenRect = CGRectMake(0, 0, screenRect1.size.width, screenRect1.size.height);
+        isPortrait = YES;
     }
     else {
         screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
+        isPortrait = NO;
     }
+    
+    
     scrollView1  = [[UIScrollView alloc]init];
     scrollView1.frame = CGRectMake(0, 0, screenRect.size.width, screenRect.size.height-48);
     scrollView1.backgroundColor = [UIColor clearColor];
@@ -85,8 +96,6 @@ BottomTabBar *bottomTabBarView;
     currentHeadlineID = 0;
     previousHeadlineID =0;
     [self loadScrollViewAtBegining];
-    
-    
 }
 
 
@@ -339,8 +348,8 @@ BottomTabBar *bottomTabBarView;
 //    }
 //    [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.2];
 //    [self zoomHeadline];
-    [self performSelector:@selector(moveHeadline) withObject:nil afterDelay:0.2];
-     [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.4];
+    [self performSelector:@selector(moveHeadline) withObject:nil afterDelay:0.3];
+     [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.5];
 }
 -(void)zoomHeadline {
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"transform"];
@@ -475,7 +484,14 @@ BottomTabBar *bottomTabBarView;
     for (int i =0; i<[arrayButton2 count]; i++) {
         
         
-        CGRect frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
+        CGRect frameTop;
+        if (isPortrait) {
+            frameTop= CGRectMake(20 +i*(padding1+139) , 268, 139, 35);
+        }
+        else
+        {
+            frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
+        }
         CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         
         //        UIButton *b1 = [arrayButton1 objectAtIndex:i];
@@ -633,7 +649,15 @@ BottomTabBar *bottomTabBarView;
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                  duration:(NSTimeInterval)duration{
-    
+
+        UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
+            isPortrait = YES;
+        }
+        else {
+            isPortrait = NO;
+        }
+
 }
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     //
@@ -732,7 +756,14 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
+        CGRect frame;
+        if (isPortrait) {
+            frame = CGRectMake(20 +i*(padding+ 278) , 388, 278, 157);
+        }
+        else
+        {
+            frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
+        }
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -907,7 +938,15 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
+
+        CGRect frame;
+        if (isPortrait) {
+            frame = CGRectMake(20 +i*(padding+ 278) , 388, 278, 157);
+        }
+        else
+        {
+            frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
+        }
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -1086,7 +1125,14 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
+        CGRect frame;
+        if (isPortrait) {
+            frame = CGRectMake(20 +i*(padding+ 278) , 388, 278, 157);
+        }
+        else
+        {
+            frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
+        }
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -1123,7 +1169,14 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:b];
         
         
-        CGRect frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
+        CGRect frameTop;
+        if (isPortrait) {
+            frameTop= CGRectMake(20 +i*(padding1+139) , 268, 139, 35);
+        }
+        else
+        {
+            frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
+        }
         CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         UIBezierPath *movePath = [UIBezierPath bezierPath];
         [movePath moveToPoint:topPoint];
@@ -1176,7 +1229,14 @@ BottomTabBar *bottomTabBarView;
     if ([arraySelectedID count] >0) {
         for (int i =0; i<[arrPreviousHeadlines count]; i++) {
             
-            CGRect frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
+            CGRect frameTop;
+            if (isPortrait) {
+                frameTop= CGRectMake(20 +i*(padding1+139) , 268, 139, 35);
+            }
+            else
+            {
+                frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
+            }
             //        CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
             
             UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1223,7 +1283,14 @@ BottomTabBar *bottomTabBarView;
     CGFloat padding = 40;
     CGFloat padding1 = 20;
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
+        CGRect frame;
+        if (isPortrait) {
+            frame = CGRectMake(20 +i*(padding+ 278) , 388, 278, 157);
+        }
+        else
+        {
+            frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
+        }
         
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
@@ -1250,7 +1317,14 @@ BottomTabBar *bottomTabBarView;
         
         //when button animating 2/3 path, start animating to display thumbview
         
-        CGRect frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
+        CGRect frameTop;
+        if (isPortrait) {
+            frameTop= CGRectMake(20 +i*(padding1+139) , 268, 139, 35);
+        }
+        else
+        {
+            frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
+        }
         CGRect frameTop1= CGRectMake(20 +i*(padding1+139) , 194-78, 139, 79);
         CGPoint buttonTopPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         
@@ -1377,7 +1451,14 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
+        CGRect frame;
+        if (isPortrait) {
+            frame = CGRectMake(20 +i*(padding+ 278) , 388, 278, 157);
+        }
+        else
+        {
+            frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
+        }
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -1464,7 +1545,14 @@ BottomTabBar *bottomTabBarView;
     [arrayThumb removeAllObjects];
     [arrayDescription removeAllObjects];
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
+        CGRect frame;
+        if (isPortrait) {
+            frame = CGRectMake(20 +i*(padding+ 278) , 388, 278, 157);
+        }
+        else
+        {
+            frame = CGRectMake(20 +i*(padding+ 278) , 314, 278, 157);
+        }
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         [thumb.layer setBorderWidth:1.0];
         [thumb.layer setBorderColor:[[UIColor colorWithRed:223.0/255.0

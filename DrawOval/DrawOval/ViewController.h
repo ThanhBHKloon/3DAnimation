@@ -24,6 +24,7 @@
     int animationType;
     
     BOOL isFinishAnimation;
+    BOOL isPortrait;
     
     NSMutableArray *arrCurrentHeadlines;
     NSMutableArray *arrPreviousHeadlines;

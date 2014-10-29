@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CF61C131A00D9DF00B3E7CB /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF61C121A00D9DF00B3E7CB /* Default-Portrait~ipad.png */; };
 		30456EBE19EBBC1800F3A6CA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 30456EBD19EBBC1800F3A6CA /* background.png */; };
 		30BCA97819ED15370031DA8A /* DescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BCA97719ED15370031DA8A /* DescriptionView.m */; };
 		30BCA97A19ED2CA50031DA8A /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 30BCA97919ED2CA50031DA8A /* Default-Landscape~ipad.png */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0CF61C121A00D9DF00B3E7CB /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		30456EBD19EBBC1800F3A6CA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		30BCA97619ED15370031DA8A /* DescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionView.h; sourceTree = "<group>"; };
 		30BCA97719ED15370031DA8A /* DescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionView.m; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				30BCA97719ED15370031DA8A /* DescriptionView.m */,
 				5B48AB8519D957C900B77FC7 /* BottomTabBar.h */,
 				30BCA97919ED2CA50031DA8A /* Default-Landscape~ipad.png */,
+				0CF61C121A00D9DF00B3E7CB /* Default-Portrait~ipad.png */,
 				5B48AB8619D957C900B77FC7 /* BottomTabBar.m */,
 				5B439E0C19DC06F60098459D /* ThumbItem.h */,
 				5B439E0D19DC06F60098459D /* ThumbItem.m */,
@@ -339,6 +342,7 @@
 				4ACEDD6F19ED064200DEB3E3 /* button_3dmode_sub_pressed.png in Resources */,
 				5B25D4EC19DA5410000D00B6 /* button_back_unselected.png in Resources */,
 				4ACEDD7019ED064200DEB3E3 /* button_3dmode_sub.png in Resources */,
+				0CF61C131A00D9DF00B3E7CB /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
