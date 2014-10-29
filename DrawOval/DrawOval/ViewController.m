@@ -339,7 +339,8 @@ BottomTabBar *bottomTabBarView;
 //    }
 //    [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.2];
 //    [self zoomHeadline];
-    [self performSelector:@selector(moveHeadline) withObject:nil afterDelay:0.6];
+    [self performSelector:@selector(moveHeadline) withObject:nil afterDelay:0.2];
+     [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.4];
 }
 -(void)zoomHeadline {
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"transform"];
@@ -347,7 +348,7 @@ BottomTabBar *bottomTabBarView;
     anim.duration = 0.2;
 //    anim.repeatCount = 1;
     anim.autoreverses = YES;
-    anim.removedOnCompletion = YES;
+    anim.removedOnCompletion = NO;
 //    [anim setDelegate:self];
     [anim setValue:@"anim1" forKey:@"anim1"];
     anim.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
@@ -596,7 +597,7 @@ BottomTabBar *bottomTabBarView;
         [descView.layer addAnimation:animGroup2 forKey:nil];
         
     }
-    [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.2];
+   
 
 }
 -(void)loadScrollForCurrentHeadline{
