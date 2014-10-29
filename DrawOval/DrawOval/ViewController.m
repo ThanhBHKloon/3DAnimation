@@ -40,32 +40,38 @@ BottomTabBar *bottomTabBarView;
     isFinishAnimation = YES;
     CGRect screenRect1 = [[UIScreen mainScreen] bounds];
     CGRect screenRect;
-    imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(screenRect1.origin.x,
-                                                                  screenRect1.origin.y,
-                                                                  screenRect1.size.height,
-                                                                  screenRect1.size.width)];
-    if (isPortrait) {
-        imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
-    }
-    else
-    {
-        imgBackground.image = [UIImage imageNamed:@"Default-Portrait~ipad.png"];
-    }
     
-    [self.view addSubview:imgBackground];
+   
+    scrollView1  = [[UIScrollView alloc]init];
+    
     UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
     if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
-        screenRect = CGRectMake(0, 0, screenRect1.size.width, screenRect1.size.height);
-        isPortrait = YES;
+        imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(screenRect1.origin.x,
+                                                                      screenRect1.origin.y,
+                                                                      screenRect1.size.width,
+                                                                      screenRect1.size.height)];
+        
+        imgBackground.image = [UIImage imageNamed:@"Default-Portrait~ipad.png"];
+        scrollView1.frame = CGRectMake(screenRect1.origin.x,
+                                       screenRect1.origin.y,
+                                       screenRect1.size.width,
+                                       screenRect1.size.height-48);
     }
     else {
-        screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
-        isPortrait = NO;
+        imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(screenRect1.origin.x,
+                                                                      screenRect1.origin.y,
+                                                                      screenRect1.size.height,
+                                                                      screenRect1.size.width)];
+        imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+        scrollView1.frame = CGRectMake(screenRect1.origin.x,
+                                       screenRect1.origin.y,
+                                       screenRect1.size.height,
+                                       screenRect1.size.width-48);
     }
+
+    [self.view addSubview:imgBackground];
     
     
-    scrollView1  = [[UIScrollView alloc]init];
-    scrollView1.frame = CGRectMake(0, 0, screenRect.size.width, screenRect.size.height-48);
     scrollView1.backgroundColor = [UIColor clearColor];
     [self.view addSubview:scrollView1];
     
@@ -485,13 +491,16 @@ BottomTabBar *bottomTabBarView;
         
         
         CGRect frameTop;
-        if (isPortrait) {
-            frameTop= CGRectMake(20 +i*(padding1+139) , 268, 139, 35);
-        }
-        else
+        UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
         {
-            frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
-        }
+                frameTop= CGRectMake(20 +i*(padding1+139) , 268, 139, 35);
+            }
+            else
+            {
+                frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
+            }
+
         CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         
         //        UIButton *b1 = [arrayButton1 objectAtIndex:i];
@@ -651,12 +660,30 @@ BottomTabBar *bottomTabBarView;
                                  duration:(NSTimeInterval)duration{
 
         UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
-        if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
-            isPortrait = YES;
-        }
-        else {
-            isPortrait = NO;
-        }
+    if (!isPortrait) {
+//        imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(screenRect1.origin.x,
+//                                                                      screenRect1.origin.y,
+//                                                                      screenRect1.size.width,
+//                                                                      screenRect1.size.height)];
+        
+        imgBackground.image = [UIImage imageNamed:@"Default-Portrait~ipad.png"];
+//        scrollView1.frame = CGRectMake(screenRect1.origin.x,
+//                                       screenRect1.origin.y,
+//                                       screenRect1.size.width,
+//                                       screenRect1.size.height-48);
+    }
+    else
+    {
+//        imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(screenRect1.origin.x,
+//                                                                      screenRect1.origin.y,
+//                                                                      screenRect1.size.height,
+//                                                                      screenRect1.size.width)];
+        imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+//        scrollView1.frame = CGRectMake(screenRect1.origin.x,
+//                                       screenRect1.origin.y,
+//                                       screenRect1.size.height,
+//                                       screenRect1.size.width-48);
+    }
 
 }
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
@@ -757,7 +784,10 @@ BottomTabBar *bottomTabBarView;
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame;
-        if (isPortrait) {
+
+        UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
+        {
             frame = CGRectMake(20 +i*(padding+ 278) , 388, 278, 157);
         }
         else
@@ -940,7 +970,10 @@ BottomTabBar *bottomTabBarView;
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
 
         CGRect frame;
-        if (isPortrait) {
+        
+        UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
+        {
             frame = CGRectMake(20 +i*(padding+ 278) , 388, 278, 157);
         }
         else
@@ -1126,7 +1159,10 @@ BottomTabBar *bottomTabBarView;
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame;
-        if (isPortrait) {
+        
+        UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
+        {
             frame = CGRectMake(20 +i*(padding+ 278) , 388, 278, 157);
         }
         else
@@ -1170,7 +1206,9 @@ BottomTabBar *bottomTabBarView;
         
         
         CGRect frameTop;
-        if (isPortrait) {
+
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
+        {
             frameTop= CGRectMake(20 +i*(padding1+139) , 268, 139, 35);
         }
         else
@@ -1230,7 +1268,9 @@ BottomTabBar *bottomTabBarView;
         for (int i =0; i<[arrPreviousHeadlines count]; i++) {
             
             CGRect frameTop;
-            if (isPortrait) {
+            UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+            if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
+            {
                 frameTop= CGRectMake(20 +i*(padding1+139) , 268, 139, 35);
             }
             else
@@ -1284,7 +1324,10 @@ BottomTabBar *bottomTabBarView;
     CGFloat padding1 = 20;
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame;
-        if (isPortrait) {
+        
+        UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
+        {
             frame = CGRectMake(20 +i*(padding+ 278) , 388, 278, 157);
         }
         else
@@ -1318,7 +1361,8 @@ BottomTabBar *bottomTabBarView;
         //when button animating 2/3 path, start animating to display thumbview
         
         CGRect frameTop;
-        if (isPortrait) {
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
+        {
             frameTop= CGRectMake(20 +i*(padding1+139) , 268, 139, 35);
         }
         else
@@ -1452,7 +1496,10 @@ BottomTabBar *bottomTabBarView;
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame;
-        if (isPortrait) {
+        
+        UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
+        {
             frame = CGRectMake(20 +i*(padding+ 278) , 388, 278, 157);
         }
         else
@@ -1546,7 +1593,10 @@ BottomTabBar *bottomTabBarView;
     [arrayDescription removeAllObjects];
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame;
-        if (isPortrait) {
+        
+        UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
+        {
             frame = CGRectMake(20 +i*(padding+ 278) , 388, 278, 157);
         }
         else
