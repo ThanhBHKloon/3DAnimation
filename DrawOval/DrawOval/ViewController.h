@@ -32,6 +32,7 @@
     UIButton *maskBtn;
     NSMutableArray *arraySelectedID; // store selected headine ID in each level
     UIImageView *imgBackground;
+    UIView *parentView;
 }
 
 

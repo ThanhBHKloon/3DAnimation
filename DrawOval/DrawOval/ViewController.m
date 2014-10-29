@@ -171,10 +171,13 @@ BottomTabBar *bottomTabBarView;
     btnBackSelected = NO;
     UIButton *clickButton = sender;
     
-    [self loadCurrentHeadlines:clickButton.tag];
+   
 
     previousHeadlineID = currentHeadlineID;
     currentHeadlineID = clickButton.tag;
+    
+     [self zoomHeadline];
+     [self loadCurrentHeadlines:currentHeadlineID];
     int lastObject = [[arraySelectedID lastObject] integerValue];
     if (lastObject != [sender tag])
         [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
@@ -207,6 +210,265 @@ BottomTabBar *bottomTabBarView;
 //    [self loadScrollViewForHeadLineID:currentHeadlineID];
     //    clickButton.backgroundColor = [UIColor redColor];
     
+//    animationType = ANIMATION_UP_STEP1;
+//    CGFloat padding1 = 20;
+//    for (int i =0; i<[arrayButton2 count]; i++) {
+//        
+//        
+//        CGRect frameTop= CGRectMake(20 +i*(padding1+139) , 194, 139, 35);
+//        CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
+//        
+//        //        UIButton *b1 = [arrayButton1 objectAtIndex:i];
+//        UIButton *b2 = [arrayButton2 objectAtIndex:i];
+//        [b2 removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+//        [b2 addTarget:nil action:@selector(clickTopButton:) forControlEvents:UIControlEventTouchUpInside];
+//        if (b2.tag == clickButton.tag) {
+//            b2.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8];
+//            b2.alpha = 0.8;
+//        }
+//        ThumView *thumb = [arrayThumb objectAtIndex:i];
+//        thumb.alpha = 0.0;
+//        
+//        CGPoint middlePoint = b2.center;
+//        
+//        
+//        b2.frame = frameTop;
+//        b2.center = topPoint;
+//        b2.titleLabel.font = [UIFont systemFontOfSize:17];
+//        b2.titleLabel.textColor = [UIColor whiteColor];
+//        [b2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [b2 setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+//        [b2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+//        
+//        UIBezierPath *movePath = [UIBezierPath bezierPath];
+//        [movePath moveToPoint:middlePoint];
+//        //        [movePath addQuadCurveToPoint:middleButtonPoint
+//        //                         controlPoint:CGPointMake(b2.center.x, middleButtonPoint.y)];
+//        
+//        [movePath addLineToPoint:topPoint];
+//        CAKeyframeAnimation *moveAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+//        moveAnim.path = movePath.CGPath;
+//        moveAnim.removedOnCompletion = YES;
+//        
+//        CABasicAnimation *scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
+//        scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+//        scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(2.0, 2.0, 1.0)];
+//        
+//        scaleAnim.removedOnCompletion = YES;
+//        
+//        CABasicAnimation *opacityAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
+//        opacityAnim.fromValue = [NSNumber numberWithFloat:1.0];
+//        opacityAnim.toValue = [NSNumber numberWithFloat:1.0];
+//        opacityAnim.removedOnCompletion = YES;
+//        
+//        CAAnimationGroup *animGroup = [CAAnimationGroup animation];
+//        animGroup.animations = [NSArray arrayWithObjects:moveAnim, scaleAnim, opacityAnim, nil];
+//        animGroup.duration = 0.6;
+//        [animGroup setValue:@"step1" forKey:@"step1"];
+//        [animGroup setDelegate:self];
+//        b2.alpha =0.8;
+//        [b2.layer addAnimation:animGroup forKey:nil];
+//        
+//        
+//        
+//        
+//        //animation for imageview
+//        
+//        CGFloat middleY = 2*middlePoint.y/3 + topPoint.y/3;
+//        CGFloat middleX = (middleY*(middlePoint.x - topPoint.x) +(topPoint.x * middlePoint.y - middlePoint.x*topPoint.y))/(middlePoint.y - topPoint.y);
+//        
+//        
+//        CGPoint p1 = CGPointMake(middleX, middleY - 226/2*(1-1*(1-0.5)/3));
+//        
+//        UIBezierPath *movePath1 = [UIBezierPath bezierPath];
+//        CGPoint p2 = thumb.center;
+//        [movePath1 moveToPoint:p2];
+//        
+//        [movePath1 addLineToPoint:p1];
+//        CAKeyframeAnimation *moveAnim1 = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+//        moveAnim1.path = movePath1.CGPath;
+//        moveAnim1.removedOnCompletion = YES;
+//        
+//        CABasicAnimation *scaleAnim1 = [CABasicAnimation animationWithKeyPath:@"transform"];
+//        scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+//        scaleAnim1.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
+//        scaleAnim1.removedOnCompletion = YES;
+//        
+//        CABasicAnimation *opacityAnim1 = [CABasicAnimation animationWithKeyPath:@"opacity"];
+//        opacityAnim1.fromValue = [NSNumber numberWithFloat:0.5];
+//        opacityAnim1.toValue = [NSNumber numberWithFloat:0.0];
+//        opacityAnim1.removedOnCompletion = YES;
+//        
+//        CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
+//        animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
+//        animGroup1.duration = 0.2;
+//        thumb.alpha = 0;
+//        [thumb.layer addAnimation:animGroup1 forKey:nil];
+//        
+//        
+//        //animation for descriptionview
+//        UIButton *descView = [arrayDescription objectAtIndex:i];
+//        
+//        CGPoint p1Desc = CGPointMake(middleX, middleY + 150/2*(1-1*(1-0.5)/3));
+//        
+//        UIBezierPath *movePath2 = [UIBezierPath bezierPath];
+//        CGPoint p2Desc = descView.center;
+//        [movePath2 moveToPoint:p2Desc];
+//        
+//        [movePath2 addLineToPoint:p1Desc];
+//        CAKeyframeAnimation *moveAnim2 = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+//        moveAnim2.path = movePath2.CGPath;
+//        moveAnim2.removedOnCompletion = YES;
+//        
+//        CABasicAnimation *scaleAnim2 = [CABasicAnimation animationWithKeyPath:@"transform"];
+//        scaleAnim2.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+//        scaleAnim2.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
+//        scaleAnim2.removedOnCompletion = YES;
+//        
+//        CABasicAnimation *opacityAnim2 = [CABasicAnimation animationWithKeyPath:@"opacity"];
+//        opacityAnim2.fromValue = [NSNumber numberWithFloat:0.5];
+//        opacityAnim2.toValue = [NSNumber numberWithFloat:0.0];
+//        opacityAnim2.removedOnCompletion = YES;
+//        
+//        CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
+//        animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
+//        animGroup2.duration = 0.2;
+//        descView.alpha = 0;
+//        [descView.layer addAnimation:animGroup2 forKey:nil];
+//        
+//    }
+//    [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.2];
+//    [self zoomHeadline];
+    [self performSelector:@selector(moveHeadline) withObject:nil afterDelay:0.6];
+}
+-(void)zoomHeadline {
+    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"transform"];
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    anim.duration = 0.2;
+//    anim.repeatCount = 1;
+    anim.autoreverses = YES;
+    anim.removedOnCompletion = YES;
+//    [anim setDelegate:self];
+    [anim setValue:@"anim1" forKey:@"anim1"];
+    anim.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+    anim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)];
+    
+    CGFloat padding = 40;
+    
+    
+//    [arrayParent removeAllObjects];
+    NSLog(@"current headline %d",currentHeadlineID);
+    for (int i =0; i<[arrayButton3 count]; i++) {
+        
+        UIButton *b2 = [arrayButton3 objectAtIndex:i];
+        if (b2.tag == currentHeadlineID) {
+            NSLog(@"current headline %d",currentHeadlineID);
+//            b2.frame = CGRectMake(0, 156, 278, 70);
+            
+//            
+//            ThumView *thumb = [arrayThumb objectAtIndex:i];
+//            
+//            UIButton *descView = [arrayDescription objectAtIndex:i];
+//            descView.frame = CGRectMake(0, 226, 278, 50);
+//            
+//            thumb.frame = CGRectMake(0, 0, 278, 156);
+            
+            CGRect viewFrame= CGRectMake(20 +i*(padding+278) , 314, 278, 276);
+            
+            if (!parentView) {
+                parentView = [[UIView alloc] initWithFrame:viewFrame];
+            }
+            else {
+                parentView.frame = viewFrame;
+                [self.view bringSubviewToFront: parentView];
+            }
+            parentView.backgroundColor = [UIColor clearColor];
+            
+            
+            UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+            ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
+            [b setTitle:item.thumbTitle forState:UIControlStateNormal];
+            b.frame = CGRectMake(0, 156, 278, 70);;
+            //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
+            //        UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
+            //        [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
+            //        UIImage *pressedBackground = [UIImage imageNamed:@"button_3dmode_pressed.png"];
+            //        [b setBackgroundImage:pressedBackground forState:UIControlStateHighlighted];
+            [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
+            b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+            b.alpha = 1.0;
+            [[b layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
+                                                       green:223.0/255.0
+                                                        blue:223.0/255.0
+                                                       alpha:1.0] CGColor]];
+            [b.layer setBorderWidth:1.f];
+            //        if (currentHeadlineID ==0) {
+            //            [arrayButton2 addObject:b];
+            //        }
+            b.titleLabel.font= [UIFont systemFontOfSize:34];
+            b.titleLabel.textColor = [UIColor whiteColor];
+            [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+            [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+            
+            
+            ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(0, 0, 278, 156)];
+            thumb.item = item;
+            [thumb loadImageForThumb];
+            [thumb.layer setBorderWidth:1.0];
+            [thumb.layer setBorderColor:[[UIColor colorWithRed:223.0/255.0
+                                                         green:223.0/255.0
+                                                          blue:223.0/255.0
+                                                         alpha:1.0] CGColor]];
+            thumb.backgroundColor = [UIColor whiteColor];
+            thumb.alpha = 1.0;
+            // add button
+            maskBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            maskBtn.backgroundColor = [UIColor clearColor];
+            maskBtn.frame = thumb.bounds;
+            maskBtn.tag = item.thumbID;
+            [thumb addSubview:maskBtn];
+            
+            // add Description
+            UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(0, 226, 278, 50)];
+            
+            descriptionView.titleLabel.textColor = [UIColor whiteColor];
+            [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+            [descriptionView setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
+            //        [descriptionView setTitleColor:[UIColor colorWithRed:99.0/255 green:99.0/255 blue:99.0/255 alpha:1.0] forState:UIControlStateHighlighted];
+            [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+            [[descriptionView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
+                                                                     green:223.0/255.0
+                                                                      blue:223.0/255.0
+                                                                     alpha:1.0] CGColor]];
+            
+            descriptionView.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
+            descriptionView.alpha = 1.0;
+            NSString *textDes = @"There are many variations of passages of Lorem Ipsum avaiable";
+            [descriptionView setTitle:textDes forState:UIControlStateNormal];
+            descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
+            descriptionView.titleLabel.numberOfLines = 2;
+            descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
+            descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            [descriptionView.layer setBorderWidth:1.f];
+           
+            [parentView addSubview:thumb];
+            [parentView addSubview:b];
+            [parentView addSubview:descriptionView];
+             [scrollView1 addSubview:parentView];
+            [parentView.layer addAnimation:anim forKey:nil];
+            return;
+            
+        }
+        
+       
+        
+    }
+}
+
+-(void)moveHeadline {
+    [parentView removeFromSuperview];
     animationType = ANIMATION_UP_STEP1;
     CGFloat padding1 = 20;
     for (int i =0; i<[arrayButton2 count]; i++) {
@@ -219,7 +481,7 @@ BottomTabBar *bottomTabBarView;
         UIButton *b2 = [arrayButton2 objectAtIndex:i];
         [b2 removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
         [b2 addTarget:nil action:@selector(clickTopButton:) forControlEvents:UIControlEventTouchUpInside];
-        if (b2.tag == clickButton.tag) {
+        if (b2.tag == currentHeadlineID) {
             b2.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8];
             b2.alpha = 0.8;
         }
@@ -335,6 +597,7 @@ BottomTabBar *bottomTabBarView;
         
     }
     [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.2];
+
 }
 -(void)loadScrollForCurrentHeadline{
      [self loadScrollViewForHeadLineID:currentHeadlineID];
@@ -1560,6 +1823,16 @@ BottomTabBar *bottomTabBarView;
         scrollView1.hidden = YES;
         bottomTabBarView.backgroundColor = [UIColor clearColor];
     }
+}
+-(ThumbItem *)thumbItemForID:(NSInteger)thumbID {
+    NSLog(@" array curren: %d",[arrCurrentHeadlines count]);
+    for (int i = 0; i<[arrPreviousHeadlines count]; i++) {
+        ThumbItem * item  = [arrPreviousHeadlines objectAtIndex:i];
+        if (item.thumbID == thumbID) {
+            return item;
+        }
+    }
+    return nil;
 }
 
 @end
