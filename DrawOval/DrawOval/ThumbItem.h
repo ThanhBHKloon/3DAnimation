@@ -11,8 +11,10 @@
 @interface ThumbItem : NSObject{
     NSInteger thumbID;
     NSString *thumbTitle;
+    NSString *imgName;
 }
 @property(nonatomic, retain) NSString *thumbTitle;
+@property(nonatomic, retain) NSString *imgName;
 @property(assign) NSInteger thumbID;
 
 @end

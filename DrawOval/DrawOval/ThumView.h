@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ThumbItem;
 @interface ThumView : UIView {
     UIImageView *imgView;
     UIButton *button;
+    ThumbItem *item;
 }
 @property (nonatomic, retain)UIImageView *imgView;
 @property (nonatomic, retain) UIButton *button;
+@property (nonatomic, retain) ThumbItem *item;
 
--(void)addButtonInThumb;
+-(void)loadImageForThumb;
 @end

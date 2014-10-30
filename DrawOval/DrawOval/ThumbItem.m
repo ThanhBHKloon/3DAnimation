@@ -9,6 +9,6 @@
 #import "ThumbItem.h"
 
 @implementation ThumbItem
-@synthesize thumbID,thumbTitle;
+@synthesize thumbID,thumbTitle,imgName;
 
 @end

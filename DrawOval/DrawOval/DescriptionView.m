@@ -9,7 +9,7 @@
 #import "DescriptionView.h"
 
 @implementation DescriptionView
-@synthesize descriptionView;
+@synthesize descriptionView, imgView;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -18,19 +18,19 @@
                                                                     0,
                                                                     frame.size.width,
                                                                     frame.size.height)];
-        descriptionView.backgroundColor = [UIColor blackColor];
-        descriptionView.alpha = 0.5;
+        descriptionView.backgroundColor = [UIColor clearColor];
         descriptionView.textColor = [UIColor whiteColor];
         descriptionView.text = @"There are many variations of passages of Lorem Ipsum avaiable";
         descriptionView.textAlignment = NSTextAlignmentCenter;;
         descriptionView.numberOfLines = 2;
         descriptionView.lineBreakMode = NSLineBreakByWordWrapping;
-        UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:descriptionView.bounds];
-        descriptionView.layer.masksToBounds = NO;
-        descriptionView.layer.shadowColor = [UIColor blackColor].CGColor;
-        descriptionView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-        descriptionView.layer.shadowOpacity = 0.5f;
-        descriptionView.layer.shadowPath = shadowPath.CGPath;
+        [[descriptionView layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
+                                                   green:223.0/255.0
+                                                    blue:223.0/255.0
+                                                   alpha:1.0] CGColor]];
+        [descriptionView.layer setBorderWidth:1.f];
+
+        self.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
         [self addSubview:descriptionView];
     }
     return self;

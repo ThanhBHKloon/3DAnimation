@@ -16,14 +16,14 @@
     NSMutableArray *arrayButton3;
     NSMutableArray *arrayThumb;
     NSMutableArray *arrayDescription;
-    NSMutableArray *arrayMiddleFrame;
-    NSMutableArray *arrayMiddlePoint;
     UIButton *btnBack;
     BOOL btnBackSelected;
     BOOL isFinishStep1;
     BOOL isFinishStep2;
     BOOL isFinishStep3;
     int animationType;
+    
+    BOOL isFinishAnimation;
     
     NSMutableArray *arrCurrentHeadlines;
     NSMutableArray *arrPreviousHeadlines;
@@ -32,6 +32,7 @@
     UIButton *maskBtn;
     NSMutableArray *arraySelectedID; // store selected headine ID in each level
     UIImageView *imgBackground;
+    UIView *parentView;
 }
 
 
