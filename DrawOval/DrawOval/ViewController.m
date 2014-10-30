@@ -339,8 +339,8 @@ BottomTabBar *bottomTabBarView;
 //    }
 //    [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.2];
 //    [self zoomHeadline];
-    [self performSelector:@selector(moveHeadline) withObject:nil afterDelay:0.2];
-     [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.4];
+    [self performSelector:@selector(moveHeadline) withObject:nil afterDelay:0.3];
+     [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.5];
 }
 -(void)zoomHeadline {
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"transform"];
@@ -358,12 +358,10 @@ BottomTabBar *bottomTabBarView;
     
     
 //    [arrayParent removeAllObjects];
-    NSLog(@"current headline %d",currentHeadlineID);
     for (int i =0; i<[arrayButton3 count]; i++) {
         
         UIButton *b2 = [arrayButton3 objectAtIndex:i];
         if (b2.tag == currentHeadlineID) {
-            NSLog(@"current headline %d",currentHeadlineID);
 //            b2.frame = CGRectMake(0, 156, 278, 70);
             
 //            
