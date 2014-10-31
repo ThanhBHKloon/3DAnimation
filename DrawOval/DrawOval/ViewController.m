@@ -23,6 +23,7 @@
 UIScrollView *scrollView1;
 UIScrollView *scrollView2;
 BottomTabBar *bottomTabBarView;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -39,9 +40,6 @@ BottomTabBar *bottomTabBarView;
     arrayThumb = [[NSMutableArray alloc]init];
     isFinishAnimation = YES;
     CGRect screenRect1 = [[UIScreen mainScreen] bounds];
-    CGRect screenRect;
-    
-   
     scrollView1  = [[UIScrollView alloc]init];
     
     UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
@@ -85,7 +83,7 @@ BottomTabBar *bottomTabBarView;
     [btnBack setImage:[UIImage imageNamed:@"button_back_unselected.png"] forState:UIControlStateNormal];
     
     
-    CGRect frameBottomBar ;
+    CGRect frameBottomBar;
     if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
         frameBottomBar = CGRectMake(0, self.view.frame.size.height - 48, self.view.frame.size.width, 48);
     }
@@ -104,6 +102,13 @@ BottomTabBar *bottomTabBarView;
     [self loadScrollViewAtBegining];
 }
 
+- (BOOL)isLandscapeMode {
+    
+    if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeRight)
+        return YES;
+    else
+        return NO;
+}
 
 -(void)clickTopButton:(id)sender{
     if (!isFinishAnimation) {
@@ -658,33 +663,33 @@ BottomTabBar *bottomTabBarView;
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                  duration:(NSTimeInterval)duration{
-
-        UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
-    if (!isPortrait) {
-//        imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(screenRect1.origin.x,
-//                                                                      screenRect1.origin.y,
-//                                                                      screenRect1.size.width,
-//                                                                      screenRect1.size.height)];
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGRect newFrameBottomBar;
+    if ([self isLandscapeMode]) {
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGRect portraitRect = CGRectMake(0,0,screenRect.size.width,screenRect.size.height);
         
+        scrollView1.frame = portraitRect;
+        
+        imgBackground.frame = portraitRect;
         imgBackground.image = [UIImage imageNamed:@"Default-Portrait~ipad.png"];
-//        scrollView1.frame = CGRectMake(screenRect1.origin.x,
-//                                       screenRect1.origin.y,
-//                                       screenRect1.size.width,
-//                                       screenRect1.size.height-48);
+        
+        newFrameBottomBar = CGRectMake(0, screenRect.size.height - 48, screenRect.size.width, 48);
     }
     else
     {
-//        imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(screenRect1.origin.x,
-//                                                                      screenRect1.origin.y,
-//                                                                      screenRect1.size.height,
-//                                                                      screenRect1.size.width)];
+        CGRect lanscapeRect = CGRectMake(0,0,screenRect.size.height,screenRect.size.width);
+        
+        scrollView1.frame = lanscapeRect;
+        
+        imgBackground.frame = lanscapeRect;
         imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
-//        scrollView1.frame = CGRectMake(screenRect1.origin.x,
-//                                       screenRect1.origin.y,
-//                                       screenRect1.size.height,
-//                                       screenRect1.size.width-48);
+        
+        newFrameBottomBar = CGRectMake(0, screenRect.size.width - 48, screenRect.size.height, 48);
     }
 
+    bottomTabBarView.frame = newFrameBottomBar;
 }
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     //
