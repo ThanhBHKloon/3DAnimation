@@ -102,24 +102,7 @@ static Globals *sharedGlobalsManager = nil;
 -(id)init
 {
     self = [super init];
-    if(self != nil)
-    {
-		[self initializeGlobalPaths];
-		self.S3ReadKeysFetched=NO;
-#if defined(DEVMODE_UPLOAD_INCLUDED)
-		self.S3WriteKeysFetched=NO;
-#endif
-		self.uploadPassword=@"";
-        self.socialSetup=nil;
-        self.serverRedirectChecked=NO;
-        self.serverAPI = SERVER_API;
-        self.serverUploadPrefix = SERVER_UPLOAD_PREFIX;
-        self.serverS3FileBucket = SERVER_S3_FILE_BUCKET;
-        self.serverFiles = SERVER_FILES;
-        hardwareSet = NO;
-        _appState_helpNotificationHidden = [[NSUserDefaults standardUserDefaults] objectForKey:@"noHelpNotif"];
-    }
-    isOpenHTMLFromLeaves = NO;
+    
     return self;
 }
 
