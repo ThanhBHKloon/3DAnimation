@@ -673,7 +673,13 @@ BottomTabBar *bottomTabBarView;
         scrollView1.frame = portraitRect;
         
         imgBackground.frame = portraitRect;
-        imgBackground.image = [UIImage imageNamed:@"Default-Portrait~ipad.png"];
+        if (arraySelectedID.count == 3) {
+            imgBackground.image = [UIImage imageNamed:@"ipad_p.png"];
+        }
+        else
+        {
+             imgBackground.image = [UIImage imageNamed:@"Default-Portrait~ipad.png"];
+        }
         
         newFrameBottomBar = CGRectMake(0, screenRect.size.height - 48, screenRect.size.width, 48);
     }
@@ -684,7 +690,13 @@ BottomTabBar *bottomTabBarView;
         scrollView1.frame = lanscapeRect;
         
         imgBackground.frame = lanscapeRect;
-        imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+        if (arraySelectedID.count ==  3) {
+            imgBackground.image = [UIImage imageNamed:@"ipad_l.png"];
+        }
+        else
+        {
+            imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+        }
         
         newFrameBottomBar = CGRectMake(0, screenRect.size.width - 48, screenRect.size.height, 48);
     }
@@ -1963,7 +1975,14 @@ BottomTabBar *bottomTabBarView;
         bottomTabBarView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     }
     else {
-        imgBackground.image = [UIImage imageNamed:@"background.png"];
+        if ([self isLandscapeMode]) {
+            imgBackground.image = [UIImage imageNamed:@"ipad_l.png"];
+        }
+        else
+        {
+            imgBackground.image = [UIImage imageNamed:@"ipad_p.png"];
+        }
+        
         scrollView1.hidden = YES;
         bottomTabBarView.backgroundColor = [UIColor clearColor];
     }
