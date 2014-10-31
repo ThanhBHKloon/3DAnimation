@@ -103,8 +103,6 @@ BottomTabBar *bottomTabBarView;
     for (int i=0; i<[arrayButton2 count]; i++) {
         UIButton *b = [arrayButton2 objectAtIndex:i];
         if (b.tag == previousHeadlineID) {
-            //            b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
-            //            [b setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub.png"] forState:UIControlStateNormal];
             b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
             b.alpha = 0.8;
             [[b layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
@@ -116,21 +114,6 @@ BottomTabBar *bottomTabBarView;
         }
     }
     
-    
-    currentHeadlineID = clickButton.tag;
-    [self loadCurrentHeadlines:clickButton.tag];
-    
-    if ([arrCurrentHeadlines count]==0) {
-        [self hideCoverView:NO];
-    }
-    [arraySelectedID removeLastObject];
-    int lastObject = [[arraySelectedID lastObject] integerValue];
-    if (lastObject != [sender tag])
-        [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
-    NSLog(@"selected: %@",arraySelectedID);
-    
-    //    clickButton.backgroundColor = [UIColor redColor];
-    //    [clickButton setBackgroundImage:[UIImage imageNamed:@"button_3dmode_sub_pressed.png"] forState:UIControlStateNormal];
     [clickButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
     clickButton.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8];
     clickButton.alpha = 0.8;
@@ -143,6 +126,20 @@ BottomTabBar *bottomTabBarView;
     anim.removedOnCompletion = YES;
     anim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)];
     [clickButton.layer addAnimation:anim forKey:nil];
+    
+    currentHeadlineID = clickButton.tag;
+    [self loadCurrentHeadlines:clickButton.tag];
+    
+    if ([arrCurrentHeadlines count]==0) {
+        [self performSelector:@selector(showCover) withObject:nil afterDelay:0.4];
+        [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
+        return;
+    }
+    [arraySelectedID removeLastObject];
+    int lastObject = [[arraySelectedID lastObject] integerValue];
+    if (lastObject != [sender tag])
+        [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
+    
     [self loadScrollViewFadeInForHeadline:currentHeadlineID];
 }
 
@@ -177,17 +174,17 @@ BottomTabBar *bottomTabBarView;
     currentHeadlineID = clickButton.tag;
     
      [self zoomHeadline];
+    
      [self loadCurrentHeadlines:currentHeadlineID];
     int lastObject = [[arraySelectedID lastObject] integerValue];
     if (lastObject != [sender tag])
         [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
     NSLog(@"selected: %@",arraySelectedID);
+    
     if ([arrCurrentHeadlines count]==0) {
-        [self hideCoverView:NO];
-        isFinishAnimation = YES;
+        [self performSelector:@selector(showCover) withObject:nil afterDelay:0.4];
         return;
     }
-    
     NSArray *tempArray = [arrayButton2 mutableCopy];
     for (int i =0; i<[tempArray count]; i++) {
         UIButton *tempBtn = [tempArray objectAtIndex:i];
@@ -339,8 +336,18 @@ BottomTabBar *bottomTabBarView;
 //    }
 //    [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.2];
 //    [self zoomHeadline];
-    [self performSelector:@selector(moveHeadline) withObject:nil afterDelay:0.3];
-     [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.5];
+    
+   
+    
+    [self performSelector:@selector(moveHeadline) withObject:nil afterDelay:0.4];
+    
+    
+    
+     [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.8];
+}
+-(void)showCover {
+    [self hideCoverView:NO];
+    isFinishAnimation = YES;
 }
 -(void)zoomHeadline {
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"transform"];
@@ -387,7 +394,7 @@ BottomTabBar *bottomTabBarView;
             UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
             ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
             [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-            b.frame = CGRectMake(0, 156, 278, 70);;
+            b.frame = CGRectMake(0, 156-1, 278, 70);;
             //        b.backgroundColor = [UIColor colorWithRed:239.0/255 green:185.0/255 blue:88.0/255 alpha:1.0];
             //        UIImage *buttonBackground = [UIImage imageNamed:@"button_3dmode.png"];
             //        [b setBackgroundImage:buttonBackground forState:UIControlStateNormal];
@@ -429,7 +436,7 @@ BottomTabBar *bottomTabBarView;
             [thumb addSubview:maskBtn];
             
             // add Description
-            UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(0, 226, 278, 50)];
+            UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(0, 226-2, 278, 50)];
             
             descriptionView.titleLabel.textColor = [UIColor whiteColor];
             [descriptionView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -521,7 +528,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup = [CAAnimationGroup animation];
         animGroup.animations = [NSArray arrayWithObjects:moveAnim, scaleAnim, opacityAnim, nil];
-        animGroup.duration = 0.6;
+        animGroup.duration = 0.9;
         [animGroup setValue:@"step1" forKey:@"step1"];
         [animGroup setDelegate:self];
         b2.alpha =0.8;
@@ -532,11 +539,11 @@ BottomTabBar *bottomTabBarView;
         
         //animation for imageview
         
-        CGFloat middleY = 2*middlePoint.y/3 + topPoint.y/3;
+        CGFloat middleY = middlePoint.y/2 + topPoint.y/2;
         CGFloat middleX = (middleY*(middlePoint.x - topPoint.x) +(topPoint.x * middlePoint.y - middlePoint.x*topPoint.y))/(middlePoint.y - topPoint.y);
         
         
-        CGPoint p1 = CGPointMake(middleX, middleY - 226/2*(1-1*(1-0.5)/3));
+        CGPoint p1 = CGPointMake(middleX, middleY - 226/2*(1-(1-0.5)/2));
         
         UIBezierPath *movePath1 = [UIBezierPath bezierPath];
         CGPoint p2 = thumb.center;
@@ -549,7 +556,7 @@ BottomTabBar *bottomTabBarView;
         
         CABasicAnimation *scaleAnim1 = [CABasicAnimation animationWithKeyPath:@"transform"];
         scaleAnim1.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        scaleAnim1.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
+        scaleAnim1.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/2, 1-0.5/2, 1.0)];
         scaleAnim1.removedOnCompletion = YES;
         
         CABasicAnimation *opacityAnim1 = [CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -559,7 +566,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
         animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
-        animGroup1.duration = 0.2;
+        animGroup1.duration = 0.45;
         thumb.alpha = 0;
         [thumb.layer addAnimation:animGroup1 forKey:nil];
         
@@ -567,7 +574,7 @@ BottomTabBar *bottomTabBarView;
         //animation for descriptionview
         UIButton *descView = [arrayDescription objectAtIndex:i];
         
-        CGPoint p1Desc = CGPointMake(middleX, middleY + 150/2*(1-1*(1-0.5)/3));
+        CGPoint p1Desc = CGPointMake(middleX, middleY + 150/2*(1-(1-0.5)/2));
         
         UIBezierPath *movePath2 = [UIBezierPath bezierPath];
         CGPoint p2Desc = descView.center;
@@ -580,7 +587,7 @@ BottomTabBar *bottomTabBarView;
         
         CABasicAnimation *scaleAnim2 = [CABasicAnimation animationWithKeyPath:@"transform"];
         scaleAnim2.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        scaleAnim2.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/3, 1-0.5/3, 1.0)];
+        scaleAnim2.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1-0.5/2, 1-0.5/2, 1.0)];
         scaleAnim2.removedOnCompletion = YES;
         
         CABasicAnimation *opacityAnim2 = [CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -590,7 +597,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
         animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
-        animGroup2.duration = 0.2;
+        animGroup2.duration = 0.45;
         descView.alpha = 0;
         [descView.layer addAnimation:animGroup2 forKey:nil];
         
@@ -612,10 +619,7 @@ BottomTabBar *bottomTabBarView;
             break;
         }
     }
-    
-    if ([arrCurrentHeadlines count]==0) {
-        [self hideCoverView:NO];
-    }
+
     
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -1408,7 +1412,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:b];
         
         
-        CGRect bottomFrame =CGRectMake(20 +i*(padding1+136) , 746, 139, 35);
+        CGRect bottomFrame =CGRectMake(20 +i*(padding1+139) , 746, 139, 35);
         CGPoint bottomPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, bottomFrame.origin.y +bottomFrame.size.height/2);
         
         
@@ -1435,7 +1439,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup = [CAAnimationGroup animation];
         animGroup.animations = [NSArray arrayWithObjects:moveAnim, scaleAnim, opacityAnim, nil];
-        animGroup.duration = 0.4;
+        animGroup.duration = 0.45;
         [animGroup setValue:b forKey:@"step3"];
         isFinishStep3 = NO;
         [animGroup setDelegate:self];
@@ -1485,7 +1489,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:thumb];
         
         //when button animating 2/3 path, start animating to display thumbview
-        CGRect bottomFrame =CGRectMake(20 +i*(padding1+139) , 746, 136, 35);
+        CGRect bottomFrame =CGRectMake(20 +i*(padding1+139) , 746, 139, 35);
         CGPoint buttonPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, (bottomFrame.origin.y +bottomFrame.size.height/2));
         
         CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-226*0.5/2);
@@ -1520,7 +1524,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup1 = [CAAnimationGroup animation];
         animGroup1.animations = [NSArray arrayWithObjects:moveAnim1, scaleAnim1, opacityAnim1, nil];
-        animGroup1.duration = 0.4;
+        animGroup1.duration = 0.45;
         //        [animGroup1 setDelegate:self];
         [thumb.layer addAnimation:animGroup1 forKey:nil];
         
@@ -1591,7 +1595,7 @@ BottomTabBar *bottomTabBarView;
         
         CAAnimationGroup *animGroup2 = [CAAnimationGroup animation];
         animGroup2.animations = [NSArray arrayWithObjects:moveAnim2, scaleAnim2, opacityAnim2, nil];
-        animGroup2.duration = 0.4;
+        animGroup2.duration = 0.45;
         //        [animGroup1 setDelegate:self];
         [descriptionView.layer addAnimation:animGroup2 forKey:nil];
         
