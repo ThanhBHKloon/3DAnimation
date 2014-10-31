@@ -549,7 +549,7 @@ BottomTabBar *bottomTabBarView;
         CGFloat middleX = (middleY*(middlePoint.x - topPoint.x) +(topPoint.x * middlePoint.y - middlePoint.x*topPoint.y))/(middlePoint.y - topPoint.y);
         
         
-        CGPoint p1 = CGPointMake(middleX, middleY - 226/2*(1-(1-0.5)/2));
+        CGPoint p1 = CGPointMake(middleX, middleY - (headlineImageHeigh+headlineTitleHeigh)/2*(1-(1-0.5)/2));
         
         UIBezierPath *movePath1 = [UIBezierPath bezierPath];
         CGPoint p2 = thumb.center;
@@ -1221,7 +1221,7 @@ BottomTabBar *bottomTabBarView;
         [descriptionView addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
         [descriptionView addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
         
-        CGPoint descTopPoint = CGPointMake(buttonTopPoint.x, buttonTopPoint.y+120*0.5/2);
+        CGPoint descTopPoint = CGPointMake(buttonTopPoint.x, buttonTopPoint.y+ (headlineTitleHeigh + headlineDescriptionHeigh)*0.5/2);
         
         UIBezierPath *movePath2 = [UIBezierPath bezierPath];
         [movePath2 moveToPoint:descTopPoint];
@@ -1293,7 +1293,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:b];
         
         
-        CGRect bottomFrame =CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , 746, topHeadlineWidth, topHeadlineHeigh);
+        CGRect bottomFrame =CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , topHeadlineY +2*(headlineImageY- topHeadlineY + headlineImageHeigh), topHeadlineWidth, topHeadlineHeigh);
         CGPoint bottomPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, bottomFrame.origin.y +bottomFrame.size.height/2);
         
         
@@ -1367,10 +1367,10 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:thumb];
         
         //when button animating 2/3 path, start animating to display thumbview
-        CGRect bottomFrame =CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , 746, topHeadlineWidth, topHeadlineHeigh);
+        CGRect bottomFrame =CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , topHeadlineY +2*(headlineImageY- topHeadlineY + headlineImageHeigh), topHeadlineWidth, topHeadlineHeigh);
         CGPoint buttonPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, (bottomFrame.origin.y +bottomFrame.size.height/2));
         
-        CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-226*0.5/2);
+        CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-(headlineTitleHeigh+headlineImageHeigh)*0.5/2);
 
         UIBezierPath *movePath1 = [UIBezierPath bezierPath];
         [movePath1 moveToPoint:bottomPoint];
@@ -1429,7 +1429,7 @@ BottomTabBar *bottomTabBarView;
         [descriptionView addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
         [descriptionView addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
         
-        CGPoint bottomPoint2 = CGPointMake(buttonPoint.x, buttonPoint.y+120*0.5/2);
+        CGPoint bottomPoint2 = CGPointMake(buttonPoint.x, buttonPoint.y+(headlineTitleHeigh+headlineDescriptionHeigh)*0.5/2);
         
         UIBezierPath *movePath2 = [UIBezierPath bezierPath];
         [movePath2 moveToPoint:bottomPoint2];
@@ -1464,9 +1464,9 @@ BottomTabBar *bottomTabBarView;
     [self loadPreviousHeadlines:headlineID];
     [arrayButton1 removeAllObjects];
     [arrayButton3 removeAllObjects];
-    scrollView1.contentSize = CGSizeMake((topHeadlinePadding + 300)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
+    scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
     for (int i= 0; i<[arrPreviousHeadlines count]; i++) {
-        CGRect frame = CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , 30, topHeadlineWidth, topHeadlineHeigh);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , topHeadlineY, topHeadlineWidth, topHeadlineHeigh);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrPreviousHeadlines objectAtIndex:i];
