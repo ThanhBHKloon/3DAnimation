@@ -33,6 +33,18 @@
     NSMutableArray *arraySelectedID; // store selected headine ID in each level
     UIImageView *imgBackground;
     UIView *parentView;
+    
+    CGFloat topHeadlinePadding;
+    CGFloat headlinePadding;
+    CGFloat topHeadlineY;
+    CGFloat topHeadlineWidth;
+    CGFloat topHeadlineHeigh;
+    
+    CGFloat headlineImageY;
+    CGFloat headlineImageWidth;
+    CGFloat headlineImageHeigh;
+    CGFloat headlineTitleHeigh;
+    CGFloat headlineDescriptionHeigh;
 }
 
 

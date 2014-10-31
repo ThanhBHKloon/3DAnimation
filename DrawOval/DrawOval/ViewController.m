@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BottomTabBar.h"
 #import "ThumbItem.h"
+#import "Globals.h"
 @interface ViewController ()
 
 @end
@@ -20,6 +21,71 @@
 #define ANIMATION_UP_STEP2 2
 #define ANIMATION_FROM_BOTTOM 3
 #define ANIMATION_DOWN 4
+
+// for all devices, except for iphone 6 plus
+#define TOP_HEADLINE_PADDING 20
+#define HEADLINE_PADDING 40
+#define TOPHEADLINE_SIZE_WIDTH 139
+#define TOPHEADLINE_SIZE_HEIGH 35
+
+#define HEADLINE_IMAGE_SIZE_WIDTH 278
+#define HEADLINE_IMAGE_SIZE_HEIGH 156
+#define HEADLINE_TITLE_SIZE_HEIGH 70
+#define HEADLINE_DESCRIPTION_SIZE_HEIGH 50
+
+// IPAD LANDSCAPE
+#define TOP_HEADLINE_ORIGN_Y_IPAD_L 194
+#define HEADLINE_IMAGE_ORIGN_Y_IPAD_L 314
+
+// IPAD PORTRAIT
+#define TOP_HEADLINE_ORIGN_Y_IPAD_P 268
+#define HEADLINE_IMAGE_ORIGN_Y_IPAD_P 388
+
+// IPHONE 4 LANDSCAPE
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_4_L 162
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_L 244
+
+// IPHONE 4 PORTRAIT
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_4_P 282
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_P 364
+
+
+// IPHONE 5 LANDSCAPE :like iphone 4 landscape
+
+// IPHONE 5PORTRAIT
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_5_P 378
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_5_P 460
+
+// IPHONE 6 LANDSCAPE : like ipad landscape
+
+// IPHONE 6 PORTRAIT
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_6_P 430
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_P 550
+
+// IPHONE 6PLUS LANDSCAPE
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_6_PLUS_L 314
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_PLUS_L 488
+
+// IPHONE 6PLUS PORTRAIT
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_6_PLUS_P 654
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_PLUS_P 828
+
+#define TOP_HEADLINE_PADDING_6_PLUS_L 40
+#define HEADLINE_PADDING_6_PLUS_L 80
+#define TOP_HEADLINE_PADDING_6_PLUS_P 30
+#define HEADLINE_PADDING_6_PLUS_P 60
+#define TOPHEADLINE_SIZE_WIDTH_6_PLUS 272
+#define TOPHEADLINE_SIZE_HEIGH_6_PLUS 69
+
+#define HEADLINE_IMAGE_SIZE_WIDTH_6_PLUS 544
+#define HEADLINE_IMAGE_SIZE_HEIGH_6_PLUS 308
+#define HEADLINE_TITLE_SIZE_HEIGH_6_PLUS 138
+#define HEADLINE_DESCRIPTION_SIZE_HEIGH_6_PLUS 98
+
+#define IS_IPHONE6 ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] && fabs( ( double )[ [ UIScreen mainScreen ] nativeBounds ].size.height - ( double )1334 ) < DBL_EPSILON )
+#define IS_IPHONE6_PLUS ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] && fabs( ( double )[ [ UIScreen mainScreen ] nativeBounds ].size.height - ( double )2208 ) < DBL_EPSILON )
+
+
 UIScrollView *scrollView1;
 UIScrollView *scrollView2;
 BottomTabBar *bottomTabBarView;
@@ -88,6 +154,91 @@ BottomTabBar *bottomTabBarView;
     
     
 }
+-(void)setPositonAndFrame{
+    //top/middle padding, buttons, views size are the same in all devices except for iphone 6 plus
+    if (IS_IPHONE6_PLUS) {
+        if UIInterfaceOrientationIsPortrait(self.interfaceOrientation){
+            topHeadlinePadding = TOP_HEADLINE_PADDING_6_PLUS_P;
+            headlinePadding = HEADLINE_PADDING_6_PLUS_P;
+            topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_6_PLUS_P;
+            headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_PLUS_P;
+        }
+        else {
+            topHeadlinePadding = TOP_HEADLINE_PADDING_6_PLUS_L;
+            headlinePadding = HEADLINE_PADDING_6_PLUS_L;
+            topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_6_PLUS_L;
+            headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_PLUS_L;
+        }
+        
+       
+        topHeadlineWidth = TOPHEADLINE_SIZE_WIDTH_6_PLUS;
+        topHeadlineHeigh = TOPHEADLINE_SIZE_HEIGH_6_PLUS;
+        
+        headlineImageWidth = HEADLINE_IMAGE_SIZE_WIDTH_6_PLUS;
+        headlineImageHeigh = HEADLINE_IMAGE_SIZE_HEIGH_6_PLUS;
+        headlineTitleHeigh = HEADLINE_TITLE_SIZE_HEIGH_6_PLUS;
+        headlineDescriptionHeigh = HEADLINE_DESCRIPTION_SIZE_HEIGH_6_PLUS;
+    }
+    else {
+        topHeadlinePadding = TOP_HEADLINE_PADDING;
+        headlinePadding = HEADLINE_PADDING;
+        topHeadlineWidth = TOPHEADLINE_SIZE_WIDTH;
+        topHeadlineHeigh = TOPHEADLINE_SIZE_HEIGH;
+        
+        headlineImageWidth = HEADLINE_IMAGE_SIZE_WIDTH;
+        headlineImageHeigh = HEADLINE_IMAGE_SIZE_HEIGH;
+        headlineTitleHeigh = HEADLINE_TITLE_SIZE_HEIGH;
+        headlineDescriptionHeigh = HEADLINE_DESCRIPTION_SIZE_HEIGH;
+        
+        
+        if UIInterfaceOrientationIsPortrait(self.interfaceOrientation){
+            if ([Globals sharedManager].runningOniPad){
+                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPAD_P;
+                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPAD_P;
+                return;
+                
+            }
+            if (IS_IPHONE6) {
+                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_6_P;
+                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_P;
+                return;
+            }
+            
+            if ([Globals sharedManager].has4InchDisplay) {
+                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_5_P;
+                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_5_P;
+                return;
+            }
+            if ([Globals sharedManager].hasRetinaDisplay) {
+                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_4_P;
+                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_P;
+                return;
+            }
+            
+        }
+        else { // running in landscape
+            if ([Globals sharedManager].runningOniPad){
+                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPAD_L;
+                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPAD_L;
+                return;
+                
+            }
+            if (IS_IPHONE6) {
+                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPAD_L;
+                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPAD_L;
+                return;
+            }
+            
+            if ([Globals sharedManager].hasRetinaDisplay) {
+                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_4_L;
+                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_L;
+                return;
+            }
+        }
+        
+    }
+    
+    }
 
 
 -(void)clickTopButton:(id)sender{

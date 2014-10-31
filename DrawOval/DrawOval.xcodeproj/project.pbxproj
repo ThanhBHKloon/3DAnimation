@@ -47,6 +47,9 @@
 		5BA14D5A19D27C3C008A730E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA14D3C19D27C3C008A730E /* UIKit.framework */; };
 		5BA14D6219D27C3D008A730E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BA14D6019D27C3D008A730E /* InfoPlist.strings */; };
 		5BA14D6419D27C3D008A730E /* DrawOvalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA14D6319D27C3D008A730E /* DrawOvalTests.m */; };
+		5BDCABE11A0344CA000C49EB /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDCABE01A0344CA000C49EB /* Globals.m */; };
+		5BDCABE41A034D12000C49EB /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDCABE31A034D12000C49EB /* UIDevice+IdentifierAddition.m */; };
+		5BDCABE91A034E96000C49EB /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDCABE81A034E96000C49EB /* UIDeviceHardware.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +112,14 @@
 		5BA14D5F19D27C3D008A730E /* DrawOvalTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DrawOvalTests-Info.plist"; sourceTree = "<group>"; };
 		5BA14D6119D27C3D008A730E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5BA14D6319D27C3D008A730E /* DrawOvalTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawOvalTests.m; sourceTree = "<group>"; };
+		5BDCABDF1A0344CA000C49EB /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
+		5BDCABE01A0344CA000C49EB /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
+		5BDCABE21A034CF2000C49EB /* UIDeviceHardware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
+		5BDCABE31A034D12000C49EB /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		5BDCABE51A034D20000C49EB /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		5BDCABE61A034D5A000C49EB /* NSString+StrUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+StrUtils.h"; sourceTree = "<group>"; };
+		5BDCABE71A034E51000C49EB /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
+		5BDCABE81A034E96000C49EB /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +179,14 @@
 		5BA14D3E19D27C3C008A730E /* DrawOval */ = {
 			isa = PBXGroup;
 			children = (
+				5BDCABDF1A0344CA000C49EB /* Globals.h */,
+				5BDCABE01A0344CA000C49EB /* Globals.m */,
+				5BDCABE61A034D5A000C49EB /* NSString+StrUtils.h */,
+				5BDCABE71A034E51000C49EB /* NSString+MD5Addition.h */,
+				5BDCABE21A034CF2000C49EB /* UIDeviceHardware.h */,
+				5BDCABE81A034E96000C49EB /* UIDeviceHardware.m */,
+				5BDCABE31A034D12000C49EB /* UIDevice+IdentifierAddition.m */,
+				5BDCABE51A034D20000C49EB /* UIDevice+IdentifierAddition.h */,
 				5BA14D4719D27C3C008A730E /* AppDelegate.h */,
 				5BA14D4819D27C3C008A730E /* AppDelegate.m */,
 				5BA14D4A19D27C3C008A730E /* Main.storyboard */,
@@ -357,10 +376,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BDCABE11A0344CA000C49EB /* Globals.m in Sources */,
+				5BDCABE91A034E96000C49EB /* UIDeviceHardware.m in Sources */,
 				5BA14D4F19D27C3C008A730E /* ViewController.m in Sources */,
 				5BA14D4919D27C3C008A730E /* AppDelegate.m in Sources */,
 				30BCA97819ED15370031DA8A /* DescriptionView.m in Sources */,
 				5B88106619D416A40068AF73 /* ThumView.m in Sources */,
+				5BDCABE41A034D12000C49EB /* UIDevice+IdentifierAddition.m in Sources */,
 				5BA14D4519D27C3C008A730E /* main.m in Sources */,
 				5B48AB8719D957C900B77FC7 /* BottomTabBar.m in Sources */,
 				5B439E0E19DC06F60098459D /* ThumbItem.m in Sources */,
