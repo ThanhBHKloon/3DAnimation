@@ -92,66 +92,79 @@ BottomTabBar *bottomTabBarView;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    arrCurrentHeadlines = [[NSMutableArray alloc]init];
-    arrPreviousHeadlines = [[NSMutableArray alloc]init];
-    arraySelectedID = [[NSMutableArray alloc]init];
-    btnBackSelected = NO;
-    arrayButton1 = [[NSMutableArray alloc]init];
-    arrayButton2 = [[NSMutableArray alloc]init];
-    arrayButton3 = [[NSMutableArray alloc]init];
+    arrCurrentHeadlines= [[NSMutableArray alloc]init];
+    arrPreviousHeadlines= [[NSMutableArray alloc]init];
+    arraySelectedID= [[NSMutableArray alloc]init];
+    btnBackSelected=NO;
+    arrayButton1= [[NSMutableArray alloc]init];
+    arrayButton2= [[NSMutableArray alloc]init];
+    arrayButton3= [[NSMutableArray alloc]init];
     
-    arrayDescription = [[NSMutableArray alloc]init];
+    arrayDescription= [[NSMutableArray alloc]init];
     
-    arrayThumb = [[NSMutableArray alloc]init];
-    isFinishAnimation = YES;
-    CGRect screenRect1 = [[UIScreen mainScreen] bounds];
-    CGRect screenRect;
-    imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(screenRect1.origin.x,
-                                                                  screenRect1.origin.y,
-                                                                  screenRect1.size.height,
-                                                                  screenRect1.size.width)];
-    imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
-    [self.view addSubview:imgBackground];
+    arrayThumb= [[NSMutableArray alloc]init];
+    isFinishAnimation=YES;
+    CGRect screenRect1 = [[UIScreen mainScreen]bounds];
+    scrollView1  = [[UIScrollView alloc]init];
+    
     UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
     if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
-        screenRect = CGRectMake(0, 0, screenRect1.size.width, screenRect1.size.height);
+        imgBackground= [[UIImageView alloc]initWithFrame:CGRectMake(screenRect1.origin.x,
+                                                                   screenRect1.origin.y,
+                                                                   screenRect1.size.width,
+                                                                   screenRect1.size.height)];
+        
+        imgBackground.image= [UIImage imageNamed:@"Default-Portrait~ipad.png"];
+        scrollView1.frame=CGRectMake(screenRect1.origin.x,
+                                     screenRect1.origin.y,
+                                     screenRect1.size.width,
+                                     screenRect1.size.height-48);
     }
-    else {
-        screenRect = CGRectMake(0, 0, screenRect1.size.height, screenRect1.size.width);
+    else{
+        imgBackground= [[UIImageView alloc]initWithFrame:CGRectMake(screenRect1.origin.x,
+                                                                   screenRect1.origin.y,
+                                                                   screenRect1.size.height,
+                                                                   screenRect1.size.width)];
+        imgBackground.image= [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+        scrollView1.frame=CGRectMake(screenRect1.origin.x,
+                                     screenRect1.origin.y,
+                                     screenRect1.size.height,
+                                     screenRect1.size.width-48);
     }
-    scrollView1  = [[UIScrollView alloc]init];
-    scrollView1.frame = CGRectMake(0, 0, screenRect.size.width, screenRect.size.height-48);
-    scrollView1.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:imgBackground];
+    
+    
+    scrollView1.backgroundColor= [UIColor clearColor];
     [self.view addSubview:scrollView1];
     
     
-    btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnBack.backgroundColor =[UIColor clearColor];
-    btnBack.center = CGPointMake(20, 10);
+    btnBack= [UIButton buttonWithType:UIButtonTypeCustom];
+    btnBack.backgroundColor=[UIColor clearColor];
+    btnBack.center=CGPointMake(20,10);
     [btnBack sizeToFit];
-    [btnBack addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    [btnBack addTarget:self action:@selector(backButton:)forControlEvents:UIControlEventTouchUpInside];
     
-    [btnBack setImage:[UIImage imageNamed:@"button_back_unselected.png"] forState:UIControlStateNormal];
+    [btnBack setImage:[UIImage imageNamed:@"button_back_unselected.png"]forState:UIControlStateNormal];
     
     
-    CGRect frameBottomBar ;
+    CGRect frameBottomBar;
     if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
-        frameBottomBar = CGRectMake(0, self.view.frame.size.height - 48, self.view.frame.size.width, 48);
+        frameBottomBar =CGRectMake(0,self.view.frame.size.height-48,self.view.frame.size.width,48);
     }
-    else {
+    else{
         
-        frameBottomBar = CGRectMake(0, self.view.frame.size.width - 48, self.view.frame.size.height, 48);
+        frameBottomBar =CGRectMake(0,self.view.frame.size.width-48,self.view.frame.size.height,48);
     }
     
-    bottomTabBarView = [[BottomTabBar alloc] initWithFrame:frameBottomBar];
-    bottomTabBarView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    bottomTabBarView= [[BottomTabBar alloc]initWithFrame:frameBottomBar];
+    bottomTabBarView.backgroundColor= [[UIColor blackColor]colorWithAlphaComponent:0.5];
     [bottomTabBarView addSubview:btnBack];
     [self.view addSubview:bottomTabBarView];
     
-    currentHeadlineID = 0;
-    previousHeadlineID =0;
+    currentHeadlineID=0;
+    previousHeadlineID=0;
     [self loadScrollViewAtBegining];
-    
     
 }
 -(void)setPositonAndFrame{
@@ -377,8 +390,7 @@ BottomTabBar *bottomTabBarView;
     [anim setValue:@"anim1" forKey:@"anim1"];
     anim.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
     anim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)];
-    
-    CGFloat padding = 40;
+
     
     for (int i =0; i<[arrayButton3 count]; i++) {
         
@@ -399,7 +411,7 @@ BottomTabBar *bottomTabBarView;
             UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
             ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
             [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-            b.frame = CGRectMake(0, 156-1, 278, 70);;
+            b.frame = CGRectMake(0, headlineImageHeigh-1, headlineImageWidth, headlineTitleHeigh);;
             [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0]] forState:UIControlStateHighlighted];
             b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0];
             b.alpha = 1.0;
@@ -473,7 +485,7 @@ BottomTabBar *bottomTabBarView;
 -(void)moveHeadline {
     [parentView removeFromSuperview];
     animationType = ANIMATION_UP_STEP1;
-    CGFloat padding1 = 20;
+
     for (int i =0; i<[arrayButton2 count]; i++) {
         
         
@@ -627,8 +639,55 @@ BottomTabBar *bottomTabBarView;
     
 }
 
+- (BOOL)isLandscapeMode {
+    
+    if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeRight)
+        return YES;
+    else
+        return NO;
+}
+
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                  duration:(NSTimeInterval)duration{
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGRect newFrameBottomBar;
+    if ([self isLandscapeMode]) {
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGRect portraitRect = CGRectMake(0,0,screenRect.size.width,screenRect.size.height);
+        
+        scrollView1.frame = portraitRect;
+        
+        imgBackground.frame = portraitRect;
+        if (arraySelectedID.count == 3) {
+            imgBackground.image = [UIImage imageNamed:@"ipad_p.png"];
+        }
+        else
+        {
+            imgBackground.image = [UIImage imageNamed:@"Default-Portrait~ipad.png"];
+        }
+        
+        newFrameBottomBar = CGRectMake(0, screenRect.size.height - 48, screenRect.size.width, 48);
+    }
+    else
+    {
+        CGRect lanscapeRect = CGRectMake(0,0,screenRect.size.height,screenRect.size.width);
+        
+        scrollView1.frame = lanscapeRect;
+        
+        imgBackground.frame = lanscapeRect;
+        if (arraySelectedID.count ==  3) {
+            imgBackground.image = [UIImage imageNamed:@"ipad_l.png"];
+        }
+        else
+        {
+            imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+        }
+        
+        newFrameBottomBar = CGRectMake(0, screenRect.size.width - 48, screenRect.size.height, 48);
+    }
+    
+    bottomTabBarView.frame = newFrameBottomBar;
     
 }
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
@@ -671,8 +730,8 @@ BottomTabBar *bottomTabBarView;
         [b removeFromSuperview];
     }
     [arrayButton3 removeAllObjects];
-    CGFloat padding = 40;
-    scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] +padding, screenSize.height);
+
+    scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] +headlinePadding, screenSize.height - 48);
     
     
     
@@ -836,13 +895,12 @@ BottomTabBar *bottomTabBarView;
     [arrayThumb removeAllObjects];
     [arrayDescription removeAllObjects];
     
-    CGFloat padding = 40;
-    scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] +headlinePadding, 720);
+    scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] +headlinePadding, screenSize.height - 48);
     
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -939,8 +997,7 @@ BottomTabBar *bottomTabBarView;
 -(void)loadScrollViewBackToHeadLineID:(NSInteger)headlineID{
     [self setPositonAndFrame];
     isFinishAnimation = NO;
-    CGFloat padding1 = 20;
-    CGFloat padding = 40;
+
     [self loadCurrentHeadlines:headlineID];
     [self loadPreviousHeadlines:headlineID];
     
@@ -956,12 +1013,12 @@ BottomTabBar *bottomTabBarView;
     //end
     
     
-    scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] +headlinePadding, screenSize.height -48);
+    scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] +headlinePadding, screenSize.height - 48);
     
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -989,7 +1046,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:b];
         
         
-        CGRect frameTop= CGRectMake(20 +i*(topHeadlinePadding+topHeadlineWidth) , topHeadlineY, topHeadlineWidth, topHeadlineHeigh);
+        CGRect frameTop= CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , topHeadlineY, topHeadlineWidth, topHeadlineHeigh);
         CGPoint topPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         UIBezierPath *movePath = [UIBezierPath bezierPath];
         [movePath moveToPoint:topPoint];
@@ -1031,7 +1088,7 @@ BottomTabBar *bottomTabBarView;
     if ([arraySelectedID count] >0) {
         for (int i =0; i<[arrPreviousHeadlines count]; i++) {
             
-            CGRect frameTop= CGRectMake(20 +i*(topHeadlinePadding+topHeadlineWidth) , 194, topHeadlineWidth, topHeadlineHeigh);
+            CGRect frameTop= CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , topHeadlineY, topHeadlineWidth, topHeadlineHeigh);
             
             UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
             ThumbItem *item = [arrPreviousHeadlines objectAtIndex:i];
@@ -1073,7 +1130,7 @@ BottomTabBar *bottomTabBarView;
     [self setPositonAndFrame];
 
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
         
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
@@ -1100,8 +1157,8 @@ BottomTabBar *bottomTabBarView;
         
         //when button animating 2/3 path, start animating to display thumbview
         
-        CGRect frameTop= CGRectMake(20 +i*(topHeadlinePadding+topHeadlineWidth) , topHeadlineY, topHeadlineWidth, topHeadlineHeigh);
-        CGRect frameTop1= CGRectMake(20 +i*(topHeadlinePadding+topHeadlineWidth) , topHeadlineY-headlineImageHeigh/2, topHeadlineWidth, headlineImageHeigh/2 +1);
+        CGRect frameTop= CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , topHeadlineY, topHeadlineWidth, topHeadlineHeigh);
+        CGRect frameTop1= CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , topHeadlineY-headlineImageHeigh/2, topHeadlineWidth, headlineImageHeigh/2 +1);
         CGPoint buttonTopPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         
          CGPoint thumbTopPoint = CGPointMake(frameTop1.origin.x + frameTop1.size.width/2, frameTop1.origin.y+frameTop1.size.height/2);
@@ -1203,17 +1260,17 @@ BottomTabBar *bottomTabBarView;
     }
     [arrayButton3 removeAllObjects];
 
-    scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] +headlinePadding, 720);
+    scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] +headlinePadding, screenSize.height - 48);
     
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(headlinePadding+ headlineImageWidth) , 314, headlineImageWidth, headlineImageHeigh);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+156, frame.size.width, 72);
+        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+headlineImageHeigh, frame.size.width, headlineTitleHeigh + 2);
         b.frame = btnFrame;
         [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
         b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
@@ -1236,7 +1293,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:b];
         
         
-        CGRect bottomFrame =CGRectMake(20 +i*(topHeadlinePadding+topHeadlineWidth) , 746, topHeadlineWidth, topHeadlineHeigh);
+        CGRect bottomFrame =CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , 746, topHeadlineWidth, topHeadlineHeigh);
         CGPoint bottomPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, bottomFrame.origin.y +bottomFrame.size.height/2);
         
         
@@ -1288,7 +1345,7 @@ BottomTabBar *bottomTabBarView;
     [arrayThumb removeAllObjects];
     [arrayDescription removeAllObjects];
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(headlinePadding+ headlineImageWidth) , 314, headlineImageWidth, headlineImageHeigh);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         [thumb.layer setBorderWidth:1.0];
         [thumb.layer setBorderColor:[[UIColor colorWithRed:223.0/255.0
@@ -1310,7 +1367,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:thumb];
         
         //when button animating 2/3 path, start animating to display thumbview
-        CGRect bottomFrame =CGRectMake(20 +i*(topHeadlinePadding+topHeadlineWidth) , 746, topHeadlineWidth, topHeadlineHeigh);
+        CGRect bottomFrame =CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , 746, topHeadlineWidth, topHeadlineHeigh);
         CGPoint buttonPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, (bottomFrame.origin.y +bottomFrame.size.height/2));
         
         CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-226*0.5/2);
@@ -1407,9 +1464,9 @@ BottomTabBar *bottomTabBarView;
     [self loadPreviousHeadlines:headlineID];
     [arrayButton1 removeAllObjects];
     [arrayButton3 removeAllObjects];
-    scrollView1.contentSize = CGSizeMake((topHeadlinePadding + 300)*[arrCurrentHeadlines count] + topHeadlinePadding, 720);
+    scrollView1.contentSize = CGSizeMake((topHeadlinePadding + 300)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
     for (int i= 0; i<[arrPreviousHeadlines count]; i++) {
-        CGRect frame = CGRectMake(20 +i*(topHeadlinePadding+topHeadlineWidth) , 30, topHeadlineWidth, topHeadlineHeigh);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , 30, topHeadlineWidth, topHeadlineHeigh);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrPreviousHeadlines objectAtIndex:i];
