@@ -45,6 +45,8 @@
     CGFloat headlineImageHeigh;
     CGFloat headlineTitleHeigh;
     CGFloat headlineDescriptionHeigh;
+    CGSize screenSize;
+    
 }
 
 
