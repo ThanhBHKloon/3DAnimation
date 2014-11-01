@@ -224,8 +224,18 @@ BottomTabBar *bottomTabBarView;
                 return;
             }
             if ([Globals sharedManager].hasRetinaDisplay) {
-                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_4_P;
-                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_P;
+                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_4_P/2;
+                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_P/2;
+                
+                topHeadlinePadding = TOP_HEADLINE_PADDING/2;
+                headlinePadding = HEADLINE_PADDING/2;
+                topHeadlineWidth = TOPHEADLINE_SIZE_WIDTH/2;
+                topHeadlineHeigh = TOPHEADLINE_SIZE_HEIGH/2;
+                
+                headlineImageWidth = HEADLINE_IMAGE_SIZE_WIDTH/2;
+                headlineImageHeigh = HEADLINE_IMAGE_SIZE_HEIGH/2;
+                headlineTitleHeigh = HEADLINE_TITLE_SIZE_HEIGH/2;
+                headlineDescriptionHeigh = HEADLINE_DESCRIPTION_SIZE_HEIGH/2;
                 return;
             }
             
@@ -421,6 +431,9 @@ BottomTabBar *bottomTabBarView;
                                                        alpha:1.0] CGColor]];
             [b.layer setBorderWidth:1.f];
             b.titleLabel.font= [UIFont systemFontOfSize:34];
+            if (![Globals sharedManager].runningOniPad) {
+                b.titleLabel.font= [UIFont systemFontOfSize:17];
+            }
             b.titleLabel.textColor = [UIColor whiteColor];
             [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
@@ -465,6 +478,9 @@ BottomTabBar *bottomTabBarView;
             descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
             descriptionView.titleLabel.numberOfLines = 2;
             descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
+            if (![Globals sharedManager].runningOniPad) {
+                descriptionView.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
+            }
             descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
             [descriptionView.layer setBorderWidth:1.f];
            
@@ -508,6 +524,9 @@ BottomTabBar *bottomTabBarView;
         b2.frame = frameTop;
         b2.center = topPoint;
         b2.titleLabel.font = [UIFont systemFontOfSize:17];
+        if (![Globals sharedManager].runningOniPad) {
+            b2.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
+        }
         b2.titleLabel.textColor = [UIColor whiteColor];
         [b2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [b2 setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
@@ -580,7 +599,7 @@ BottomTabBar *bottomTabBarView;
         //animation for descriptionview
         UIButton *descView = [arrayDescription objectAtIndex:i];
         
-        CGPoint p1Desc = CGPointMake(middleX, middleY + 150/2*(1-(1-0.5)/2));
+        CGPoint p1Desc = CGPointMake(middleX, middleY + (headlineTitleHeigh + headlineDescriptionHeigh)/2*(1-(1-0.5)/2));
         
         UIBezierPath *movePath2 = [UIBezierPath bezierPath];
         CGPoint p2Desc = descView.center;
@@ -754,6 +773,9 @@ BottomTabBar *bottomTabBarView;
         [arrayButton3 addObject:b];
 
         b.titleLabel.font= [UIFont systemFontOfSize:34];
+        if (![Globals sharedManager].runningOniPad) {
+            b.titleLabel.font= [UIFont systemFontOfSize:17];
+        }
         b.titleLabel.textColor = [UIColor whiteColor];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
@@ -808,6 +830,9 @@ BottomTabBar *bottomTabBarView;
         descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
         descriptionView.titleLabel.numberOfLines = 2;
         descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
+        if (![Globals sharedManager].runningOniPad) {
+            descriptionView.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
+        }
         descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
@@ -917,6 +942,9 @@ BottomTabBar *bottomTabBarView;
         [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         b.titleLabel.font= [UIFont systemFontOfSize:34];
+        if (![Globals sharedManager].runningOniPad) {
+            b.titleLabel.font= [UIFont systemFontOfSize:17];
+        }
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
@@ -970,6 +998,9 @@ BottomTabBar *bottomTabBarView;
         descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
         descriptionView.titleLabel.numberOfLines = 2;
         descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
+        if (![Globals sharedManager].runningOniPad) {
+            descriptionView.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
+        }
         descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
@@ -1035,7 +1066,11 @@ BottomTabBar *bottomTabBarView;
         [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
 
+        
         b.titleLabel.font= [UIFont systemFontOfSize:34];
+        if (![Globals sharedManager].runningOniPad) {
+            b.titleLabel.font= [UIFont systemFontOfSize:17];
+        }
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
@@ -1105,6 +1140,9 @@ BottomTabBar *bottomTabBarView;
                                                         blue:223.0/255.0
                                                        alpha:0.8] CGColor]];
                         [b.layer setBorderWidth:1.f];
+            if (![Globals sharedManager].runningOniPad) {
+                b.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
+            }
             [b addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
             [b addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
             
@@ -1213,6 +1251,9 @@ BottomTabBar *bottomTabBarView;
         descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
         descriptionView.titleLabel.numberOfLines = 2;
         descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
+        if (![Globals sharedManager].runningOniPad) {
+            descriptionView.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
+        }
         descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
@@ -1283,6 +1324,9 @@ BottomTabBar *bottomTabBarView;
         [arrayButton3 addObject:b];
         
         b.titleLabel.font= [UIFont systemFontOfSize:34];
+        if (![Globals sharedManager].runningOniPad) {
+            b.titleLabel.font= [UIFont systemFontOfSize:17];
+        }
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
@@ -1421,6 +1465,9 @@ BottomTabBar *bottomTabBarView;
         descriptionView.titleLabel.textAlignment = NSTextAlignmentCenter;;
         descriptionView.titleLabel.numberOfLines = 2;
         descriptionView.titleLabel.font = [UIFont systemFontOfSize:17.0];
+        if (![Globals sharedManager].runningOniPad) {
+            descriptionView.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
+        }
         descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
