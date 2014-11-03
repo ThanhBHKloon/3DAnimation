@@ -11,7 +11,6 @@
 @interface ViewController : UIViewController{
 
     NSMutableArray *arrayHeadLineItem;
-    NSMutableArray *arrayButton1;
     NSMutableArray *arrayButton2;
     NSMutableArray *arrayButton3;
     NSMutableArray *arrayThumb;

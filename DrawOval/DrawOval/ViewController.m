@@ -96,7 +96,6 @@ BottomTabBar *bottomTabBarView;
     arrPreviousHeadlines= [[NSMutableArray alloc]init];
     arraySelectedID= [[NSMutableArray alloc]init];
     btnBackSelected=NO;
-    arrayButton1= [[NSMutableArray alloc]init];
     arrayButton2= [[NSMutableArray alloc]init];
     arrayButton3= [[NSMutableArray alloc]init];
     
@@ -671,7 +670,7 @@ BottomTabBar *bottomTabBarView;
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGRect newFrameBottomBar;
-    if ([self isLandscapeMode]) {
+    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGRect portraitRect = CGRectMake(0,0,screenRect.size.width,screenRect.size.height);
         
@@ -687,6 +686,7 @@ BottomTabBar *bottomTabBarView;
         }
         
         newFrameBottomBar = CGRectMake(0, screenRect.size.height - 48, screenRect.size.width, 48);
+        screenSize =CGSizeMake (screenRect.size.width, screenRect.size.height);
     }
     else
     {
@@ -704,9 +704,17 @@ BottomTabBar *bottomTabBarView;
         }
         
         newFrameBottomBar = CGRectMake(0, screenRect.size.width - 48, screenRect.size.height, 48);
+        screenSize =CGSizeMake (screenRect.size.height, screenRect.size.width);
     }
-    
+    scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
     bottomTabBarView.frame = newFrameBottomBar;
+    [scrollView1.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+}
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    
+    [self loadScrollViewAtBegining];
+    [self loadTopButtonForRotating];
     
 }
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
@@ -741,7 +749,8 @@ BottomTabBar *bottomTabBarView;
 }
 -(void)loadScrollViewAtBegining{
     [self setPositonAndFrame];
-    currentHeadlineID = 0;
+    
+   
     [self loadCurrentHeadlines:currentHeadlineID];
     [self loadPreviousHeadlines:currentHeadlineID];
     
@@ -1117,9 +1126,51 @@ BottomTabBar *bottomTabBarView;
     [self loadThumbViewForBack];
     [self performSelector:@selector(loadTopButtonForBack) withObject:nil afterDelay:0.4];
 }
+-(void)loadTopButtonForRotating{
+//    [self setPositonAndFrame];
+//    scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
+    if ([arraySelectedID count] >0) {
+        for (int i =0; i<[arrPreviousHeadlines count]; i++) {
+            
+            CGRect frameTop= CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , topHeadlineY, topHeadlineWidth, topHeadlineHeigh);
+            
+            UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+            ThumbItem *item = [arrPreviousHeadlines objectAtIndex:i];
+            [b setTitle:item.thumbTitle forState:UIControlStateNormal];
+            b.frame = frameTop;
+            [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+            [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+            [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
+            b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
+            b.alpha = 0.8;
+            [[b layer] setBorderColor:[[UIColor colorWithRed:223.0/255.0
+                                                       green:223.0/255.0
+                                                        blue:223.0/255.0
+                                                       alpha:0.8] CGColor]];
+            [b.layer setBorderWidth:1.f];
+            if (![Globals sharedManager].runningOniPad) {
+                b.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
+            }
+            [b addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
+            [b addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+            
+            [b addTarget:nil action:@selector(clickTopButton:) forControlEvents:UIControlEventTouchUpInside];
+            b.tag = item.thumbID;
+            if (b.tag == currentHeadlineID) {
+                [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
+                b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8];
+                b.alpha = 0.8;
+            }
+            [arrayButton2 addObject:b];
+            [scrollView1 addSubview:b];
+            
+        }
+    }
+}
 -(void)loadTopButtonForBack{
     [self setPositonAndFrame];
-
+     scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
     if ([arraySelectedID count] >0) {
         for (int i =0; i<[arrPreviousHeadlines count]; i++) {
             
@@ -1166,7 +1217,7 @@ BottomTabBar *bottomTabBarView;
 }
 -(void)loadThumbViewForBack {
     [self setPositonAndFrame];
-
+     scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
         
@@ -1509,7 +1560,6 @@ BottomTabBar *bottomTabBarView;
 -(void)loadTopButtonForHeadline:(NSInteger)headlineID{
     [self setPositonAndFrame];
     [self loadPreviousHeadlines:headlineID];
-    [arrayButton1 removeAllObjects];
     [arrayButton3 removeAllObjects];
     scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
     for (int i= 0; i<[arrPreviousHeadlines count]; i++) {
@@ -1521,7 +1571,6 @@ BottomTabBar *bottomTabBarView;
         b.frame = frame;
         b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8];
         b.alpha = 0.8;
-        [arrayButton1 addObject:b];
         b.hidden = YES;
     }
 }
