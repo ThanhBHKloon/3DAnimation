@@ -96,6 +96,10 @@
 #define IS_IPHONE6_PLUS ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] && fabs( ( double )[ [ UIScreen mainScreen ] nativeBounds ].size.height - ( double )2208 ) < DBL_EPSILON )
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
+#define iPhone6 ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone && [UIScreen mainScreen].bounds.size.height == 667)
+
+#define iPhone6Plus ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone && [UIScreen mainScreen].bounds.size.height == 736)
+
 
 UIScrollView *scrollView1;
 UIScrollView *scrollView2;
@@ -123,8 +127,22 @@ BottomTabBar *bottomTabBarView;
                                                                     screenRect1.origin.y,
                                                                     screenRect1.size.width,
                                                                     screenRect1.size.height)];
+        if (IS_IPHONE6_PLUS || IS_IPHONE6) {
+            imgBackground.image= [UIImage imageNamed:@"title_background-568h_p@2x~iphone.jpg"];
+        }
+        else if (IS_IPHONE_5)
+        {
+            imgBackground.image= [UIImage imageNamed:@"title_background_p@2x~iphone.jpg"];
+        }
+        else if ([Globals sharedManager].runningOniPad)
+        {
+            imgBackground.image= [UIImage imageNamed:@"Default-Portrait~ipad.png"];
+        }else
+        {
+            imgBackground.image= [UIImage imageNamed:@"title_background_p~iphone.jpg"];
+        }
         
-        imgBackground.image= [UIImage imageNamed:@"Default-Portrait~ipad.png"];
+        
         scrollView1.frame=CGRectMake(screenRect1.origin.x,
                                      screenRect1.origin.y,
                                      screenRect1.size.width,
@@ -135,7 +153,21 @@ BottomTabBar *bottomTabBarView;
                                                                     screenRect1.origin.y,
                                                                     screenRect1.size.height,
                                                                     screenRect1.size.width)];
-        imgBackground.image= [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+        if (IS_IPHONE6_PLUS || IS_IPHONE6) {
+            imgBackground.image= [UIImage imageNamed:@"title_background-568h_l@2x~iphone.jpg"];
+        }
+        else if (IS_IPHONE_5)
+        {
+            imgBackground.image= [UIImage imageNamed:@"title_background_l@2x~iphone.jpg"];
+        }
+        else if ([Globals sharedManager].runningOniPad)
+        {
+            imgBackground.image= [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+        }else
+        {
+            imgBackground.image= [UIImage imageNamed:@"title_background_l~iphone.jpg"];
+        }
+        
         scrollView1.frame=CGRectMake(screenRect1.origin.x,
                                      screenRect1.origin.y,
                                      screenRect1.size.height,
@@ -175,6 +207,8 @@ BottomTabBar *bottomTabBarView;
     currentHeadlineID=0;
     previousHeadlineID=0;
     [self loadScrollViewAtBegining];
+    
+    NSLog(@"iphone???: %f - %@",[[UIScreen mainScreen] bounds].size.height, iPhone6Plus?@"YES":@"NO");
     
 }
 -(void)setPositonAndFrame{
@@ -770,7 +804,20 @@ BottomTabBar *bottomTabBarView;
         }
         else
         {
-            imgBackground.image = [UIImage imageNamed:@"Default-Portrait~ipad.png"];
+            if (IS_IPHONE6_PLUS || IS_IPHONE6) {
+                imgBackground.image= [UIImage imageNamed:@"title_background-568h_p@2x~iphone.jpg"];
+            }
+            else if (IS_IPHONE_5)
+            {
+                imgBackground.image= [UIImage imageNamed:@"title_background_p@2x~iphone.jpg"];
+            }
+            else if ([Globals sharedManager].runningOniPad)
+            {
+                imgBackground.image= [UIImage imageNamed:@"Default-Portrait~ipad.png"];
+            }else
+            {
+                imgBackground.image= [UIImage imageNamed:@"title_background_p~iphone.jpg"];
+            }
         }
         
         newFrameBottomBar = CGRectMake(0, screenRect.size.height - 48, screenRect.size.width, 48);
@@ -788,7 +835,20 @@ BottomTabBar *bottomTabBarView;
         }
         else
         {
-            imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+            if (IS_IPHONE6_PLUS || IS_IPHONE6) {
+                imgBackground.image= [UIImage imageNamed:@"title_background-568h_l@2x~iphone.jpg"];
+            }
+            else if (IS_IPHONE_5)
+            {
+                imgBackground.image= [UIImage imageNamed:@"title_background_l@2x~iphone.jpg"];
+            }
+            else if ([Globals sharedManager].runningOniPad)
+            {
+                imgBackground.image= [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+            }else
+            {
+                imgBackground.image= [UIImage imageNamed:@"title_background_l~iphone.jpg"];
+            }
         }
         
         newFrameBottomBar = CGRectMake(0, screenRect.size.width - 48, screenRect.size.height, 48);
@@ -1842,13 +1902,53 @@ BottomTabBar *bottomTabBarView;
 }
 - (void) hideCoverView:(BOOL) isHidden {
     if (isHidden) {
-        imgBackground.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+        UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
+            if (IS_IPHONE6_PLUS || IS_IPHONE6) {
+                imgBackground.image= [UIImage imageNamed:@"title_background-568h_p@2x~iphone.jpg"];
+            }
+            else if (IS_IPHONE_5)
+            {
+                imgBackground.image= [UIImage imageNamed:@"title_background_p@2x~iphone.jpg"];
+            }
+            else if ([Globals sharedManager].runningOniPad)
+            {
+                imgBackground.image= [UIImage imageNamed:@"Default-Portrait~ipad.png"];
+            }else
+            {
+                imgBackground.image= [UIImage imageNamed:@"title_background_p~iphone.jpg"];
+            }
+        }
+        else
+        {
+            if (IS_IPHONE6_PLUS || IS_IPHONE6) {
+                imgBackground.image= [UIImage imageNamed:@"title_background-568h_l@2x~iphone.jpg"];
+            }
+            else if (IS_IPHONE_5)
+            {
+                imgBackground.image= [UIImage imageNamed:@"title_background_l@2x~iphone.jpg"];
+            }
+            else if ([Globals sharedManager].runningOniPad)
+            {
+                imgBackground.image= [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+            }else
+            {
+                imgBackground.image= [UIImage imageNamed:@"title_background_l~iphone.jpg"];
+            }
+        }
         
         scrollView1.hidden = NO;
         bottomTabBarView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     }
     else {
-        imgBackground.image = [UIImage imageNamed:@"background.png"];
+        UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
+            imgBackground.image = [UIImage imageNamed:@"ipad_p.png"];
+        }
+        else
+        {
+            imgBackground.image = [UIImage imageNamed:@"ipad_l.png"];
+        }
         scrollView1.hidden = YES;
         bottomTabBarView.backgroundColor = [UIColor clearColor];
     }
