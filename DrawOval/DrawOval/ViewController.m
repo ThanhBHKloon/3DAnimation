@@ -208,7 +208,7 @@ BottomTabBar *bottomTabBarView;
     previousHeadlineID=0;
     [self loadScrollViewAtBegining];
     
-    NSLog(@"iphone???: %f - %@",[[UIScreen mainScreen] bounds].size.height, iPhone6Plus?@"YES":@"NO");
+    NSLog(@"iphone???: %f",[[UIScreen mainScreen] bounds].size.height);
     
 }
 -(void)setPositonAndFrame{
