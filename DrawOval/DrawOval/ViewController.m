@@ -797,6 +797,10 @@ BottomTabBar *bottomTabBarView;
     scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
     bottomTabBarView.frame = newFrameBottomBar;
     [scrollView1.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [arrayButton3 removeAllObjects];
+    [arrayThumb removeAllObjects];
+    [arrayButton2 removeAllObjects];
+    [arrayDescription removeAllObjects];
     
 }
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -935,12 +939,7 @@ BottomTabBar *bottomTabBarView;
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         [scrollView1 addSubview:thumb];
-        
-        [descriptionView addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
-        [descriptionView addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
-        
-        [b addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
-        [b addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+
     }
     
 }
@@ -1103,12 +1102,6 @@ BottomTabBar *bottomTabBarView;
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         
-        [descriptionView addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
-        [descriptionView addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
-        
-        [b addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
-        [b addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
-        
         [UIView animateWithDuration:0.6
                               delay:0
                             options:UIViewAnimationOptionAllowUserInteraction
@@ -1240,8 +1233,6 @@ BottomTabBar *bottomTabBarView;
             if (![Globals sharedManager].runningOniPad) {
                 b.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
             }
-            [b addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
-            [b addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
             
             [b addTarget:nil action:@selector(clickTopButton:) forControlEvents:UIControlEventTouchUpInside];
             b.tag = item.thumbID;
@@ -1284,8 +1275,6 @@ BottomTabBar *bottomTabBarView;
             if (![Globals sharedManager].runningOniPad) {
                 b.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
             }
-            [b addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
-            [b addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
             
             [b addTarget:nil action:@selector(clickTopButton:) forControlEvents:UIControlEventTouchUpInside];
             b.tag = item.thumbID;
@@ -1402,8 +1391,6 @@ BottomTabBar *bottomTabBarView;
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         
-        [descriptionView addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
-        [descriptionView addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
         
         CGPoint descTopPoint = CGPointMake(buttonTopPoint.x, buttonTopPoint.y+ (headlineTitleHeigh + headlineDescriptionHeigh)*0.5/2);
         
@@ -1474,8 +1461,7 @@ BottomTabBar *bottomTabBarView;
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [b addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-        [b addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
-        [b addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+
         b.tag = item.thumbID;
         [scrollView1 addSubview:b];
         
@@ -1616,8 +1602,6 @@ BottomTabBar *bottomTabBarView;
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         
-        [descriptionView addTarget:self action:@selector(startButtonTouch:) forControlEvents:UIControlEventTouchDown];
-        [descriptionView addTarget:self action:@selector(endButtonTouch:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
         
         CGPoint bottomPoint2 = CGPointMake(buttonPoint.x, buttonPoint.y+(headlineTitleHeigh+headlineDescriptionHeigh)*0.5/2);
         
