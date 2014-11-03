@@ -22,16 +22,16 @@
 #define ANIMATION_FROM_BOTTOM 3
 #define ANIMATION_DOWN 4
 
-// for all devices, except for iphone 6 plus
-#define TOP_HEADLINE_PADDING 20
-#define HEADLINE_PADDING 40
-#define TOPHEADLINE_SIZE_WIDTH 139
-#define TOPHEADLINE_SIZE_HEIGH 35
+// for iPad
+#define TOP_HEADLINE_PADDING_IPAD 20
+#define HEADLINE_PADDING_IPAD 40
+#define TOPHEADLINE_SIZE_WIDTH_IPAD 139
+#define TOPHEADLINE_SIZE_HEIGHT_IPAD 35
 
-#define HEADLINE_IMAGE_SIZE_WIDTH 278
-#define HEADLINE_IMAGE_SIZE_HEIGH 156
-#define HEADLINE_TITLE_SIZE_HEIGH 70
-#define HEADLINE_DESCRIPTION_SIZE_HEIGH 50
+#define HEADLINE_IMAGE_SIZE_WIDTH_IPAD 278
+#define HEADLINE_IMAGE_SIZE_HEIGHT_IPAD 156
+#define HEADLINE_TITLE_SIZE_HEIGHT_IPAD 70
+#define HEADLINE_DESCRIPTION_SIZE_HEIGHT_IPAD 50
 
 // IPAD LANDSCAPE
 #define TOP_HEADLINE_ORIGN_Y_IPAD_L 194
@@ -41,49 +41,60 @@
 #define TOP_HEADLINE_ORIGN_Y_IPAD_P 268
 #define HEADLINE_IMAGE_ORIGN_Y_IPAD_P 388
 
+// for iPhone
+#define TOP_HEADLINE_PADDING_IPHONE 8
+#define HEADLINE_PADDING_IPHONE 16
+#define TOPHEADLINE_SIZE_WIDTH_IPHONE 70
+#define TOPHEADLINE_SIZE_HEIGHT_IPHONE 18
+
+#define HEADLINE_IMAGE_SIZE_WIDTH_IPHONE 139
+#define HEADLINE_IMAGE_SIZE_HEIGHT_IPHONE 78
+#define HEADLINE_TITLE_SIZE_HEIGHT_IPHONE 35
+#define HEADLINE_DESCRIPTION_SIZE_HEIGHT_IPHONE 25
+
 // IPHONE 4 LANDSCAPE
-#define TOP_HEADLINE_ORIGN_Y_IPHONE_4_L 162
-#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_L 244
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_4_L 81
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_L 122
 
 // IPHONE 4 PORTRAIT
-#define TOP_HEADLINE_ORIGN_Y_IPHONE_4_P 282
-#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_P 364
-
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_4_P 141
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_P 182
 
 // IPHONE 5 LANDSCAPE :like iphone 4 landscape
 
-// IPHONE 5PORTRAIT
-#define TOP_HEADLINE_ORIGN_Y_IPHONE_5_P 378
-#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_5_P 460
+// IPHONE 5 PORTRAIT
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_5_P 189
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_5_P 230
 
-// IPHONE 6 LANDSCAPE : like ipad landscape
+// IPHONE 6 LANDSCAPE
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_6_L 97
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_L 157
 
 // IPHONE 6 PORTRAIT
-#define TOP_HEADLINE_ORIGN_Y_IPHONE_6_P 430
-#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_P 550
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_6_P 215
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_P 275
 
 // IPHONE 6PLUS LANDSCAPE
-#define TOP_HEADLINE_ORIGN_Y_IPHONE_6_PLUS_L 314
-#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_PLUS_L 488
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_6_PLUS_L 104
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_PLUS_L 162
 
 // IPHONE 6PLUS PORTRAIT
-#define TOP_HEADLINE_ORIGN_Y_IPHONE_6_PLUS_P 654
-#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_PLUS_P 828
+#define TOP_HEADLINE_ORIGN_Y_IPHONE_6_PLUS_P 218
+#define HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_PLUS_P 276
 
-#define TOP_HEADLINE_PADDING_6_PLUS_L 40
-#define HEADLINE_PADDING_6_PLUS_L 80
-#define TOP_HEADLINE_PADDING_6_PLUS_P 30
-#define HEADLINE_PADDING_6_PLUS_P 60
-#define TOPHEADLINE_SIZE_WIDTH_6_PLUS 272
-#define TOPHEADLINE_SIZE_HEIGH_6_PLUS 69
+#define TOP_HEADLINE_PADDING_6 10
+#define HEADLINE_PADDING_6 20
+#define TOPHEADLINE_SIZE_WIDTH_6_PLUS 90
+#define TOPHEADLINE_SIZE_HEIGH_6_PLUS 23
 
-#define HEADLINE_IMAGE_SIZE_WIDTH_6_PLUS 544
-#define HEADLINE_IMAGE_SIZE_HEIGH_6_PLUS 308
-#define HEADLINE_TITLE_SIZE_HEIGH_6_PLUS 138
-#define HEADLINE_DESCRIPTION_SIZE_HEIGH_6_PLUS 98
+#define HEADLINE_IMAGE_SIZE_WIDTH_6_PLUS 180
+#define HEADLINE_IMAGE_SIZE_HEIGH_6_PLUS 102
+#define HEADLINE_TITLE_SIZE_HEIGH_6_PLUS 46
+#define HEADLINE_DESCRIPTION_SIZE_HEIGH_6_PLUS 32
 
 #define IS_IPHONE6 ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] && fabs( ( double )[ [ UIScreen mainScreen ] nativeBounds ].size.height - ( double )1334 ) < DBL_EPSILON )
 #define IS_IPHONE6_PLUS ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] && fabs( ( double )[ [ UIScreen mainScreen ] nativeBounds ].size.height - ( double )2208 ) < DBL_EPSILON )
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 
 UIScrollView *scrollView1;
@@ -109,9 +120,9 @@ BottomTabBar *bottomTabBarView;
     UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
     if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
         imgBackground= [[UIImageView alloc]initWithFrame:CGRectMake(screenRect1.origin.x,
-                                                                   screenRect1.origin.y,
-                                                                   screenRect1.size.width,
-                                                                   screenRect1.size.height)];
+                                                                    screenRect1.origin.y,
+                                                                    screenRect1.size.width,
+                                                                    screenRect1.size.height)];
         
         imgBackground.image= [UIImage imageNamed:@"Default-Portrait~ipad.png"];
         scrollView1.frame=CGRectMake(screenRect1.origin.x,
@@ -121,9 +132,9 @@ BottomTabBar *bottomTabBarView;
     }
     else{
         imgBackground= [[UIImageView alloc]initWithFrame:CGRectMake(screenRect1.origin.x,
-                                                                   screenRect1.origin.y,
-                                                                   screenRect1.size.height,
-                                                                   screenRect1.size.width)];
+                                                                    screenRect1.origin.y,
+                                                                    screenRect1.size.height,
+                                                                    screenRect1.size.width)];
         imgBackground.image= [UIImage imageNamed:@"Default-Landscape~ipad.png"];
         scrollView1.frame=CGRectMake(screenRect1.origin.x,
                                      screenRect1.origin.y,
@@ -168,21 +179,37 @@ BottomTabBar *bottomTabBarView;
 }
 -(void)setPositonAndFrame{
     //top/middle padding, buttons, views size are the same in all devices except for iphone 6 plus
-    if (IS_IPHONE6_PLUS) {
+    if ([Globals sharedManager].runningOniPad) {
         if UIInterfaceOrientationIsPortrait(self.interfaceOrientation){
-            topHeadlinePadding = TOP_HEADLINE_PADDING_6_PLUS_P;
-            headlinePadding = HEADLINE_PADDING_6_PLUS_P;
+            topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPAD_P;
+            headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPAD_P;
+        }
+        else {
+            topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPAD_L;
+            headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPAD_L;
+        }
+        
+        topHeadlinePadding = TOP_HEADLINE_PADDING_IPAD;
+        headlinePadding = HEADLINE_PADDING_IPAD;
+        topHeadlineWidth = TOPHEADLINE_SIZE_WIDTH_IPAD;
+        topHeadlineHeigh = TOPHEADLINE_SIZE_HEIGHT_IPAD;
+        
+        headlineImageWidth = HEADLINE_IMAGE_SIZE_WIDTH_IPAD;
+        headlineImageHeigh = HEADLINE_IMAGE_SIZE_HEIGHT_IPAD;
+        headlineTitleHeigh = HEADLINE_TITLE_SIZE_HEIGHT_IPAD;
+        headlineDescriptionHeigh = HEADLINE_DESCRIPTION_SIZE_HEIGHT_IPAD;
+    }else if (IS_IPHONE6_PLUS) {
+        if UIInterfaceOrientationIsPortrait(self.interfaceOrientation){
             topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_6_PLUS_P;
             headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_PLUS_P;
         }
         else {
-            topHeadlinePadding = TOP_HEADLINE_PADDING_6_PLUS_L;
-            headlinePadding = HEADLINE_PADDING_6_PLUS_L;
             topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_6_PLUS_L;
             headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_PLUS_L;
         }
         
-       
+        topHeadlinePadding = TOP_HEADLINE_PADDING_6;
+        headlinePadding = HEADLINE_PADDING_6;
         topHeadlineWidth = TOPHEADLINE_SIZE_WIDTH_6_PLUS;
         topHeadlineHeigh = TOPHEADLINE_SIZE_HEIGH_6_PLUS;
         
@@ -190,80 +217,141 @@ BottomTabBar *bottomTabBarView;
         headlineImageHeigh = HEADLINE_IMAGE_SIZE_HEIGH_6_PLUS;
         headlineTitleHeigh = HEADLINE_TITLE_SIZE_HEIGH_6_PLUS;
         headlineDescriptionHeigh = HEADLINE_DESCRIPTION_SIZE_HEIGH_6_PLUS;
+    }else if (IS_IPHONE6)
+    {
+        if UIInterfaceOrientationIsPortrait(self.interfaceOrientation){
+            topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_6_P;
+            headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_P;
+        }
+        else {
+            topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_6_L;
+            headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_L;
+        }
+        
+        topHeadlinePadding = TOP_HEADLINE_PADDING_6;
+        headlinePadding = HEADLINE_PADDING_6;
+        topHeadlineWidth = TOPHEADLINE_SIZE_WIDTH_IPHONE;
+        topHeadlineHeigh = TOPHEADLINE_SIZE_HEIGHT_IPHONE;
+        
+        headlineImageWidth = HEADLINE_IMAGE_SIZE_WIDTH_IPHONE;
+        headlineImageHeigh = HEADLINE_IMAGE_SIZE_HEIGHT_IPHONE;
+        headlineTitleHeigh = HEADLINE_TITLE_SIZE_HEIGHT_IPHONE;
+        headlineDescriptionHeigh = HEADLINE_DESCRIPTION_SIZE_HEIGHT_IPHONE;
+    }else if ([Globals sharedManager].has4InchDisplay) // iPhone 5
+    {
+        if UIInterfaceOrientationIsPortrait(self.interfaceOrientation){
+            topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_5_P;
+            headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_5_P;
+        }
+        else {
+            topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_4_L;
+            headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_L;
+        }
+        
+        topHeadlinePadding = TOP_HEADLINE_PADDING_IPHONE;
+        headlinePadding = HEADLINE_PADDING_IPHONE;
+        topHeadlineWidth = TOPHEADLINE_SIZE_WIDTH_IPHONE;
+        topHeadlineHeigh = TOPHEADLINE_SIZE_HEIGHT_IPHONE;
+        
+        headlineImageWidth = HEADLINE_IMAGE_SIZE_WIDTH_IPHONE;
+        headlineImageHeigh = HEADLINE_IMAGE_SIZE_HEIGHT_IPHONE;
+        headlineTitleHeigh = HEADLINE_TITLE_SIZE_HEIGHT_IPHONE;
+        headlineDescriptionHeigh = HEADLINE_DESCRIPTION_SIZE_HEIGHT_IPHONE;
     }
-    else {
-        topHeadlinePadding = TOP_HEADLINE_PADDING;
-        headlinePadding = HEADLINE_PADDING;
-        topHeadlineWidth = TOPHEADLINE_SIZE_WIDTH;
-        topHeadlineHeigh = TOPHEADLINE_SIZE_HEIGH;
-        
-        headlineImageWidth = HEADLINE_IMAGE_SIZE_WIDTH;
-        headlineImageHeigh = HEADLINE_IMAGE_SIZE_HEIGH;
-        headlineTitleHeigh = HEADLINE_TITLE_SIZE_HEIGH;
-        headlineDescriptionHeigh = HEADLINE_DESCRIPTION_SIZE_HEIGH;
-        
+    else { // iPhone 4 and earlier
         
         if UIInterfaceOrientationIsPortrait(self.interfaceOrientation){
-            screenSize = [[UIScreen mainScreen] bounds].size;
-            if ([Globals sharedManager].runningOniPad){
-                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPAD_P;
-                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPAD_P;
-                return;
-                
-            }
-            if (IS_IPHONE6) {
-                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_6_P;
-                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_P;
-                return;
-            }
-            
-            if ([Globals sharedManager].has4InchDisplay) {
-                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_5_P;
-                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_5_P;
-                return;
-            }
-            if ([Globals sharedManager].hasRetinaDisplay) {
-                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_4_P/2;
-                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_P/2;
-                
-                topHeadlinePadding = TOP_HEADLINE_PADDING/2;
-                headlinePadding = HEADLINE_PADDING/2;
-                topHeadlineWidth = TOPHEADLINE_SIZE_WIDTH/2;
-                topHeadlineHeigh = TOPHEADLINE_SIZE_HEIGH/2;
-                
-                headlineImageWidth = HEADLINE_IMAGE_SIZE_WIDTH/2;
-                headlineImageHeigh = HEADLINE_IMAGE_SIZE_HEIGH/2;
-                headlineTitleHeigh = HEADLINE_TITLE_SIZE_HEIGH/2;
-                headlineDescriptionHeigh = HEADLINE_DESCRIPTION_SIZE_HEIGH/2;
-                return;
-            }
-            
+            topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_4_P;
+            headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_P;
         }
-        else { // running in landscape
-            CGSize screenSize1 = [[UIScreen mainScreen] bounds].size;
-            screenSize =CGSizeMake (screenSize1.height, screenSize1.width);
-            if ([Globals sharedManager].runningOniPad){
-                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPAD_L;
-                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPAD_L;
-                return;
-                
-            }
-            if (IS_IPHONE6) {
-                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPAD_L;
-                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPAD_L;
-                return;
-            }
-            
-            if ([Globals sharedManager].hasRetinaDisplay) {
-                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_4_L;
-                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_L;
-                return;
-            }
+        else {
+            topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_4_L;
+            headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_L;
         }
         
+        topHeadlinePadding = TOP_HEADLINE_PADDING_IPHONE;
+        headlinePadding = HEADLINE_PADDING_IPHONE;
+        topHeadlineWidth = TOPHEADLINE_SIZE_WIDTH_IPHONE;
+        topHeadlineHeigh = TOPHEADLINE_SIZE_HEIGHT_IPHONE;
+        
+        headlineImageWidth = HEADLINE_IMAGE_SIZE_WIDTH_IPHONE;
+        headlineImageHeigh = HEADLINE_IMAGE_SIZE_HEIGHT_IPHONE;
+        headlineTitleHeigh = HEADLINE_TITLE_SIZE_HEIGHT_IPHONE;
+        headlineDescriptionHeigh = HEADLINE_DESCRIPTION_SIZE_HEIGHT_IPHONE;
     }
     
-    }
+    //        topHeadlinePadding = TOP_HEADLINE_PADDING;
+    //        headlinePadding = HEADLINE_PADDING;
+    //        topHeadlineWidth = TOPHEADLINE_SIZE_WIDTH;
+    //        topHeadlineHeigh = TOPHEADLINE_SIZE_HEIGH;
+    //
+    //        headlineImageWidth = HEADLINE_IMAGE_SIZE_WIDTH;
+    //        headlineImageHeigh = HEADLINE_IMAGE_SIZE_HEIGH;
+    //        headlineTitleHeigh = HEADLINE_TITLE_SIZE_HEIGH;
+    //        headlineDescriptionHeigh = HEADLINE_DESCRIPTION_SIZE_HEIGH;
+    //
+    //
+    //        if UIInterfaceOrientationIsPortrait(self.interfaceOrientation){
+    //            screenSize = [[UIScreen mainScreen] bounds].size;
+    //            if ([Globals sharedManager].runningOniPad){
+    //                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPAD_P;
+    //                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPAD_P;
+    //                return;
+    //
+    //            }
+    //            if (IS_IPHONE6) {
+    //                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_6_P;
+    //                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_6_P;
+    //                return;
+    //            }
+    //
+    //            if ([Globals sharedManager].has4InchDisplay) {
+    //                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_5_P;
+    //                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_5_P;
+    //                return;
+    //            }
+    //            if ([Globals sharedManager].hasRetinaDisplay) {
+    //                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_4_P/2;
+    //                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_P/2;
+    //
+    //                topHeadlinePadding = TOP_HEADLINE_PADDING/2;
+    //                headlinePadding = HEADLINE_PADDING/2;
+    //                topHeadlineWidth = TOPHEADLINE_SIZE_WIDTH/2;
+    //                topHeadlineHeigh = TOPHEADLINE_SIZE_HEIGH/2;
+    //
+    //                headlineImageWidth = HEADLINE_IMAGE_SIZE_WIDTH/2;
+    //                headlineImageHeigh = HEADLINE_IMAGE_SIZE_HEIGH/2;
+    //                headlineTitleHeigh = HEADLINE_TITLE_SIZE_HEIGH/2;
+    //                headlineDescriptionHeigh = HEADLINE_DESCRIPTION_SIZE_HEIGH/2;
+    //                return;
+    //            }
+    //
+    //        }
+    //        else { // running in landscape
+    //            CGSize screenSize1 = [[UIScreen mainScreen] bounds].size;
+    //            screenSize =CGSizeMake (screenSize1.height, screenSize1.width);
+    //            if ([Globals sharedManager].runningOniPad){
+    //                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPAD_L;
+    //                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPAD_L;
+    //                return;
+    //
+    //            }
+    //            if (IS_IPHONE6) {
+    //                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPAD_L;
+    //                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPAD_L;
+    //                return;
+    //            }
+    //
+    //            if ([Globals sharedManager].hasRetinaDisplay) {
+    //                topHeadlineY = TOP_HEADLINE_ORIGN_Y_IPHONE_4_L;
+    //                headlineImageY = HEADLINE_IMAGE_ORIGN_Y_IPHONE_4_L;
+    //                return;
+    //            }
+    //        }
+    
+    //    }
+    
+}
 
 
 -(void)clickTopButton:(id)sender{
@@ -344,14 +432,14 @@ BottomTabBar *bottomTabBarView;
     btnBackSelected = NO;
     UIButton *clickButton = sender;
     
-   
-
+    
+    
     previousHeadlineID = currentHeadlineID;
     currentHeadlineID = clickButton.tag;
     
-     [self zoomHeadline];
+    [self zoomHeadline];
     
-     [self loadCurrentHeadlines:currentHeadlineID];
+    [self loadCurrentHeadlines:currentHeadlineID];
     int lastObject = [[arraySelectedID lastObject] integerValue];
     if (lastObject != [sender tag])
         [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
@@ -369,7 +457,7 @@ BottomTabBar *bottomTabBarView;
             tempBtn.alpha = 0.0;
         } completion:^(BOOL finished){
             [tempBtn removeFromSuperview];
-       }];
+        }];
     }
     
     [arrayButton2 removeAllObjects];
@@ -383,7 +471,7 @@ BottomTabBar *bottomTabBarView;
     
     
     
-     [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.65];
+    [self performSelector:@selector(loadScrollForCurrentHeadline) withObject:nil afterDelay:0.65];
 }
 -(void)showCover {
     [self hideCoverView:NO];
@@ -399,7 +487,7 @@ BottomTabBar *bottomTabBarView;
     [anim setValue:@"anim1" forKey:@"anim1"];
     anim.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
     anim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)];
-
+    
     
     for (int i =0; i<[arrayButton3 count]; i++) {
         
@@ -482,17 +570,17 @@ BottomTabBar *bottomTabBarView;
             }
             descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
             [descriptionView.layer setBorderWidth:1.f];
-           
+            
             [parentView addSubview:thumb];
             [parentView addSubview:b];
             [parentView addSubview:descriptionView];
-             [scrollView1 addSubview:parentView];
+            [scrollView1 addSubview:parentView];
             [parentView.layer addAnimation:anim forKey:nil];
             return;
             
         }
         
-       
+        
         
     }
 }
@@ -500,7 +588,7 @@ BottomTabBar *bottomTabBarView;
 -(void)moveHeadline {
     [parentView removeFromSuperview];
     animationType = ANIMATION_UP_STEP1;
-
+    
     for (int i =0; i<[arrayButton2 count]; i++) {
         
         
@@ -626,11 +714,11 @@ BottomTabBar *bottomTabBarView;
         [descView.layer addAnimation:animGroup2 forKey:nil];
         
     }
-   
-
+    
+    
 }
 -(void)loadScrollForCurrentHeadline{
-     [self loadScrollViewForHeadLineID:currentHeadlineID];
+    [self loadScrollViewForHeadLineID:currentHeadlineID];
 }
 -(void)maskBtnDidClick:(id)sender {
     int lastObject = [[arraySelectedID lastObject] intValue];
@@ -643,7 +731,7 @@ BottomTabBar *bottomTabBarView;
             break;
         }
     }
-
+    
     
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -758,7 +846,7 @@ BottomTabBar *bottomTabBarView;
         [b removeFromSuperview];
     }
     [arrayButton3 removeAllObjects];
-
+    
     scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] +headlinePadding, screenSize.height - 48);
     
     
@@ -780,7 +868,7 @@ BottomTabBar *bottomTabBarView;
                                                    alpha:0.8] CGColor]];
         [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
-
+        
         b.titleLabel.font= [UIFont systemFontOfSize:34];
         if (![Globals sharedManager].runningOniPad) {
             b.titleLabel.font= [UIFont systemFontOfSize:17];
@@ -870,7 +958,7 @@ BottomTabBar *bottomTabBarView;
             b = btn;
         }
     }
-//    b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+    //    b.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
     
     UIButton *d;
     
@@ -879,9 +967,9 @@ BottomTabBar *bottomTabBarView;
             d = btn;
         }
     }
-//    d.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
+    //    d.backgroundColor = [UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:1.0];
     
-//    NSLog(@"startButtonTouch %i",i);
+    //    NSLog(@"startButtonTouch %i",i);
 }
 
 - (void)endButtonTouch:(id)sender {
@@ -1037,7 +1125,7 @@ BottomTabBar *bottomTabBarView;
 -(void)loadScrollViewBackToHeadLineID:(NSInteger)headlineID{
     [self setPositonAndFrame];
     isFinishAnimation = NO;
-
+    
     [self loadCurrentHeadlines:headlineID];
     [self loadPreviousHeadlines:headlineID];
     
@@ -1074,7 +1162,7 @@ BottomTabBar *bottomTabBarView;
                                                    alpha:0.8] CGColor]];
         [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
-
+        
         
         b.titleLabel.font= [UIFont systemFontOfSize:34];
         if (![Globals sharedManager].runningOniPad) {
@@ -1120,7 +1208,7 @@ BottomTabBar *bottomTabBarView;
         [animGroup setDelegate:self];
         b.alpha =0.8;
         [b.layer addAnimation:animGroup forKey:nil];
-
+        
         
     }
     [self loadThumbViewForBack];
@@ -1170,7 +1258,9 @@ BottomTabBar *bottomTabBarView;
 }
 -(void)loadTopButtonForBack{
     [self setPositonAndFrame];
+
      scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
+
     if ([arraySelectedID count] >0) {
         for (int i =0; i<[arrPreviousHeadlines count]; i++) {
             
@@ -1190,7 +1280,7 @@ BottomTabBar *bottomTabBarView;
                                                        green:223.0/255.0
                                                         blue:223.0/255.0
                                                        alpha:0.8] CGColor]];
-                        [b.layer setBorderWidth:1.f];
+            [b.layer setBorderWidth:1.f];
             if (![Globals sharedManager].runningOniPad) {
                 b.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
             }
@@ -1217,7 +1307,9 @@ BottomTabBar *bottomTabBarView;
 }
 -(void)loadThumbViewForBack {
     [self setPositonAndFrame];
+
      scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
+
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
         CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
         
@@ -1250,7 +1342,7 @@ BottomTabBar *bottomTabBarView;
         CGRect frameTop1= CGRectMake(topHeadlinePadding +i*(topHeadlinePadding+topHeadlineWidth) , topHeadlineY-headlineImageHeigh/2, topHeadlineWidth, headlineImageHeigh/2 +1);
         CGPoint buttonTopPoint = CGPointMake(frameTop.origin.x + frameTop.size.width/2, frameTop.origin.y+frameTop.size.height/2);
         
-         CGPoint thumbTopPoint = CGPointMake(frameTop1.origin.x + frameTop1.size.width/2, frameTop1.origin.y+frameTop1.size.height/2);
+        CGPoint thumbTopPoint = CGPointMake(frameTop1.origin.x + frameTop1.size.width/2, frameTop1.origin.y+frameTop1.size.height/2);
         [scrollView1 addSubview:thumb];
         UIBezierPath *movePath1 = [UIBezierPath bezierPath];
         [movePath1 moveToPoint:thumbTopPoint];
@@ -1351,7 +1443,7 @@ BottomTabBar *bottomTabBarView;
         [b removeFromSuperview];
     }
     [arrayButton3 removeAllObjects];
-
+    
     scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] +headlinePadding, screenSize.height - 48);
     
     
@@ -1466,7 +1558,7 @@ BottomTabBar *bottomTabBarView;
         CGPoint buttonPoint = CGPointMake(bottomFrame.origin.x + bottomFrame.size.width/2, (bottomFrame.origin.y +bottomFrame.size.height/2));
         
         CGPoint bottomPoint = CGPointMake(buttonPoint.x, buttonPoint.y-(headlineTitleHeigh+headlineImageHeigh)*0.5/2);
-
+        
         UIBezierPath *movePath1 = [UIBezierPath bezierPath];
         [movePath1 moveToPoint:bottomPoint];
         
@@ -1616,7 +1708,7 @@ BottomTabBar *bottomTabBarView;
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 2%d",i+1-11];
-                 item.imgName = [NSString stringWithFormat:@"%d.png",i+1-10];
+                item.imgName = [NSString stringWithFormat:@"%d.png",i+1-10];
                 [arrCurrentHeadlines addObject:item];
             }
             //            [arrCurrentHeadlines addObject:@"Headline 21"];
@@ -1646,7 +1738,7 @@ BottomTabBar *bottomTabBarView;
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 4%d",i+1-20];
-                 item.imgName = [NSString stringWithFormat:@"%d.png",i+1-20];
+                item.imgName = [NSString stringWithFormat:@"%d.png",i+1-20];
                 [arrCurrentHeadlines addObject:item];
             }
             
@@ -1663,7 +1755,7 @@ BottomTabBar *bottomTabBarView;
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 5%d",i+1-26];
-                  item.imgName = [NSString stringWithFormat:@"%d.png",i+1-24];
+                item.imgName = [NSString stringWithFormat:@"%d.png",i+1-24];
                 [arrCurrentHeadlines addObject:item];
             }
             
@@ -1681,7 +1773,7 @@ BottomTabBar *bottomTabBarView;
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 11%d",i+1-32];
-                  item.imgName = [NSString stringWithFormat:@"%d.png",i+1-30];
+                item.imgName = [NSString stringWithFormat:@"%d.png",i+1-30];
                 [arrCurrentHeadlines addObject:item];
             }
             
@@ -1696,7 +1788,7 @@ BottomTabBar *bottomTabBarView;
                 ThumbItem *item = [[ThumbItem alloc]init];
                 item.thumbID = i+1;
                 item.thumbTitle = [NSString stringWithFormat:@"Headline 12%d",i+1-35];
-                 item.imgName = [NSString stringWithFormat:@"%d.png",i+1-35];
+                item.imgName = [NSString stringWithFormat:@"%d.png",i+1-35];
                 [arrCurrentHeadlines addObject:item];
             }
             
