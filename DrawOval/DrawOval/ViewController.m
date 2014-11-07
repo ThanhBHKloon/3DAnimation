@@ -147,12 +147,16 @@ BottomTabBar *bottomTabBarView;
                                      screenRect1.origin.y,
                                      screenRect1.size.width,
                                      screenRect1.size.height-48);
+        
     }
     else{
-        imgBackground= [[UIImageView alloc]initWithFrame:CGRectMake(screenRect1.origin.x,
-                                                                    screenRect1.origin.y,
-                                                                    screenRect1.size.height,
-                                                                    screenRect1.size.width)];
+        if (screenRect1.size.width <screenRect1.size.height) {
+            screenRect1 = CGRectMake(screenRect1.origin.x,
+                                     screenRect1.origin.y,
+                                     screenRect1.size.height,
+                                     screenRect1.size.width);
+        }
+        imgBackground= [[UIImageView alloc]initWithFrame:screenRect1];
         if (IS_IPHONE6_PLUS || IS_IPHONE6) {
             imgBackground.image= [UIImage imageNamed:@"title_background-568h_l@2x~iphone.jpg"];
         }
@@ -167,11 +171,12 @@ BottomTabBar *bottomTabBarView;
         {
             imgBackground.image= [UIImage imageNamed:@"title_background_l~iphone.jpg"];
         }
-        
+
         scrollView1.frame=CGRectMake(screenRect1.origin.x,
                                      screenRect1.origin.y,
-                                     screenRect1.size.height,
-                                     screenRect1.size.width-48);
+                                     screenRect1.size.width,
+                                     screenRect1.size.height-48);
+        
     }
     
     [self.view addSubview:imgBackground];
@@ -183,36 +188,15 @@ BottomTabBar *bottomTabBarView;
     
     btnBack= [UIButton buttonWithType:UIButtonTypeCustom];
     btnBack.backgroundColor=[UIColor clearColor];
-    
+    btnBack.center=CGPointMake(20,10);
+    [btnBack sizeToFit];
     [btnBack addTarget:self action:@selector(backButton:)forControlEvents:UIControlEventTouchUpInside];
-    UIImage *img = [UIImage imageNamed:@"button_back_unselected.png"];
-    if ([Globals sharedManager].runningOniPad)
-        btnBack.frame = CGRectMake(10, 10, img.size.width,img.size.height/1.25);
-    else
-        btnBack.frame = CGRectMake(5, 5, img.size.width/2,img.size.height/2.5);
-//    [btnBack sizeToFit];
-    [btnBack setImage:img forState:UIControlStateNormal];
+    
+    [btnBack setImage:[UIImage imageNamed:@"button_back_unselected.png"]forState:UIControlStateNormal];
+    
     
     CGRect frameBottomBar;
-    if ([Globals sharedManager].runningOniPad) {
-        if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
-            frameBottomBar =CGRectMake(0,self.view.frame.size.height-48,self.view.frame.size.width,48);
-        }
-        else{
-            
-            frameBottomBar =CGRectMake(0,self.view.frame.size.width-48,self.view.frame.size.height,48);
-        }
-    }
-    else
-    {
-        if(UIInterfaceOrientationIsPortrait(interfaceOrientation)){
-            frameBottomBar =CGRectMake(0,self.view.frame.size.height-48/2,self.view.frame.size.width,48/2);
-        }
-        else{
-            
-            frameBottomBar =CGRectMake(0,self.view.frame.size.width-48/2,self.view.frame.size.height,48/2);
-        }
-    }
+     frameBottomBar =CGRectMake(0,screenRect1.size.height-48,screenRect1.size.width,48);
     
     bottomTabBarView= [[BottomTabBar alloc]initWithFrame:frameBottomBar];
     bottomTabBarView.backgroundColor= [[UIColor blackColor]colorWithAlphaComponent:0.5];
@@ -422,13 +406,7 @@ BottomTabBar *bottomTabBarView;
                                                        green:223.0/255.0
                                                         blue:223.0/255.0
                                                        alpha:0.8] CGColor]];
-            if (![Globals sharedManager].runningOniPad) {
-                [b.layer setBorderWidth:0.5];
-            }
-            else
-            {
-                [b.layer setBorderWidth:1.0];
-            }
+            [b.layer setBorderWidth:1.f];
             break;
         }
     }
@@ -455,7 +433,7 @@ BottomTabBar *bottomTabBarView;
         return;
     }
     [arraySelectedID removeLastObject];
-    int lastObject = [[arraySelectedID lastObject] integerValue];
+    int lastObject = [[arraySelectedID lastObject] intValue];
     if (lastObject != [sender tag])
         [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
     
@@ -495,7 +473,7 @@ BottomTabBar *bottomTabBarView;
     [self zoomHeadline];
     
     [self loadCurrentHeadlines:currentHeadlineID];
-    int lastObject = [[arraySelectedID lastObject] integerValue];
+    int lastObject = [[arraySelectedID lastObject] intValue];
     if (lastObject != [sender tag])
         [arraySelectedID addObject:[NSNumber numberWithInteger:currentHeadlineID]];
     NSLog(@"selected: %@",arraySelectedID);
@@ -571,13 +549,7 @@ BottomTabBar *bottomTabBarView;
                                                        green:223.0/255.0
                                                         blue:223.0/255.0
                                                        alpha:1.0] CGColor]];
-            if (![Globals sharedManager].runningOniPad) {
-                [b.layer setBorderWidth:0.5];
-            }
-            else
-            {
-                [b.layer setBorderWidth:1.0];
-            }
+            [b.layer setBorderWidth:1.f];
             b.titleLabel.font= [UIFont systemFontOfSize:34];
             if (![Globals sharedManager].runningOniPad) {
                 b.titleLabel.font= [UIFont systemFontOfSize:17];
@@ -591,14 +563,7 @@ BottomTabBar *bottomTabBarView;
             ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(0, 0, headlineImageWidth, headlineImageHeigh)];
             thumb.item = item;
             [thumb loadImageForThumb];
-            
-            if (![Globals sharedManager].runningOniPad) {
-                [thumb.layer setBorderWidth:0.5];
-            }
-            else
-            {
-                [thumb.layer setBorderWidth:1.0];
-            }
+            [thumb.layer setBorderWidth:1.0];
             [thumb.layer setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                          green:223.0/255.0
                                                           blue:223.0/255.0
@@ -637,13 +602,7 @@ BottomTabBar *bottomTabBarView;
                 descriptionView.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
             }
             descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-            if (![Globals sharedManager].runningOniPad) {
-                [descriptionView.layer setBorderWidth:0.5];
-            }
-            else
-            {
-                [descriptionView.layer setBorderWidth:1.0];
-            }
+            [descriptionView.layer setBorderWidth:1.f];
             
             [parentView addSubview:thumb];
             [parentView addSubview:b];
@@ -834,7 +793,14 @@ BottomTabBar *bottomTabBarView;
     CGRect newFrameBottomBar;
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
         CGRect screenRect = [[UIScreen mainScreen] bounds];
-        CGRect portraitRect = CGRectMake(0,0,screenRect.size.width,screenRect.size.height);
+        CGRect portraitRect;// = CGRectMake(0,0,screenRect.size.width,screenRect.size.height);
+        if (screenRect.size.height > screenRect.size.width) {
+            portraitRect = CGRectMake(0,0,screenRect.size.width,screenRect.size.height);
+        }
+        else {
+            portraitRect = CGRectMake(0,0,screenRect.size.height,screenRect.size.width);
+        }
+        
         
         scrollView1.frame = portraitRect;
         
@@ -859,19 +825,19 @@ BottomTabBar *bottomTabBarView;
                 imgBackground.image= [UIImage imageNamed:@"title_background_p~iphone.jpg"];
             }
         }
-        if ([Globals sharedManager].runningOniPad) {
-            newFrameBottomBar = CGRectMake(0, screenRect.size.height - 48, screenRect.size.width, 48);
-        }
-        else
-        {
-            newFrameBottomBar = CGRectMake(0, screenRect.size.height - 48/2, screenRect.size.width, 48/2);
-        }
         
-        screenSize =CGSizeMake (screenRect.size.width, screenRect.size.height);
+        newFrameBottomBar = CGRectMake(0, portraitRect.size.height - 48, portraitRect.size.width, 48);
+        screenSize =CGSizeMake (portraitRect.size.width, portraitRect.size.height);
     }
     else
     {
-        CGRect lanscapeRect = CGRectMake(0,0,screenRect.size.height,screenRect.size.width);
+        CGRect lanscapeRect ;
+        if (screenRect.size.height > screenRect.size.width) {
+            lanscapeRect = CGRectMake(0,0,screenRect.size.height,screenRect.size.width);
+        }
+        else {
+            lanscapeRect = CGRectMake(0,0,screenRect.size.width,screenRect.size.height);
+        }
         
         scrollView1.frame = lanscapeRect;
         
@@ -896,15 +862,9 @@ BottomTabBar *bottomTabBarView;
                 imgBackground.image= [UIImage imageNamed:@"title_background_l~iphone.jpg"];
             }
         }
-        if ([Globals sharedManager].runningOniPad) {
-            newFrameBottomBar = CGRectMake(0, screenRect.size.width - 48, screenRect.size.height, 48);
-        }
-        else
-        {
-            newFrameBottomBar = CGRectMake(0, screenRect.size.width - 48/2, screenRect.size.height, 48/2);
-        }
         
-        screenSize =CGSizeMake (screenRect.size.height, screenRect.size.width);
+        newFrameBottomBar = CGRectMake(0, lanscapeRect.size.height - 48, lanscapeRect.size.width, 48);
+        screenSize =CGSizeMake (lanscapeRect.size.width, lanscapeRect.size.height);
     }
     scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
     bottomTabBarView.frame = newFrameBottomBar;
@@ -968,12 +928,12 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh + 1);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh+1);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+headlineImageHeigh, frame.size.width, headlineTitleHeigh + 2);
+        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+headlineImageHeigh, frame.size.width, headlineTitleHeigh +2);
         b.frame = btnFrame;
         [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
         b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
@@ -982,13 +942,7 @@ BottomTabBar *bottomTabBarView;
                                                    green:223.0/255.0
                                                     blue:223.0/255.0
                                                    alpha:0.8] CGColor]];
-        if (![Globals sharedManager].runningOniPad) {
-            [b.layer setBorderWidth:0.5];
-        }
-        else
-        {
-            [b.layer setBorderWidth:1.0];
-        }
+        [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         
         b.titleLabel.font= [UIFont systemFontOfSize:34];
@@ -1007,14 +961,7 @@ BottomTabBar *bottomTabBarView;
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         thumb.item = item;
         [thumb loadImageForThumb];
-        if (![Globals sharedManager].runningOniPad) {
-            [thumb.layer setBorderWidth:0.5];
-        }
-        else
-        {
-            [thumb.layer setBorderWidth:1.0];
-        }
-        
+        [thumb.layer setBorderWidth:1.0];
         [thumb.layer setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                      green:223.0/255.0
                                                       blue:223.0/255.0
@@ -1060,13 +1007,7 @@ BottomTabBar *bottomTabBarView;
             descriptionView.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
         }
         descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        if (![Globals sharedManager].runningOniPad) {
-            [descriptionView.layer setBorderWidth:0.5];
-        }
-        else
-        {
-            [descriptionView.layer setBorderWidth:1.0];
-        }
+        [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         [scrollView1 addSubview:thumb];
@@ -1152,12 +1093,12 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh + 1);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+headlineImageHeigh, frame.size.width, headlineTitleHeigh + 2);
+        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+headlineImageHeigh, frame.size.width, headlineTitleHeigh);
         b.frame = btnFrame;
         [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
         b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
@@ -1166,13 +1107,7 @@ BottomTabBar *bottomTabBarView;
                                                    green:223.0/255.0
                                                     blue:223.0/255.0
                                                    alpha:0.8] CGColor]];
-        if (![Globals sharedManager].runningOniPad) {
-            [b.layer setBorderWidth:0.5];
-        }
-        else
-        {
-            [b.layer setBorderWidth:1.0];
-        }
+        [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         b.titleLabel.font= [UIFont systemFontOfSize:34];
         if (![Globals sharedManager].runningOniPad) {
@@ -1190,13 +1125,7 @@ BottomTabBar *bottomTabBarView;
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         thumb.item = item;
         [thumb loadImageForThumb];
-        if (![Globals sharedManager].runningOniPad) {
-            [thumb.layer setBorderWidth:0.5];
-        }
-        else
-        {
-            [thumb.layer setBorderWidth:1.0];
-        }
+        [thumb.layer setBorderWidth:1.0];
         [thumb.layer setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                      green:223.0/255.0
                                                       blue:223.0/255.0
@@ -1214,7 +1143,7 @@ BottomTabBar *bottomTabBarView;
         [scrollView1 addSubview:thumb];
         
         UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                               thumb.frame.origin.y + headlineImageHeigh+headlineTitleHeigh + 1,
+                                                                               thumb.frame.origin.y + headlineImageHeigh+headlineTitleHeigh,
                                                                                headlineImageWidth,
                                                                                headlineDescriptionHeigh)];
         descriptionView.alpha = 0.0;
@@ -1241,13 +1170,7 @@ BottomTabBar *bottomTabBarView;
             descriptionView.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
         }
         descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        if (![Globals sharedManager].runningOniPad) {
-            [descriptionView.layer setBorderWidth:0.5];
-        }
-        else
-        {
-            [descriptionView.layer setBorderWidth:1.0];
-        }
+        [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         
@@ -1288,12 +1211,12 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh + 1);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         [b setTitle:item.thumbTitle forState:UIControlStateNormal];
-        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+headlineImageHeigh, frame.size.width, headlineTitleHeigh + 2);
+        CGRect btnFrame = CGRectMake(frame.origin.x, frame.origin.y+headlineImageHeigh, frame.size.width, headlineTitleHeigh);
         b.frame = btnFrame;
         [b setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:108.0/255 green:108.0/255 blue:108.0/255 alpha:0.8]] forState:UIControlStateHighlighted];
         b.backgroundColor = [UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:0.8];
@@ -1302,13 +1225,7 @@ BottomTabBar *bottomTabBarView;
                                                    green:223.0/255.0
                                                     blue:223.0/255.0
                                                    alpha:0.8] CGColor]];
-        if (![Globals sharedManager].runningOniPad) {
-            [b.layer setBorderWidth:0.5];
-        }
-        else
-        {
-            [b.layer setBorderWidth:1.0];
-        }
+        [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         
         
@@ -1384,13 +1301,7 @@ BottomTabBar *bottomTabBarView;
                                                        green:223.0/255.0
                                                         blue:223.0/255.0
                                                        alpha:0.8] CGColor]];
-            if (![Globals sharedManager].runningOniPad) {
-                [b.layer setBorderWidth:0.5];
-            }
-            else
-            {
-                [b.layer setBorderWidth:1.0];
-            }
+            [b.layer setBorderWidth:1.f];
             if (![Globals sharedManager].runningOniPad) {
                 b.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
             }
@@ -1432,13 +1343,7 @@ BottomTabBar *bottomTabBarView;
                                                        green:223.0/255.0
                                                         blue:223.0/255.0
                                                        alpha:0.8] CGColor]];
-            if (![Globals sharedManager].runningOniPad) {
-                [b.layer setBorderWidth:0.5];
-            }
-            else
-            {
-                [b.layer setBorderWidth:1.0];
-            }
+            [b.layer setBorderWidth:1.f];
             if (![Globals sharedManager].runningOniPad) {
                 b.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
             }
@@ -1467,20 +1372,14 @@ BottomTabBar *bottomTabBarView;
     scrollView1.contentSize = CGSizeMake((headlinePadding + headlineImageWidth)*[arrCurrentHeadlines count] + topHeadlinePadding, screenSize.height - 48);
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh + 1);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
         
         
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
         thumb.item = item;
         [thumb loadImageForThumb];
-        if (![Globals sharedManager].runningOniPad) {
-            [thumb.layer setBorderWidth:0.5];
-        }
-        else
-        {
-            [thumb.layer setBorderWidth:1.0];
-        }
+        [thumb.layer setBorderWidth:1.0];
         [thumb.layer setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                      green:223.0/255.0
                                                       blue:223.0/255.0
@@ -1533,7 +1432,7 @@ BottomTabBar *bottomTabBarView;
         
         
         UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                               thumb.frame.origin.y + headlineImageHeigh+headlineTitleHeigh + 1,
+                                                                               thumb.frame.origin.y + headlineImageHeigh+headlineTitleHeigh,
                                                                                headlineImageWidth,
                                                                                headlineDescriptionHeigh)];
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
@@ -1560,13 +1459,7 @@ BottomTabBar *bottomTabBarView;
             descriptionView.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
         }
         descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        if (![Globals sharedManager].runningOniPad) {
-            [descriptionView.layer setBorderWidth:0.5];
-        }
-        else
-        {
-            [descriptionView.layer setBorderWidth:1.0];
-        }
+        [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         
@@ -1615,7 +1508,7 @@ BottomTabBar *bottomTabBarView;
     
     
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh + 1);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
         
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         ThumbItem *item = [arrCurrentHeadlines objectAtIndex:i];
@@ -1629,13 +1522,7 @@ BottomTabBar *bottomTabBarView;
                                                    green:223.0/255.0
                                                     blue:223.0/255.0
                                                    alpha:0.8] CGColor]];
-        if (![Globals sharedManager].runningOniPad) {
-            [b.layer setBorderWidth:0.5];
-        }
-        else
-        {
-            [b.layer setBorderWidth:1.0];
-        }
+        [b.layer setBorderWidth:1.f];
         [arrayButton3 addObject:b];
         
         b.titleLabel.font= [UIFont systemFontOfSize:34];
@@ -1703,15 +1590,9 @@ BottomTabBar *bottomTabBarView;
     [arrayThumb removeAllObjects];
     [arrayDescription removeAllObjects];
     for (int i= 0; i<[arrCurrentHeadlines count]; i++) {
-        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh + 1);
+        CGRect frame = CGRectMake(topHeadlinePadding +i*(headlinePadding+ headlineImageWidth) , headlineImageY, headlineImageWidth, headlineImageHeigh);
         ThumView *thumb = [[ThumView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
-        if (![Globals sharedManager].runningOniPad) {
-            [thumb.layer setBorderWidth:0.5];
-        }
-        else
-        {
-            [thumb.layer setBorderWidth:1.0];
-        }
+        [thumb.layer setBorderWidth:1.0];
         [thumb.layer setBorderColor:[[UIColor colorWithRed:223.0/255.0
                                                      green:223.0/255.0
                                                       blue:223.0/255.0
@@ -1763,7 +1644,7 @@ BottomTabBar *bottomTabBarView;
         
         // load description view
         UIButton *descriptionView = [[UIButton alloc] initWithFrame:CGRectMake(thumb.frame.origin.x,
-                                                                               thumb.frame.origin.y + headlineImageHeigh+headlineTitleHeigh + 1,
+                                                                               thumb.frame.origin.y + headlineImageHeigh+headlineTitleHeigh,
                                                                                headlineImageWidth,
                                                                                headlineDescriptionHeigh)];
         descriptionView.titleLabel.textColor = [UIColor whiteColor];
@@ -1789,13 +1670,7 @@ BottomTabBar *bottomTabBarView;
             descriptionView.titleLabel.font= [UIFont systemFontOfSize:17.0/2];
         }
         descriptionView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        if (![Globals sharedManager].runningOniPad) {
-            [descriptionView.layer setBorderWidth:0.5];
-        }
-        else
-        {
-            [descriptionView.layer setBorderWidth:1.0];
-        }
+        [descriptionView.layer setBorderWidth:1.f];
         [arrayDescription addObject:descriptionView];
         [scrollView1 addSubview:descriptionView];
         
